@@ -1,0 +1,216 @@
+<?xml version="1.0" ?>
+<!-- Macro for gripper -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:macro name="Gripper" params="name">
+
+		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
+
+		<link name="${prefix}gripper_flange">
+			<inertial>
+				<origin xyz="0.0030662 -1.4019E-18 3.383E-18"/>
+				<mass value="0.031005"/>
+				<inertia ixx="2.2585E-05" ixy="-2.0366E-21" ixz="-3.7461E-22" iyy="1.141E-05" iyz="-7.8518E-23"
+								 izz="1.141E-05"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/flange_link.obj"/>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="${prefix}gripper_flange_joint" type="fixed">
+			<origin xyz="0.0065 0 0"/>
+			<parent link="${prefix}gripper_flange"/>
+			<child link="${prefix}gripper_base"/>
+		</joint>
+
+		<link name="${prefix}gripper_base">
+			<inertial>
+				<origin xyz="0.037051 -6.4001E-05 6.4706E-05"/>
+				<mass value="0.061747"/>
+				<inertia ixx="2.5813E-05" ixy="4.7224E-08" ixz="-3.9403E-11" iyy="7.2859E-05" iyz="-2.962E-10"
+								 izz="5.7173E-05"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/base_link.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/base_link.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_l_knuckle_link">
+			<inertial>
+				<origin xyz="0.024101 0 0"/>
+				<mass value="0.0070682"/>
+				<inertia ixx="9.2131e-08" ixy="0" ixz="0" iyy="1.559e-06" iyz="0" izz="1.4931e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_1.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_1.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_l_inner_knuckle_link">
+			<inertial>
+				<origin xyz="0.023769 0 0"/>
+				<mass value="0.007802"/>
+				<inertia ixx="1.044e-07" ixy="0" ixz="0" iyy="1.6385e-06" iyz="0" izz="1.566e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_2.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_2.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_l_finger_link">
+			<inertial>
+				<origin xyz="0.016809 0.0019094 0"/>
+				<mass value="0.015957"/>
+				<inertia ixx="5.5426e-07" ixy="0" ixz="0" iyy="1.8538e-06" iyz="0" izz="1.5262e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_3.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_3.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_r_knuckle_link">
+			<inertial>
+				<origin xyz="0.024101 0 0"/>
+				<mass value="0.0070682"/>
+				<inertia ixx="9.2131e-08" ixy="0" ixz="0" iyy="1.559e-06" iyz="0" izz="1.4931e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_1.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_1.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_r_inner_knuckle_link">
+			<inertial>
+				<origin xyz="0.023769 0 0"/>
+				<mass value="0.007802"/>
+				<inertia ixx="1.044e-07" ixy="0" ixz="0" iyy="1.6385e-06" iyz="0" izz="1.566e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_2.obj"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_2.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${prefix}gripper_r_finger_link">
+			<inertial>
+				<origin xyz="0.016809 -0.0019094 0"/>
+				<mass value="0.015957"/>
+				<inertia ixx="5.5426e-07" ixy="0" ixz="0" iyy="1.8538e-06" iyz="0" izz="1.5262e-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<joint name="${prefix}gripper_joint" type="revolute">
+			<parent link="${prefix}gripper_base"/>
+			<child link="${prefix}gripper_r_knuckle_link"/>
+			<origin rpy="1.5707963267948966 -1.2465 0" xyz="0.0745 0 0.0385"/>
+			<axis xyz="0 0 -1"/>
+			<limit effort="50" lower="0.0" upper="1.703" velocity="0.5"/>
+		</joint>
+
+		<joint name="${prefix}gripper_r_inner_knuckle_joint" type="revolute">
+			<parent link="${prefix}gripper_base"/>
+			<child link="${prefix}gripper_r_inner_knuckle_link"/>
+			<origin rpy="1.5707963267948966 -1.2465 0" xyz="0.079 0 0.026"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+		</joint>
+
+		<joint name="${prefix}gripper_r_finger_joint" type="revolute">
+			<parent link="${prefix}gripper_r_inner_knuckle_link"/>
+			<child link="${prefix}gripper_r_finger_link"/>
+			<origin rpy="0 0 -1.2465" xyz="0.045 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+		</joint>
+
+		<joint name="${prefix}gripper_l_knuckle_joint" type="revolute">
+			<parent link="${prefix}gripper_base"/>
+			<child link="${prefix}gripper_l_knuckle_link"/>
+			<origin rpy="1.5707963267948966 1.2465 0" xyz="0.0745 0 -0.0385"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="50" lower="-3.13" upper="3.13" velocity="0.5"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+		</joint>
+
+		<joint name="${prefix}gripper_l_inner_knuckle_joint" type="revolute">
+			<parent link="${prefix}gripper_base"/>
+			<child link="${prefix}gripper_l_inner_knuckle_link"/>
+			<origin rpy="1.5707963267948966 1.2465 0" xyz="0.079 0 -0.026"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+		</joint>
+
+		<joint name="${prefix}gripper_l_finger_joint" type="revolute">
+			<parent link="${prefix}gripper_l_inner_knuckle_link"/>
+			<child link="${prefix}gripper_l_finger_link"/>
+			<origin rpy="0 0 1.2465" xyz="0.045 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+		</joint>
+
+		<link name="${prefix}gripper_tcp_link"/>
+		<joint name="${prefix}gripper_tcp_joint" type="fixed">
+			<parent link="${prefix}gripper_base"/>
+			<child link="${prefix}gripper_tcp_link"/>
+			<origin rpy="-1.5707963267948966 0 0" xyz="0.13996 0 0"/>
+		</joint>
+
+	</xacro:macro>
+</robot>
