@@ -19,12 +19,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/chassis/omni_chassis.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/chassis/omni_chassis.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/omni_chassis.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/omni_chassis.stl"/>
       </geometry>
     </collision>
   </link>
@@ -53,16 +53,16 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/leg/leg_1.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/leg/leg_1.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/leg/link1.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/leg/link1.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="leg_joint1" type="revolute">
+  <joint name="body_joint1" type="revolute">
     <origin rpy="1.5707963267948966 -0.385 3.141592653589793"/>
     <parent link="leg_base_link"/>
     <child link="leg_link1"/>
@@ -77,16 +77,16 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/leg/leg_2.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/leg/leg_2.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/leg/link2.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/leg/link2.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="leg_joint2" type="revolute">
+  <joint name="body_joint2" type="revolute">
     <origin rpy="3.141592653589793 0 2.7566" xyz="0.45 0 0"/>
     <parent link="leg_link1"/>
     <child link="leg_link2"/>
@@ -101,16 +101,16 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/leg/leg_3.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/leg/leg_3.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/leg/link3.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/leg/link3.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="leg_joint3" type="revolute">
+  <joint name="body_joint3" type="revolute">
     <origin rpy="3.141592653589793 0 3.141592653589793" xyz="0.39 0 0"/>
     <parent link="leg_link2"/>
     <child link="leg_link3"/>
@@ -125,11 +125,11 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/leg/leg_4.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/leg/leg_4.obj"/>
       </geometry>
     </visual>
   </link>
-  <joint name="leg_joint4" type="revolute">
+  <joint name="body_joint4" type="revolute">
     <origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0 0.224 0"/>
     <parent link="leg_link3"/>
     <child link="leg_link4"/>
@@ -144,7 +144,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/leg/leg_5.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/leg/leg_5.obj"/>
       </geometry>
     </visual>
   </link>
@@ -165,29 +165,29 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/torso/torso.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/torso/torso.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/torso.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/torso.stl"/>
       </geometry>
     </collision>
   </link>
   <!-- Left Arm Mount -->
-  <link name="torso_left_arm_mount_link"/>
-  <joint name="torso_left_arm_mount_joint" type="fixed">
+  <link name="torso_left_mount_link"/>
+  <joint name="torso_left_mount_joint" type="fixed">
     <origin rpy="0 1.5707963267948966 0" xyz="0.20843 0.172 0"/>
     <parent link="torso_base_link"/>
-    <child link="torso_left_arm_mount_link"/>
+    <child link="torso_left_mount_link"/>
     <axis/>
   </joint>
   <!-- Right Arm Mount -->
-  <link name="torso_right_arm_mount_link"/>
-  <joint name="torso_right_arm_mount_joint" type="fixed">
+  <link name="torso_right_mount_link"/>
+  <joint name="torso_right_mount_joint" type="fixed">
     <origin rpy="3.141592653589793 1.5707963267948966 0" xyz="-0.20843 0.172 0"/>
     <parent link="torso_base_link"/>
-    <child link="torso_right_arm_mount_link"/>
+    <child link="torso_right_mount_link"/>
     <axis/>
   </joint>
   <!-- Head Mount -->
@@ -230,12 +230,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/head/head.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/head/head.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/head.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/head.stl"/>
       </geometry>
     </collision>
   </link>
@@ -252,18 +252,18 @@
     <child link="head_end_effector_mount_link"/>
     <axis/>
   </joint>
-  <joint name="right_arm_joint" type="fixed">
-    <parent link="torso_right_arm_mount_link"/>
-    <child link="right_arm_base_link"/>
+  <joint name="right_joint" type="fixed">
+    <parent link="torso_right_mount_link"/>
+    <child link="right_base_link"/>
   </joint>
-  <link name="right_arm_base_link">
+  <link name="right_base_link">
     <inertial>
       <origin xyz="0.0 0.0 -0.10506"/>
       <mass value="0.92"/>
       <inertia ixx="0.01075595" ixy="9e-08" ixz="4.1e-07" iyy="0.01077842" iyz="1.896e-05" izz="0.0007042000000000001"/>
     </inertial>
   </link>
-  <link name="right_arm_link1">
+  <link name="right_link1">
     <inertial>
       <origin xyz="0.0 -0.0009699999999999999 -0.015390000000000001"/>
       <mass value="1.6"/>
@@ -271,23 +271,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link1.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link1.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link1.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link1.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint1" type="revolute">
+  <joint name="right_joint1" type="revolute">
     <origin rpy="0 0 -0.523598775598286"/>
-    <parent link="right_arm_base_link"/>
-    <child link="right_arm_link1"/>
+    <parent link="right_base_link"/>
+    <child link="right_link1"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="60" jerk="12" lower="-3.0043" upper="3.0043" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link2">
+  <link name="right_link2">
     <inertial>
       <origin xyz="0.0 -0.09558 0.010150000000000001"/>
       <mass value="1.43"/>
@@ -295,23 +295,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link2.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link2.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link2.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link2.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint2" type="revolute">
+  <joint name="right_joint2" type="revolute">
     <origin rpy="-1.5707963267949 0 3.14159265358979"/>
-    <parent link="right_arm_link1"/>
-    <child link="right_arm_link2"/>
+    <parent link="right_link1"/>
+    <child link="right_link2"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="60" jerk="12" lower="-1.6081" upper="1.6081" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link3">
+  <link name="right_link3">
     <inertial>
       <origin xyz="0.0 -0.00088 -0.04936"/>
       <mass value="1.43"/>
@@ -319,23 +319,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link3.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link3.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link3.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link3.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint3" type="revolute">
+  <joint name="right_joint3" type="revolute">
     <origin rpy="-1.5707963267949 1.04719755119629 -3.14159265358979" xyz="0 -0.35 0"/>
-    <parent link="right_arm_link2"/>
-    <child link="right_arm_link3"/>
+    <parent link="right_link2"/>
+    <child link="right_link3"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="30" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link4">
+  <link name="right_link4">
     <inertial>
       <origin xyz="0.0 -0.05614 0.019170000000000003"/>
       <mass value="1.1"/>
@@ -343,23 +343,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link4.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link4.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link4.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link4.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint4" type="revolute">
+  <joint name="right_joint4" type="revolute">
     <origin rpy="-1.57079632679459 0 3.14159265358979"/>
-    <parent link="right_arm_link3"/>
-    <child link="right_arm_link4"/>
-    <axis xyz="0 0 -1"/>
+    <parent link="right_link3"/>
+    <child link="right_link4"/>
+    <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="30" jerk="12" lower="-1.86986" upper="2.56799" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link5">
+  <link name="right_link5">
     <inertial>
       <origin xyz="0.00044 0.0016899999999999999 -0.13306"/>
       <mass value="1.15"/>
@@ -367,23 +367,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link5.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link5.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link5.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link5.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint5" type="revolute">
+  <joint name="right_joint5" type="revolute">
     <origin rpy="-1.5707963267949 0 3.1415926535898" xyz="0 -0.36 0"/>
-    <parent link="right_arm_link4"/>
-    <child link="right_arm_link5"/>
+    <parent link="right_link4"/>
+    <child link="right_link5"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link6">
+  <link name="right_link6">
     <inertial>
       <origin xyz="-0.00088 0.0072699999999999996 -0.00011999999999999999"/>
       <mass value="0.47"/>
@@ -391,23 +391,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link6.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link6.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link6.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link6.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint6" type="revolute">
+  <joint name="right_joint6" type="revolute">
     <origin rpy="1.5707963267949 1.5707963267949 0"/>
-    <parent link="right_arm_link5"/>
-    <child link="right_arm_link6"/>
+    <parent link="right_link5"/>
+    <child link="right_link6"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-0.7354" upper="0.8227" velocity="1.5"/>
   </joint>
-  <link name="right_arm_link7">
+  <link name="right_link7">
     <inertial>
       <origin xyz="-0.05751 0.00684 0.011869999999999999"/>
       <mass value="0.8"/>
@@ -415,24 +415,24 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link7.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link7.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link7.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link7.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_joint7" type="revolute">
+  <joint name="right_joint7" type="revolute">
     <origin rpy="-1.5707963267949 0 0"/>
-    <parent link="right_arm_link6"/>
-    <child link="right_arm_link7"/>
+    <parent link="right_link6"/>
+    <child link="right_link7"/>
     <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-1.5382" upper="1.5382" velocity="1.5"/>
   </joint>
   <joint name="right_camera_joint" type="fixed">
-    <parent link="right_arm_link7"/>
+    <parent link="right_link7"/>
     <child link="right_wrist_camera_link"/>
   </joint>
   <link name="right_wrist_camera_link">
@@ -443,18 +443,24 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/camera/wrist_d405_camera.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/d405_stand.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin rpy="-1.5708 3.2315926 0" xyz="-0.0822 0 -0.06842"/>
+      <geometry>
+        <mesh filename="file:///home/biao/ros2_ws/install/sensor_models/share/sensor_models/meshes/d405/d405.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/d405.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/d405.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="right_arm_end_effector_mount_joint" type="fixed">
+  <joint name="right_end_effector_mount_joint" type="fixed">
     <origin rpy="-1.5708 0 3.14159265358948" xyz="-0.10926 0 0"/>
-    <parent link="right_arm_link7"/>
+    <parent link="right_link7"/>
     <child link="right_gripper_flange"/>
     <axis/>
   </joint>
@@ -466,7 +472,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/flange_link.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/flange_link.obj"/>
       </geometry>
     </visual>
   </link>
@@ -483,12 +489,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/base_link.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/base_link.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/base_link.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -500,12 +506,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -517,12 +523,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -534,12 +540,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_3.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_3.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_3.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -551,12 +557,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -568,12 +574,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -585,12 +591,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -647,18 +653,18 @@
     <child link="right_gripper_tcp_link"/>
     <origin rpy="-1.5707963267948966 0 0" xyz="0.13996 0 0"/>
   </joint>
-  <joint name="left_arm_joint" type="fixed">
-    <parent link="torso_left_arm_mount_link"/>
-    <child link="left_arm_base_link"/>
+  <joint name="left_joint" type="fixed">
+    <parent link="torso_left_mount_link"/>
+    <child link="left_base_link"/>
   </joint>
-  <link name="left_arm_base_link">
+  <link name="left_base_link">
     <inertial>
       <origin xyz="0.0 0.0 -0.10506"/>
       <mass value="0.92"/>
       <inertia ixx="0.01075595" ixy="9e-08" ixz="4.1e-07" iyy="0.01077842" iyz="1.896e-05" izz="0.0007042000000000001"/>
     </inertial>
   </link>
-  <link name="left_arm_link1">
+  <link name="left_link1">
     <inertial>
       <origin xyz="0.0 0.0009699999999999999 -0.015390000000000001"/>
       <mass value="1.6"/>
@@ -666,23 +672,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link1.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link1.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link1.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link1.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint1" type="revolute">
+  <joint name="left_joint1" type="revolute">
     <origin rpy="0 0 0.523598775598286"/>
-    <parent link="left_arm_base_link"/>
-    <child link="left_arm_link1"/>
+    <parent link="left_base_link"/>
+    <child link="left_link1"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="60" jerk="12" lower="-3.0043" upper="3.0043" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link2">
+  <link name="left_link2">
     <inertial>
       <origin xyz="0.0 0.09558 0.010150000000000001"/>
       <mass value="1.43"/>
@@ -690,23 +696,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link2.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link2.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link2.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link2.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint2" type="revolute">
+  <joint name="left_joint2" type="revolute">
     <origin rpy="1.5707963267949 0 3.14159265358979"/>
-    <parent link="left_arm_link1"/>
-    <child link="left_arm_link2"/>
+    <parent link="left_link1"/>
+    <child link="left_link2"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="60" jerk="12" lower="-1.6081" upper="1.6081" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link3">
+  <link name="left_link3">
     <inertial>
       <origin xyz="0.0 0.00088 -0.04936"/>
       <mass value="1.43"/>
@@ -714,23 +720,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link3.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link3.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link3.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link3.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint3" type="revolute">
+  <joint name="left_joint3" type="revolute">
     <origin rpy="1.5707963267949 1.04719755119629 -3.14159265358979" xyz="0 0.35 0"/>
-    <parent link="left_arm_link2"/>
-    <child link="left_arm_link3"/>
+    <parent link="left_link2"/>
+    <child link="left_link3"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="30" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link4">
+  <link name="left_link4">
     <inertial>
       <origin xyz="0.0 0.05614 0.019170000000000003"/>
       <mass value="1.1"/>
@@ -738,23 +744,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link4.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link4.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link4.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link4.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint4" type="revolute">
+  <joint name="left_joint4" type="revolute">
     <origin rpy="1.57079632679459 0 3.14159265358979"/>
-    <parent link="left_arm_link3"/>
-    <child link="left_arm_link4"/>
-    <axis xyz="0 0 1"/>
+    <parent link="left_link3"/>
+    <child link="left_link4"/>
+    <axis xyz="0 0 -1"/>
     <limit acceleration="2" effort="30" jerk="12" lower="-1.86986" upper="2.56799" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link5">
+  <link name="left_link5">
     <inertial>
       <origin xyz="0.00044 0.0016899999999999999 -0.13306"/>
       <mass value="1.15"/>
@@ -762,23 +768,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link5.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link5.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link5.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link5.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint5" type="revolute">
+  <joint name="left_joint5" type="revolute">
     <origin rpy="-1.5707963267949 0 0.0" xyz="0 0.36 0"/>
-    <parent link="left_arm_link4"/>
-    <child link="left_arm_link5"/>
+    <parent link="left_link4"/>
+    <child link="left_link5"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link6">
+  <link name="left_link6">
     <inertial>
       <origin xyz="-0.00088 -0.0072699999999999996 -0.00011999999999999999"/>
       <mass value="0.47"/>
@@ -786,23 +792,23 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link6.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link6.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link6.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link6.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint6" type="revolute">
+  <joint name="left_joint6" type="revolute">
     <origin rpy="1.5707963267949 1.5707963267949 0"/>
-    <parent link="left_arm_link5"/>
-    <child link="left_arm_link6"/>
+    <parent link="left_link5"/>
+    <child link="left_link6"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-0.7354" upper="0.8227" velocity="1.5"/>
   </joint>
-  <link name="left_arm_link7">
+  <link name="left_link7">
     <inertial>
       <origin xyz="-0.05751 -0.00684 0.011869999999999999"/>
       <mass value="0.8"/>
@@ -810,24 +816,24 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/arm/link7.obj" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/link7.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/arm/link7.stl" scale="1 1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/arm/link7.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_joint7" type="revolute">
+  <joint name="left_joint7" type="revolute">
     <origin rpy="1.5707963267949 0 0"/>
-    <parent link="left_arm_link6"/>
-    <child link="left_arm_link7"/>
+    <parent link="left_link6"/>
+    <child link="left_link7"/>
     <axis xyz="0 0 1"/>
     <limit acceleration="2" effort="10" jerk="12" lower="-1.5382" upper="1.5382" velocity="1.5"/>
   </joint>
   <joint name="left_camera_joint" type="fixed">
-    <parent link="left_arm_link7"/>
+    <parent link="left_link7"/>
     <child link="left_wrist_camera_link"/>
   </joint>
   <link name="left_wrist_camera_link">
@@ -838,18 +844,24 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/camera/wrist_d405_camera.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/arm/d405_stand.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin rpy="-1.5708 3.2315926 0" xyz="-0.0822 0 -0.06842"/>
+      <geometry>
+        <mesh filename="file:///home/biao/ros2_ws/install/sensor_models/share/sensor_models/meshes/d405/d405.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/d405.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/d405.stl"/>
       </geometry>
     </collision>
   </link>
-  <joint name="left_arm_end_effector_mount_joint" type="fixed">
+  <joint name="left_end_effector_mount_joint" type="fixed">
     <origin rpy="-1.5708 0 3.14159265358979" xyz="-0.10926 0 0"/>
-    <parent link="left_arm_link7"/>
+    <parent link="left_link7"/>
     <child link="left_gripper_flange"/>
   </joint>
   <link name="left_gripper_flange">
@@ -860,7 +872,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/flange_link.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/flange_link.obj"/>
       </geometry>
     </visual>
   </link>
@@ -877,12 +889,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/base_link.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/base_link.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/base_link.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -894,12 +906,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -911,12 +923,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -928,12 +940,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_3.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_3.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_3.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -945,12 +957,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_1.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -962,12 +974,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_2.obj"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -979,12 +991,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
+        <mesh filename="file:///home/biao/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>

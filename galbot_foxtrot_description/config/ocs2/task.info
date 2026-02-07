@@ -106,10 +106,10 @@ initialState
   ; initial state for the arm DOFs
   arm
   {
-    (0,0)   0.0      ; leg_joint1
-    (1,0)   0.0      ; leg_joint2
-    (2,0)   0.0      ; leg_joint3
-    (3,0)   0.0      ; leg_joint4
+    (0,0)   0.0      ; body_joint1
+    (1,0)   0.0      ; body_joint2
+    (2,0)   0.0      ; body_joint3
+    (3,0)   0.0      ; body_joint4
     (4,0)   0.0      ; left_arm_joint1
     (5,0)   0.0      ; left_arm_joint2
     (6,0)   0.0      ; left_arm_joint3
@@ -167,10 +167,10 @@ inputCost
     {
       scaling 1e-2
 
-         (0,0)   1.0       ; leg_joint1
-         (1,0)   1.0       ; leg_joint2
-         (2,0)   1.0       ; leg_joint3
-         (3,0)   1.0       ; leg_joint4
+         (0,0)   1.0       ; body_joint1
+         (1,0)   1.0       ; body_joint2
+         (2,0)   1.0       ; body_joint3
+         (3,0)   1.0       ; body_joint4
          (4,0)   0.11      ; left_arm_joint1
          (5,0)   0.11      ; left_arm_joint2
          (6,0)   0.11      ; left_arm_joint3
@@ -298,10 +298,10 @@ jointVelocityLimits
     ; velocity limits for the arm DOFs
     arm
     {
-        (0,0)  -1.0         ; leg_joint1 [rad/s]
-        (1,0)  -1.0         ; leg_joint2 [rad/s]
-        (2,0)  -1.0         ; leg_joint3 [rad/s]
-        (3,0)  -1.0         ; leg_joint4 [rad/s]
+        (0,0)  -1.0         ; body_joint1 [rad/s]
+        (1,0)  -1.0         ; body_joint2 [rad/s]
+        (2,0)  -1.0         ; body_joint3 [rad/s]
+        (3,0)  -1.0         ; body_joint4 [rad/s]
         (4,0)  -1.5         ; left_arm_joint1 [rad/s]
         (5,0)  -1.5         ; left_arm_joint2 [rad/s]
         (6,0)  -1.5         ; left_arm_joint3 [rad/s]
@@ -352,10 +352,10 @@ jointVelocityLimits
     ; velocity limits for the arm DOFs
     arm
     {
-        (0,0)  1.0          ; leg_joint1 [rad/s]
-        (1,0)  1.0          ; leg_joint2 [rad/s]
-        (2,0)  1.0          ; leg_joint3 [rad/s]
-        (3,0)  1.0          ; leg_joint4 [rad/s]
+        (0,0)  1.0          ; body_joint1 [rad/s]
+        (1,0)  1.0          ; body_joint2 [rad/s]
+        (2,0)  1.0          ; body_joint3 [rad/s]
+        (3,0)  1.0          ; body_joint4 [rad/s]
         (4,0)  1.5          ; left_arm_joint1 [rad/s]
         (5,0)  1.5          ; left_arm_joint2 [rad/s]
         (6,0)  1.5          ; left_arm_joint3 [rad/s]

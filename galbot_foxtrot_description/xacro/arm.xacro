@@ -5,7 +5,7 @@
 
 		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
 
-		<link name="${prefix}arm_base_link">
+		<link name="${prefix}base_link">
 			<inertial>
 				<origin xyz="0.0 0.0 -0.10506"/>
 				<mass value="0.92"/>
@@ -14,7 +14,7 @@
 			</inertial>
 		</link>
 
-		<link name="${prefix}arm_link1">
+		<link name="${prefix}link1">
 			<inertial>
 				<origin xyz="0.0 ${direction*0.0009699999999999999} -0.015390000000000001"/>
 				<mass value="1.6"/>
@@ -35,15 +35,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint1" type="revolute">
+		<joint name="${prefix}joint1" type="revolute">
 			<origin rpy="0 0 ${direction*0.523598775598286}"/>
-			<parent link="${prefix}arm_base_link"/>
-			<child link="${prefix}arm_link1"/>
+			<parent link="${prefix}base_link"/>
+			<child link="${prefix}link1"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="60" jerk="12" lower="-3.0043" upper="3.0043" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link2">
+		<link name="${prefix}link2">
 			<inertial>
 				<origin xyz="0.0 ${direction*0.09558} 0.010150000000000001"/>
 				<mass value="1.43"/>
@@ -67,15 +67,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint2" type="revolute">
+		<joint name="${prefix}joint2" type="revolute">
 			<origin rpy="${direction*1.5707963267949} 0 3.14159265358979"/>
-			<parent link="${prefix}arm_link1"/>
-			<child link="${prefix}arm_link2"/>
+			<parent link="${prefix}link1"/>
+			<child link="${prefix}link2"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="60" jerk="12" lower="-1.6081" upper="1.6081" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link3">
+		<link name="${prefix}link3">
 			<inertial>
 				<origin xyz="0.0 ${direction*0.00088} -0.04936"/>
 				<mass value="1.43"/>
@@ -95,15 +95,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint3" type="revolute">
+		<joint name="${prefix}joint3" type="revolute">
 			<origin rpy="${direction*1.5707963267949} 1.04719755119629 -3.14159265358979" xyz="0 ${direction*0.35} 0"/>
-			<parent link="${prefix}arm_link2"/>
-			<child link="${prefix}arm_link3"/>
+			<parent link="${prefix}link2"/>
+			<child link="${prefix}link3"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="30" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link4">
+		<link name="${prefix}link4">
 			<inertial>
 				<origin xyz="0.0 ${direction*0.05614} 0.019170000000000003"/>
 				<mass value="1.1"/>
@@ -124,15 +124,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint4" type="revolute">
+		<joint name="${prefix}joint4" type="revolute">
 			<origin rpy="${direction*1.57079632679459} 0 3.14159265358979"/>
-			<parent link="${prefix}arm_link3"/>
-			<child link="${prefix}arm_link4"/>
-			<axis xyz="0 0 ${direction}"/>
+			<parent link="${prefix}link3"/>
+			<child link="${prefix}link4"/>
+			<axis xyz="0 0 ${-direction}"/>
 			<limit acceleration="2" effort="30" jerk="12" lower="-1.86986" upper="2.56799" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link5">
+		<link name="${prefix}link5">
 			<inertial>
 				<origin xyz="0.00044 0.0016899999999999999 -0.13306"/>
 				<mass value="1.15"/>
@@ -153,15 +153,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint5" type="revolute">
+		<joint name="${prefix}joint5" type="revolute">
 			<origin rpy="-1.5707963267949 0 ${direction*-1.5707963267949 + 1.5707963267949}" xyz="0 ${direction*0.36} 0"/>
-			<parent link="${prefix}arm_link4"/>
-			<child link="${prefix}arm_link5"/>
+			<parent link="${prefix}link4"/>
+			<child link="${prefix}link5"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="10" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link6">
+		<link name="${prefix}link6">
 			<inertial>
 				<origin xyz="-0.00088 ${direction*-0.0072699999999999996} -0.00011999999999999999"/>
 				<mass value="0.47"/>
@@ -182,15 +182,15 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint6" type="revolute">
+		<joint name="${prefix}joint6" type="revolute">
 			<origin rpy="1.5707963267949 1.5707963267949 0"/>
-			<parent link="${prefix}arm_link5"/>
-			<child link="${prefix}arm_link6"/>
+			<parent link="${prefix}link5"/>
+			<child link="${prefix}link6"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="10" jerk="12" lower="-0.7354" upper="0.8227" velocity="1.5"/>
 		</joint>
 
-		<link name="${prefix}arm_link7">
+		<link name="${prefix}link7">
 			<inertial>
 				<origin xyz="-0.05751 ${direction*-0.00684} 0.011869999999999999"/>
 				<mass value="0.8"/>
@@ -211,16 +211,16 @@
 			</collision>
 		</link>
 
-		<joint name="${prefix}arm_joint7" type="revolute">
+		<joint name="${prefix}joint7" type="revolute">
 			<origin rpy="${direction*1.5707963267949} 0 0"/>
-			<parent link="${prefix}arm_link6"/>
-			<child link="${prefix}arm_link7"/>
+			<parent link="${prefix}link6"/>
+			<child link="${prefix}link7"/>
 			<axis xyz="0 0 ${direction}"/>
 			<limit acceleration="2" effort="10" jerk="12" lower="-1.5382" upper="1.5382" velocity="1.5"/>
 		</joint>
 
 		<joint name="${prefix}camera_joint" type="fixed">
-			<parent link="${prefix}arm_link7"/>
+			<parent link="${prefix}link7"/>
 			<child link="${prefix}wrist_camera_link"/>
 		</joint>
 

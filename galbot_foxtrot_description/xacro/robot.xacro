@@ -68,7 +68,7 @@
 		</collision>
 	</link>
 
-	<joint name="leg_joint1" type="revolute">
+	<joint name="body_joint1" type="revolute">
 		<origin rpy="1.5707963267948966 -0.385 3.141592653589793"/>
 		<parent link="leg_base_link"/>
 		<child link="leg_link1"/>
@@ -95,7 +95,7 @@
 		</collision>
 	</link>
 
-	<joint name="leg_joint2" type="revolute">
+	<joint name="body_joint2" type="revolute">
 		<origin rpy="3.141592653589793 0 2.7566" xyz="0.45 0 0"/>
 		<parent link="leg_link1"/>
 		<child link="leg_link2"/>
@@ -121,7 +121,7 @@
 		</collision>
 	</link>
 
-	<joint name="leg_joint3" type="revolute">
+	<joint name="body_joint3" type="revolute">
 		<origin rpy="3.141592653589793 0 3.141592653589793" xyz="0.39 0 0"/>
 		<parent link="leg_link2"/>
 		<child link="leg_link3"/>
@@ -142,7 +142,7 @@
 		</visual>
 	</link>
 
-	<joint name="leg_joint4" type="revolute">
+	<joint name="body_joint4" type="revolute">
 		<origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0 0.224 0"/>
 		<parent link="leg_link3"/>
 		<child link="leg_link4"/>
@@ -194,21 +194,21 @@
 	</link>
 
 	<!-- Left Arm Mount -->
-	<link name="torso_left_arm_mount_link"/>
+	<link name="torso_left_mount_link"/>
 
-	<joint name="torso_left_arm_mount_joint" type="fixed">
+	<joint name="torso_left_mount_joint" type="fixed">
 		<origin rpy="0 1.5707963267948966 0" xyz="0.20843 0.172 0"/>
 		<parent link="torso_base_link"/>
-		<child link="torso_left_arm_mount_link"/>
+		<child link="torso_left_mount_link"/>
 		<axis/>
 	</joint>
 
 	<!-- Right Arm Mount -->
-	<link name="torso_right_arm_mount_link"/>
-	<joint name="torso_right_arm_mount_joint" type="fixed">
+	<link name="torso_right_mount_link"/>
+	<joint name="torso_right_mount_joint" type="fixed">
 		<origin rpy="3.141592653589793 1.5707963267948966 0" xyz="-0.20843 0.172 0"/>
 		<parent link="torso_base_link"/>
-		<child link="torso_right_arm_mount_link"/>
+		<child link="torso_right_mount_link"/>
 		<axis/>
 	</joint>
 
@@ -284,32 +284,32 @@
 		<axis/>
 	</joint>
 
-	<joint name="right_arm_joint" type="fixed">
-		<parent link="torso_right_arm_mount_link"/>
-		<child link="right_arm_base_link"/>
+	<joint name="right_joint" type="fixed">
+		<parent link="torso_right_mount_link"/>
+		<child link="right_base_link"/>
 	</joint>
 
 	<xacro:Arm name="right" direction="-1"/>
 
-	<joint name="right_arm_end_effector_mount_joint" type="fixed">
+	<joint name="right_end_effector_mount_joint" type="fixed">
 		<origin rpy="-1.5708 0 3.14159265358948" xyz="-0.10926 0 0"/>
-		<parent link="right_arm_link7"/>
+		<parent link="right_link7"/>
 		<child link="right_gripper_flange"/>
 		<axis/>
 	</joint>
 
 	<xacro:Gripper name="right"/>
 
-	<joint name="left_arm_joint" type="fixed">
-		<parent link="torso_left_arm_mount_link"/>
-		<child link="left_arm_base_link"/>
+	<joint name="left_joint" type="fixed">
+		<parent link="torso_left_mount_link"/>
+		<child link="left_base_link"/>
 	</joint>
 
 	<xacro:Arm name="left"/>
 
-	<joint name="left_arm_end_effector_mount_joint" type="fixed">
+	<joint name="left_end_effector_mount_joint" type="fixed">
 		<origin rpy="-1.5708 0 3.14159265358979" xyz="-0.10926 0 0"/>
-		<parent link="left_arm_link7"/>
+		<parent link="left_link7"/>
 		<child link="left_gripper_flange"/>
 	</joint>
 	<xacro:Gripper name="left"/>
