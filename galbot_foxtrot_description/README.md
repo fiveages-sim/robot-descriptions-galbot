@@ -10,6 +10,7 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
 
 ## 2. Visualize the robot
 
+### 2.1. Full Robot
 * Galbot Foxtrot Robot
   ```bash
   source ~/ros2_ws/install/setup.bash
@@ -24,6 +25,20 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot
   ```
   ![Gripper](../.images/galbot_gripper.png)
+
+### 2.2. Component
+
+* Wheel
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=wheel
+  ```
+
+* Chassis
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=chassis
+  ```
 
 ## 3. OCS2 Demo
 
