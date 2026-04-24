@@ -23,7 +23,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg_1.obj"/>
+				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg1.glb"/>
 			</geometry>
 		</visual>
 		<collision>
@@ -50,7 +50,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg_2.obj"/>
+				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg2.glb"/>
 			</geometry>
 		</visual>
 		<collision>
@@ -76,7 +76,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg_3.obj"/>
+				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg3.glb"/>
 			</geometry>
 		</visual>
 		<collision>
@@ -102,7 +102,7 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg_4.obj"/>
+				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg4.glb"/>
 			</geometry>
 		</visual>
 	</link>
@@ -121,11 +121,6 @@
 			<mass value="0.41"/>
 			<inertia ixx="0.00142201" ixy="0.0" ixz="0.0" iyy="0.00132398" iyz="0.00023940999999999999" izz="0.00156199"/>
 		</inertial>
-		<visual>
-			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/leg/leg_5.obj"/>
-			</geometry>
-		</visual>
 	</link>
 
 	<joint name="leg_end_effector_mount_joint" type="fixed">
