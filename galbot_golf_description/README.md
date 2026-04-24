@@ -18,6 +18,15 @@ colcon build --packages-up-to galbot_golf_description --symlink-install
       
   ![G1](../.images/galbot_golf.png)
 
+
+### Component
+
+* Body
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_golf type:=body
+  ```
+
 ## 3. OCS2 Demo
 
 ### 3.1 Official OCS2 Mobile Manipulator Demo
