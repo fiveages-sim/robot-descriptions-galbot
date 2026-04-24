@@ -23,7 +23,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link1.obj"
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link1.glb"
 								scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -54,7 +54,7 @@
 			<visual>
 				<geometry>
 					<mesh
-							filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link2.obj"
+							filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link2.glb"
 							scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -83,7 +83,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link3.obj"
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link3.glb"
 								scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -112,7 +112,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link4.obj"
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link4.glb"
 								scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -142,7 +142,7 @@
 			<visual>
 				<geometry>
 					<mesh
-							filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link5.obj"/>
+							filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link5.glb"/>
 				</geometry>
 			</visual>
 			<collision>
@@ -170,7 +170,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link6.obj"
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link6.glb"
 								scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -199,7 +199,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link7.obj"
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/link7.glb"
 								scale="1 ${direction} 1"/>
 				</geometry>
 			</visual>
@@ -219,12 +219,12 @@
 			<limit acceleration="2" effort="10" jerk="12" lower="-1.5382" upper="1.5382" velocity="1.5"/>
 		</joint>
 
-		<joint name="${prefix}camera_joint" type="fixed">
+		<joint name="${prefix}camera_stand_joint" type="fixed">
 			<parent link="${prefix}link7"/>
-			<child link="${prefix}wrist_camera_link"/>
+			<child link="${prefix}wrist_camera_stand"/>
 		</joint>
 
-		<link name="${prefix}wrist_camera_link">
+		<link name="${prefix}wrist_camera_stand">
 			<inertial>
 				<origin xyz="-0.0621229724155358 -0.0628379837355285 -0.00140310958315455"/>
 				<mass value="0.0492751941348016"/>
@@ -233,13 +233,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/d405_stand.obj"/>
-				</geometry>
-			</visual>
-			<visual>
-				<origin xyz="-0.0822 0 -0.06842" rpy="-1.5708 3.2315926 0"/>
-				<geometry>
-					<mesh filename="file://$(find sensor_models)/meshes/d405/d405.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/arm/d405_stand.glb"/>
 				</geometry>
 			</visual>
 			<collision>
@@ -248,5 +242,20 @@
 				</geometry>
 			</collision>
 		</link>
+
+		<joint name="${prefix}camera_joint" type="fixed">
+			<origin xyz="-0.0822 0 -0.06842" rpy="0 ${PI/2 - 0.09} ${PI}"/>
+			<parent link="${prefix}wrist_camera_stand"/>
+			<child link="${prefix}wrist_camera"/>
+		</joint>
+
+		<link name="${prefix}wrist_camera">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find sensor_models)/meshes/realsense/d405.glb"/>
+				</geometry>
+			</visual>
+		</link>
+
 	</xacro:macro>
 </robot>
