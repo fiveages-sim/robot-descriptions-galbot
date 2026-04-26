@@ -9,6 +9,12 @@ controller_manager:
     ocs2_arm_controller:
       type: ocs2_arm_controller/Ocs2ArmController
 
+    left_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
+    right_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
 ocs2_arm_controller:
   ros__parameters:
     # Joint configuration
@@ -17,6 +23,9 @@ ocs2_arm_controller:
     joints:
       - body_joint1
       - body_joint2
+      - body_joint3
+      - body_joint4
+      - body_joint5
       - left_joint1
       - left_joint2
       - left_joint3
@@ -37,12 +46,24 @@ ocs2_arm_controller:
     state_interfaces:
       - position
 
-    robot_name: agibot_g1
+    robot_name: galbot_golf
 
     # Control parameters
-    home_pos: [ 0.292, 0.0,
-                0.153, 1.306, -0.117, -1.480, 0.0, 0.0, -1.5708,
-                0.153, 1.306, -0.117, -1.480, 0.0, 0.0, -1.5708]
-    rest_pos: [ 0.0, 0.0,
-                0.0, 1.480, 0.0, -1.480, 0.0, 1.740, 0.0,
-                0.0, 1.480, 0.0, -1.480, 0.0, 1.740, 0.0 ]
+    home_pos: [ 0.5, 1.5, 1.0, 0.0, 0.0,
+                2.5, -1.5708, -0.5, 2.2, 0.0, -0.8, 0.0,
+                2.5, -1.5708, -0.5, 2.2, 0.0, -0.8, 0.0,]
+    rest_pos: [ 0.0, 0.0, 0.0, 0.0, 0.0,
+                2.5, -1.5708, -0.5, 2.5, 0.0, -0.8, 0.0,
+                2.5, -1.5708, -0.5, 2.5, 0.0, -0.8, 0.0, ]
+
+left_gripper_controller:
+  ros__parameters:
+    joint: left_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5
+
+right_gripper_controller:
+  ros__parameters:
+    joint: right_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5

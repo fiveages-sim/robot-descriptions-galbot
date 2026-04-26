@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:property name="PI" value="3.141592653589793"/>
 	<xacro:property name="collider_type" value="$(arg collider)"/>
+	<xacro:arg name="enable_joint5" default="false"/>
 <joint name="leg_joint" type="fixed">
 		<parent link="omni_chassis_leg_mount_link"/>
 		<child link="leg_base_link"/>
@@ -34,7 +35,7 @@
 	</link>
 
 	<joint name="body_joint1" type="revolute">
-		<origin rpy="1.5707963267948966 -0.385 3.141592653589793"/>
+		<origin rpy="${PI/2} -0.385 ${PI}"/>
 		<parent link="leg_base_link"/>
 		<child link="leg_link1"/>
 		<axis xyz="0 0 1"/>
@@ -61,7 +62,7 @@
 	</link>
 
 	<joint name="body_joint2" type="revolute">
-		<origin rpy="3.141592653589793 0 2.7566" xyz="0.45 0 0"/>
+		<origin rpy="${PI} 0 2.7566" xyz="0.45 0 0"/>
 		<parent link="leg_link1"/>
 		<child link="leg_link2"/>
 		<axis xyz="0 0 1"/>
@@ -87,7 +88,7 @@
 	</link>
 
 	<joint name="body_joint3" type="revolute">
-		<origin rpy="3.141592653589793 0 3.141592653589793" xyz="0.39 0 0"/>
+		<origin rpy="${PI} 0 ${PI}" xyz="0.39 0 0"/>
 		<parent link="leg_link2"/>
 		<child link="leg_link3"/>
 		<axis xyz="0 0 1"/>
@@ -108,26 +109,52 @@
 	</link>
 
 	<joint name="body_joint4" type="revolute">
-		<origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0 0.224 0"/>
+		<origin rpy="-${PI/2} -${PI/2} 0" xyz="0 0.224 0"/>
 		<parent link="leg_link3"/>
 		<child link="leg_link4"/>
 		<axis xyz="0 0 1"/>
 		<limit effort="30" lower="-1.5906" upper="1.5906" velocity="1"/>
 	</joint>
 
-	<link name="leg_end_effector_mount_link">
-		<inertial>
-			<origin xyz="0.0 0.032369999999999996 0.03006"/>
-			<mass value="0.41"/>
-			<inertia ixx="0.00142201" ixy="0.0" ixz="0.0" iyy="0.00132398" iyz="0.00023940999999999999" izz="0.00156199"/>
-		</inertial>
-	</link>
+	<xacro:if value="$(arg enable_joint5)">
+		<link name="leg_link5">
+			<inertial>
+				<origin xyz="0.0 0.032369999999999996 0.03006"/>
+				<mass value="0.41"/>
+				<inertia ixx="0.00142201" ixy="0.0" ixz="0.0" iyy="0.00132398" iyz="0.00023940999999999999" izz="0.00156199"/>
+			</inertial>
+		</link>
 
-	<joint name="leg_end_effector_mount_joint" type="fixed">
-		<origin rpy="1.5707963267948966 0 0"/>
-		<parent link="leg_link4"/>
-		<child link="leg_end_effector_mount_link"/>
-	</joint>
+		<joint name="body_joint5" type="revolute">
+			<origin rpy="${PI/2} 0 0"/>
+			<parent link="leg_link4"/>
+			<child link="leg_link5"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="30" lower="-0.1645" upper="0.1645" velocity="1"/>
+		</joint>
+
+		<link name="leg_end_effector_mount_link"/>
+		<joint name="leg_end_effector_mount_joint" type="fixed">
+			<parent link="leg_link5"/>
+			<child link="leg_end_effector_mount_link"/>
+		</joint>
+	</xacro:if>
+
+	<xacro:unless value="$(arg enable_joint5)">
+		<link name="leg_end_effector_mount_link">
+			<inertial>
+				<origin xyz="0.0 0.032369999999999996 0.03006"/>
+				<mass value="0.41"/>
+				<inertia ixx="0.00142201" ixy="0.0" ixz="0.0" iyy="0.00132398" iyz="0.00023940999999999999" izz="0.00156199"/>
+			</inertial>
+		</link>
+
+		<joint name="leg_end_effector_mount_joint" type="fixed">
+			<origin rpy="${PI/2} 0 0"/>
+			<parent link="leg_link4"/>
+			<child link="leg_end_effector_mount_link"/>
+		</joint>
+	</xacro:unless>
 
 	<joint name="torso_joint" type="fixed">
 		<parent link="leg_end_effector_mount_link"/>
@@ -153,90 +180,4 @@
 		</collision>
 	</link>
 
-
-	<!-- Head Mount -->
-	<link name="torso_head_mount_link"/>
-	<joint name="torso_head_mount_joint" type="fixed">
-		<origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0 0.36211 0"/>
-		<parent link="torso_base_link"/>
-		<child link="torso_head_mount_link"/>
-		<axis/>
-	</joint>
-
-	<joint name="head_joint" type="fixed">
-		<parent link="torso_head_mount_link"/>
-		<child link="head_base_link"/>
-	</joint>
-
-	<link name="head_base_link">
-		<inertial>
-			<origin xyz="0.023809999999999998 0.00032 0.01966"/>
-			<mass value="0.48"/>
-			<inertia ixx="0.0032910599999999997" ixy="8.32e-06" ixz="0.00044358" iyy="0.00375998" iyz="7.18e-06"
-							 izz="0.00221683"/>
-		</inertial>
-	</link>
-
-	<link name="head_link1">
-		<inertial>
-			<origin xyz="-2e-05 0.00709 -0.0559"/>
-			<mass value="0.08"/>
-			<inertia ixx="0.0003544" ixy="0.0" ixz="1.6e-07" iyy="0.00034029000000000004" iyz="-1.041e-05" izz="6.652e-05"/>
-		</inertial>
-	</link>
-
-	<joint name="head_joint1" type="revolute">
-		<parent link="head_base_link"/>
-		<child link="head_link1"/>
-		<axis xyz="0 0 1"/>
-		<limit effort="4" lower="-1.5208" upper="1.5208" velocity="1.5"/>
-	</joint>
-
-	<link name="head_link2">
-		<inertial>
-			<origin xyz="0.01835 -0.033479999999999996 0.00642"/>
-			<mass value="0.08"/>
-			<inertia ixx="0.00019294" ixy="-6.442e-05" ixz="1.0900000000000002e-06" iyy="0.00015263999999999998"
-							 iyz="-4.09e-06" izz="0.00018457"/>
-		</inertial>
-		<visual>
-			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/head/head.glb"/>
-			</geometry>
-		</visual>
-		<collision>
-			<geometry>
-				<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/head.stl"/>
-			</geometry>
-		</collision>
-	</link>
-
-	<joint name="head_joint2" type="revolute">
-		<origin rpy="-1.5707963267948966 0 0"/>
-		<parent link="head_link1"/>
-		<child link="head_link2"/>
-		<axis xyz="0 0 1"/>
-		<limit effort="4" lower="-0.321147949" upper="0.321147949" velocity="1.5"/>
-	</joint>
-
-	<link name="head_end_effector_mount_link"/>
-	<joint name="head_end_effector_mount_joint" type="fixed">
-		<parent link="head_link2"/>
-		<child link="head_end_effector_mount_link"/>
-		<axis/>
-	</joint>
-
-	<link name="head_front_camera">
-		<visual>
-			<geometry>
-				<mesh filename="file://$(find sensor_models)/meshes/realsense/d435.glb"/>
-			</geometry>
-		</visual>
-	</link>
-
-	<joint name="head_front_camera_joint" type="fixed">
-		<origin rpy="-${PI*29/180} ${PI/2} 0" xyz="0.088405 -0.05399 0"/>
-		<parent link="head_link2"/>
-		<child link="head_front_camera"/>
-	</joint>
 </robot>

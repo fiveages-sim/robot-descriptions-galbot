@@ -110,7 +110,7 @@ initialState
     (1,0)   0.0      ; leg_joint2
     (2,0)   0.0      ; leg_joint3
     (3,0)   0.0      ; leg_joint4
-    (4,0)   0.0      ; leg_joint5
+    (4,0)   0.0      ; body_joint5
     (5,0)   0.0      ; left_arm_joint1
     (6,0)   0.0      ; left_arm_joint2
     (7,0)   0.0      ; left_arm_joint3
@@ -172,7 +172,7 @@ inputCost
          (1,0)   1.0       ; leg_joint2
          (2,0)   1.0       ; leg_joint3
          (3,0)   1.0       ; leg_joint4
-         (4,0)   1.0       ; leg_joint5
+         (4,0)   1.0       ; body_joint5
          (5,0)   0.11      ; left_arm_joint1
          (6,0)   0.11      ; left_arm_joint2
          (7,0)   0.11      ; left_arm_joint3
@@ -304,7 +304,7 @@ jointVelocityLimits
         (1,0)  -1.0         ; leg_joint2 [rad/s]
         (2,0)  -1.0         ; leg_joint3 [rad/s]
         (3,0)  -1.0         ; leg_joint4 [rad/s]
-        (4,0)  -1.0         ; leg_joint5 [rad/s]
+        (4,0)  -1.0         ; body_joint5 [rad/s]
         (5,0)  -1.5         ; left_arm_joint1 [rad/s]
         (6,0)  -1.5         ; left_arm_joint2 [rad/s]
         (7,0)  -1.5         ; left_arm_joint3 [rad/s]
@@ -359,7 +359,7 @@ jointVelocityLimits
         (1,0)  1.0          ; leg_joint2 [rad/s]
         (2,0)  1.0          ; leg_joint3 [rad/s]
         (3,0)  1.0          ; leg_joint4 [rad/s]
-        (4,0)  1.0          ; leg_joint5 [rad/s]
+        (4,0)  1.0          ; body_joint5 [rad/s]
         (5,0)  1.5          ; left_arm_joint1 [rad/s]
         (6,0)  1.5          ; left_arm_joint2 [rad/s]
         (7,0)  1.5          ; left_arm_joint3 [rad/s]

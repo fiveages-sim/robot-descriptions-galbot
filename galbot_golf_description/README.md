@@ -27,6 +27,12 @@ colcon build --packages-up-to galbot_golf_description --symlink-install
   ros2 launch robot_common_launch component.launch.py robot:=galbot_golf type:=body
   ```
 
+* Head
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_golf type:=head
+  ```
+
 ## 3. OCS2 Demo
 
 ### 3.1 Official OCS2 Mobile Manipulator Demo
@@ -47,5 +53,5 @@ ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_golf
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch ocs2_arm_controller demo.launch.py robot:=agibot_g1 hardware:=gz
+ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_golf hardware:=isaac
 ```

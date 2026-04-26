@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
-<robot name="Hitbot Gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="Head Golf" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="PI" value="3.141592653589793"/>
   <xacro:arg name="type" default="body"/>
   <xacro:arg name="enable_wheel_joints" default="true"/>
   <xacro:arg name="collider" default="simple"/>
+  <xacro:arg name="enable_joint5" default="true"/>
 
 
   <xacro:if value="${'$(arg type)' == 'body'}">
@@ -13,6 +14,12 @@
       <child link="omni_chassis_leg_mount_link"/>
     </joint>
     <link name="omni_chassis_leg_mount_link"/>
-    <xacro:include filename="$(find galbot_golf_description)/xacro/components/body.xacro"/>
+    <xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/body.xacro"/>
+  </xacro:if>
+
+  <xacro:if value="${'$(arg type)' == 'head'}">
+    <link name="base_link"/>
+    <xacro:include filename="$(find galbot_golf_description)/xacro/components/head.xacro"/>
+    <xacro:galbot_golf_head parent_link="base_link"/>
   </xacro:if>
 </robot>

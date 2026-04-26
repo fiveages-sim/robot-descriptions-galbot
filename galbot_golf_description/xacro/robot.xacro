@@ -4,14 +4,17 @@
 
 	<xacro:arg name="enable_wheel_joints" default="false"/>
 	<xacro:arg name="arm_camera" default="d405"/>
+	<xacro:arg name="enable_joint5" default="true"/>
 	<xacro:property name="PI" value="3.141592653589793"/>
 
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
-	<xacro:include filename="$(find galbot_golf_description)/xacro/components/body.xacro"/>
+	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/body.xacro"/>
+	<xacro:include filename="$(find galbot_golf_description)/xacro/components/head.xacro"/>
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/arm.xacro"/>
 
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/chassis.xacro"/>
 	<xacro:GalbotChassisV2 enable_wheel_joints="$(arg enable_wheel_joints)"/>
+	<xacro:galbot_golf_head parent_link="torso_base_link"/>
 
 	<!-- Left Arm Mount -->
 	<link name="torso_left_arm_mount_link"/>

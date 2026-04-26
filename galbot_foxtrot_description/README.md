@@ -40,6 +40,18 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=chassis
   ```
 
+* Head
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=head
+  ```
+
+* Arms
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=arm
+  ```
+
 ## 3. OCS2 Demo
 
 ### 3.1 Official OCS2 Mobile Manipulator Demo
@@ -60,5 +72,5 @@ ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_foxtrot
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_foxtrot hardware:=gz
+ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_foxtrot hardware:=isaac
 ```
