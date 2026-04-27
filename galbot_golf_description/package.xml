@@ -4,7 +4,7 @@
   <description>
     <p>URDF Description package for Galbot G1(golf)</p>
     <p>This package contains configuration data, 3D models and launch files
-      for Agibot Genie G1 robot
+      for Galbot G1 Golf robot
     </p>
   </description>
   <author>TODO</author>

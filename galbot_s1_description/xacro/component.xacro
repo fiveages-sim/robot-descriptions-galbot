@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!-- Partial models for visualization / debugging (same idea as galbot_foxtrot_description/xacro/component.xacro). -->
+<robot name="Gripper Ge103In" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="PI" value="3.141592653589793"/>
+  <xacro:arg name="type" default="chassis"/>
+  <xacro:arg name="collider" default="convex_decomposition"/>
+  <xacro:property name="collision_type" value="$(arg collider)" />
+  <xacro:arg name="enable_wheel_joints" default="true"/>
+  <xacro:arg name="left_arm_end_effector_type" default="galbot_ge103in"/>
+  <xacro:arg name="right_arm_end_effector_type" default="galbot_ge103in"/>
+  <xacro:arg name="gripper_side" default="both"/>
+  <xacro:property name="enable_wheel_joints" value="$(arg enable_wheel_joints)" />
+  <xacro:property name="left_arm_end_effector_type" value="$(arg left_arm_end_effector_type)" />
+  <xacro:property name="right_arm_end_effector_type" value="$(arg right_arm_end_effector_type)" />
+
+  <!-- ========== chassis: omni chassis only ========== -->
+  <xacro:if value="${'$(arg type)' == 'chassis'}">
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/omni_chassis.xacro"/>
+    <link name="base_link"/>
+    <xacro:omni_chassis parent="base_link" collision_type="${collision_type}" enable_wheel_joints="${enable_wheel_joints}"/>
+  </xacro:if>
+
+  <!-- ========== body: no chassis — column + torso / head only (column mounts on base_link) ========== -->
+  <xacro:if value="${'$(arg type)' == 'body'}">
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/column.xacro"/>
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/torso.xacro"/>
+    <link name="base_link"/>
+    <xacro:column parent="base_link" collision_type="${collision_type}"/>
+    <xacro:torso parent="torso_lift_link1" collision_type="${collision_type}"/>
+  </xacro:if>
+
+  <!-- ========== arm: minimal torso_base + arm mounts + dual arms (+ optional grippers) ========== -->
+  <xacro:if value="${'$(arg type)' == 'arm'}">
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/arm.xacro"/>
+    <link name="base_link"/>
+    <link name="torso_left_arm_mount_link"/>
+    <link name="torso_right_arm_mount_link"/>
+
+    <joint name="torso_right_arm_mount_joint" type="fixed">
+      <origin xyz="0.0985 -0.28025 0.16659" rpy="-1.3089999999999997 -2.220446049250313e-16 -3.1415853071795863"/>
+      <parent link="base_link"/>
+      <child link="torso_right_arm_mount_link"/>
+    </joint>
+
+    <joint name="torso_left_arm_mount_joint" type="fixed">
+      <origin xyz="0.0985 0.28025 0.16659" rpy="1.3089999999999997 2.220446049250313e-16 -3.1415853071795863"/>
+      <parent link="base_link"/>
+      <child link="torso_left_arm_mount_link"/>
+    </joint>
+
+    <xacro:Arm name="left" parent="torso_left_arm_mount_link" collision_type="${collision_type}" direction="1"/>
+
+    <xacro:Arm name="right" parent="torso_right_arm_mount_link" collision_type="${collision_type}" direction="-1"/>
+  </xacro:if>
+
+  <!-- ========== left_gripper: GE103-in left only ========== -->
+  <xacro:if value="${'$(arg type)' == 'left_gripper'}">
+    <link name="base_link"/>
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/gripper_ge103in.xacro"/>
+    <link name="left_arm_end_effector_mount_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      </inertial>
+    </link>
+    <joint name="component_left_gripper_mount_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="left_arm_end_effector_mount_link"/>
+    </joint>
+    <xacro:galbot_ge103in name="left" direction="1" parent="left_arm_end_effector_mount_link" collision_type="${collision_type}"/>
+  </xacro:if>
+
+  <!-- ========== right_gripper: GE103-in right only ========== -->
+  <xacro:if value="${'$(arg type)' == 'right_gripper'}">
+    <link name="base_link"/>
+    <xacro:include filename="$(find galbot_s1_description)/xacro/components/gripper_ge103in.xacro"/>
+    <link name="right_arm_end_effector_mount_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      </inertial>
+    </link>
+    <joint name="component_right_gripper_mount_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="right_arm_end_effector_mount_link"/>
+    </joint>
+    <xacro:galbot_ge103in name="right" direction="-1" parent="right_arm_end_effector_mount_link" collision_type="${collision_type}"/>
+  </xacro:if>
+
+</robot>

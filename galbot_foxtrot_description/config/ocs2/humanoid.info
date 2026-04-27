@@ -87,10 +87,10 @@ initialModeSchedule
     {
     }
     
-    ; Start in DUAL_INDEPENDENT mode
+    ; Start in HM_DUAL_RELATIVE_MOBILE_BASE
     modeSequence
     {
-        [0]     DUAL_INDEPENDENT
+        [0]     HM_DUAL_RELATIVE_MOBILE_BASE
     }
 }
 

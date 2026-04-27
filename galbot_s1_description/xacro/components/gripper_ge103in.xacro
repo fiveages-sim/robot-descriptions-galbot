@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="gripper_ge103in">
+
+	<xacro:macro name="galbot_ge103in" params="name:='' direction:=1 parent collision_type">
+		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
+
+		<joint name="${prefix}end_effector_base_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="${prefix}adapter_flange_link"/>
+		</joint>
+
+		<link name="${prefix}adapter_flange_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/flange.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.0067078400199999996 -7.478685e-05 -0.01725036988"/>
+				<mass value="0.21372954"/>
+				<inertia ixx="0.00035186567804" ixy="2.196876e-07" ixz="4.120847508e-05"
+				         iyy="0.00027100845637" iyz="4.7788972e-07" izz="0.0001129685721"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'visual'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/flange.glb"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/adapter_flange_link_0.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<link name="${prefix}gripper_base_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/gripper_base.glb"
+					      scale="1 ${direction} 1"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.049805850900000004 ${direction * -0.00260244893} -0.02325243754"/>
+				<mass value="0.69466507"/>
+				<inertia ixx="0.00172438804571" ixy="0.00017046750767" ixz="0.00129804557475"
+				         iyy="0.0039893406983899996" iyz="0.00020014426194000002" izz="0.00263119433098"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'visual'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/gripper_base.glb"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/gripper_base_link_0.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/gripper_base_link_1.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<joint name="${prefix}gripper_base_joint" type="fixed">
+			<origin xyz="0.02 0.0 -0.035"/>
+			<parent link="${prefix}adapter_flange_link"/>
+			<child link="${prefix}gripper_base_link"/>
+		</joint>
+
+		<link name="${prefix}active_link1">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/active_link1.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.016014720950000002 ${direction * -0.00202088225} 4.51699e-06"/>
+				<mass value="0.04322702"/>
+				<inertia ixx="1.079314999e-05" ixy="-7.0816771e-07" ixz="1e-06"
+				         iyy="4.041103922e-05" iyz="1e-06" izz="3.140301977e-05"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'visual'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/active_link1.glb"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/active_link1_0.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/active_link1_1.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<joint name="${prefix}gripper_joint" type="revolute">
+			<origin xyz="0.0742 0.0 -0.026" rpy="-1.5707999999999998 -0.7609599999999997 -1.1102230246251565e-16"/>
+			<parent link="${prefix}gripper_base_link"/>
+			<child link="${prefix}active_link1"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="0.0" upper="1.6357" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="${prefix}active_link2">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/active_link2.glb"
+					      scale="1 1 ${direction}"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.01164240639 0.00249500416 ${direction * -0.01517161529}"/>
+				<mass value="0.07548248"/>
+				<inertia ixx="7.798716661e-05" ixy="0.0" ixz="0.0"
+				         iyy="8.701457704e-05" iyz="0.0" izz="2.604813505e-05"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'visual'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/active_link2.glb"
+						      scale="1 1 ${direction}"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/active_link2_0.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/active_link2_1.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<joint name="${prefix}active_joint2" type="revolute">
+			<origin xyz="0.05492 0.0 0.0" rpy="0.0 0.0 2.3318"/>
+			<parent link="${prefix}active_link1"/>
+			<child link="${prefix}active_link2"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-1.6357" upper="0.0" effort="1000.0" velocity="1.5"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="-1.0" offset="0.0"/>
+		</joint>
+
+		<link name="${prefix}active_contact_link"/>
+
+		<joint name="${prefix}active_contact_joint" type="fixed">
+			<origin xyz="0.027 0.01 ${direction * -0.039275}"/>
+			<parent link="${prefix}active_link2"/>
+			<child link="${prefix}active_contact_link"/>
+		</joint>
+
+		<link name="${prefix}passive_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/passive_link.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.021565734 0.0008736194000000001 1.94996e-06"/>
+				<mass value="0.03321334"/>
+				<inertia ixx="8.84327511e-06" ixy="8.1749753e-07" ixz="6e-06"
+				         iyy="4.003817584e-05" iyz="0.0" izz="3.170214327e-05"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'visual'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/visual/gripper_ge103in/passive_link.glb"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/passive_link_0.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/gripper_ge103in/passive_link_1.stl"
+						      scale="1 ${direction} 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<joint name="${prefix}passive_joint" type="revolute">
+			<origin xyz="0.0742 0.0 -0.039" rpy="-1.5707999999999998 -0.7609599999999997 -1.1102230246251565e-16"/>
+			<parent link="${prefix}gripper_base_link"/>
+			<child link="${prefix}passive_link"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="0.0" upper="1.6357" effort="1000.0" velocity="1.5"/>
+			<mimic joint="${prefix}gripper_joint" multiplier="1.0" offset="0.0"/>
+		</joint>
+
+		<link name="${prefix}fixed_contact_link">
+			<inertial>
+				<mass value="0"/>
+				<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+			</inertial>
+		</link>
+
+		<joint name="${prefix}fixed_contact_joint" type="fixed">
+			<origin xyz="0.08995 ${direction * -0.03185} -0.0979" rpy="1.5708 1.5708 0.0"/>
+			<parent link="${prefix}gripper_base_link"/>
+			<child link="${prefix}fixed_contact_link"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>

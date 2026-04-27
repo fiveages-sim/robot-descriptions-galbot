@@ -1,6 +1,6 @@
 # Galbot G1(golf) Description
 
-This package contains the description files for Galbot G1(golf) humanoid. The origin models could be found at [Galbot IOAI](https://github.com/galbot-ioai/physics_sim_edu).
+This package contains the description files for Galbot G1(golf) humanoid. The origin models could be found at [Galbot Golf Description](https://github.com/GalaxyGeneralRobotics/galbot_one_golf_description).
 
 ## 1. Build
 ```bash

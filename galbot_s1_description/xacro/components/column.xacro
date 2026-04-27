@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="column">
+
+	<xacro:macro name="column" params="parent collision_type">
+
+		<joint name="omni_chassis_column_mount_joint" type="fixed">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<parent link="${parent}"/>
+			<child link="column_base_link"/>
+		</joint>
+
+		<link name="column_base_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/column/column.glb"/>
+				</geometry>
+			</visual>
+
+			<inertial>
+				<origin xyz="-0.1019 0.0001 0.45331"/>
+				<mass value="201.5"/>
+				<inertia ixx="90.82422037" ixy="0.009986040000000002" ixz="18.001150510000002"
+				         iyy="94.91031357" iyz="0.013386120000000001" izz="14.39983226"/>
+			</inertial>
+
+			<xacro:if value="${collision_type == 'simple'}">
+				<collision name="column_base_link_collision01_box">
+					<origin xyz="-0.14459364116191864 -0.0010000020265579224 0.3730340600013733"/>
+					<geometry>
+						<box size="0.242360919713974 0.34200000762939453 1.5048881769180298"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/column_base_link_0.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+
+		</link>
+
+		<link name="column_lidar">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find sensor_models)/meshes/mid360/mid360.obj"/>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="column_lidar_joint" type="fixed">
+			<origin xyz="-0.252879  0 1.0843" rpy="0.0 -${PI/2} 0.0 "/>
+			<parent link="column_base_link"/>
+			<child link="column_lidar"/>
+		</joint>
+
+
+		<link name="torso_lift_link1"/>
+
+		<joint name="body_joint" type="prismatic">
+			<parent link="column_base_link"/>
+			<child link="torso_lift_link1"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="0.0" upper="0.75" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>

@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="omni_chassis">
+
+	<xacro:macro name="omni_chassis" params="parent collision_type enable_wheel_joints:='true'">
+		<xacro:property name="wheel_joints_enabled"
+		                value="${str(enable_wheel_joints).lower() in ['true', '1', 'yes', 'on']}"/>
+		<xacro:property name="steering_joint_type" value="${'revolute' if wheel_joints_enabled else 'fixed'}"/>
+		<xacro:property name="driving_joint_type" value="${'continuous' if wheel_joints_enabled else 'fixed'}"/>
+
+		<joint name="omni_chassis_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="omni_chassis_base_link"/>
+		</joint>
+
+		<link name="omni_chassis_base_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/chassis.glb"/>
+				</geometry>
+			</visual>
+
+
+			<inertial>
+				<mass value="0"/>
+				<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'simple'}">
+				<collision name="base_link_collision01_box">
+					<origin xyz="-0.19790196418762207 -0.014361143112182617 0.2127065807580948"/>
+					<geometry>
+						<box size="0.31380391120910645 0.42362770438194275 0.4254131615161896"/>
+					</geometry>
+				</collision>
+				<collision name="base_link_collision02_box">
+					<origin xyz="0.00025428831577301025 0.0 0.16948798298835754"/>
+					<geometry>
+						<box size="0.7294914722442627 0.7300000190734863 0.3389759659767151"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/omni_chassis/omni_chassis_base_link_0.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/omni_chassis/omni_chassis_base_link_1.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/omni_chassis/omni_chassis_base_link_2.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/omni_chassis/omni_chassis_base_link_3.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+
+
+		</link>
+
+		<link name="omni_chassis_column_mount_link"/>
+
+		<joint name="omni_chassis_base_joint" type="fixed">
+			<origin xyz="-0.0715 0.0 0.55441"/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="omni_chassis_column_mount_link"/>
+		</joint>
+
+		<link name="wheel_steering_link1">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/steering.glb"/>
+				</geometry>
+			</visual>
+
+
+			<inertial>
+				<origin xyz="0.00015 0.03309 0.06755"/>
+				<mass value="2.14"/>
+				<inertia ixx="0.01667656" ixy="1.761e-05" ixz="2.9300000000000003e-06"
+				         iyy="0.01430784" iyz="0.00325257" izz="0.00586003"/>
+			</inertial>
+
+
+		</link>
+
+		<joint name="wheel_steering_joint1" type="${steering_joint_type}">
+			<origin xyz="0.247 -0.247 0.0535"/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="wheel_steering_link1"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-2.965" upper="2.965" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_driving_link1">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/wheel.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.0 0.0 0.00068"/>
+				<mass value="1.57"/>
+				<inertia ixx="0.00321731" ixy="2e-08" ixz="1.0000000000000001e-07"
+				         iyy="0.00321723" iyz="3.2e-07" izz="0.00475868"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<cylinder radius="0.0827" length="0.057"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<joint name="wheel_driving_joint1" type="${driving_joint_type}">
+			<origin rpy="-1.5707963267949003 0.0 0.0"/>
+			<parent link="wheel_steering_link1"/>
+			<child link="wheel_driving_link1"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_steering_link2">
+			<visual>
+				<origin rpy="0.0 0 ${PI}"/>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/steering.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.00015 -0.03309 0.06755"/>
+				<mass value="2.14"/>
+				<inertia ixx="0.01667656" ixy="1.761e-05" ixz="2.9300000000000003e-06"
+				         iyy="0.01430784" iyz="0.00325257" izz="0.00586003"/>
+			</inertial>
+		</link>
+
+		<joint name="wheel_steering_joint2" type="${steering_joint_type}">
+			<origin xyz="0.247 0.247 0.0535"/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="wheel_steering_link2"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-2.965" upper="2.965" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_driving_link2">
+			<visual>
+				<origin rpy="0.0 ${PI} 0"/>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/wheel.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.0 0.0 -0.00068"/>
+				<mass value="1.57"/>
+				<inertia ixx="0.00321731" ixy="2e-08" ixz="1.0000000000000001e-07"
+				         iyy="0.00321723" iyz="3.2e-07" izz="0.00475868"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<cylinder radius="0.0827" length="0.057"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<joint name="wheel_driving_joint2" type="${driving_joint_type}">
+			<origin rpy="-1.5707963267949003 0.0 0.0"/>
+			<parent link="wheel_steering_link2"/>
+			<child link="wheel_driving_link2"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_steering_link3">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/steering.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.00015 0.03309 0.06755"/>
+				<mass value="2.14"/>
+				<inertia ixx="0.01667656" ixy="1.761e-05" ixz="2.9300000000000003e-06"
+				         iyy="0.01430784" iyz="0.00325257" izz="0.00586003"/>
+			</inertial>
+		</link>
+
+		<joint name="wheel_steering_joint3" type="${steering_joint_type}">
+			<origin xyz="-0.247 -0.247 0.0535"/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="wheel_steering_link3"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-2.965" upper="2.965" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_driving_link3">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/wheel.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.0 0.0 0.00068"/>
+				<mass value="1.57"/>
+				<inertia ixx="0.00321731" ixy="2e-08" ixz="1.0000000000000001e-07"
+				         iyy="0.00321723" iyz="3.2e-07" izz="0.00475868"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<cylinder radius="0.0827" length="0.057"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<joint name="wheel_driving_joint3" type="${driving_joint_type}">
+			<origin rpy="-1.5707963267949003 0.0 0.0"/>
+			<parent link="wheel_steering_link3"/>
+			<child link="wheel_driving_link3"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_steering_link4">
+			<visual>
+				<origin rpy="0.0 0 ${PI}"/>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/steering.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.00015 -0.03309 0.06755"/>
+				<mass value="2.14"/>
+				<inertia ixx="0.01667656" ixy="1.761e-05" ixz="2.9300000000000003e-06"
+				         iyy="0.01430784" iyz="0.00325257" izz="0.00586003"/>
+			</inertial>
+		</link>
+
+		<joint name="wheel_steering_joint4" type="${steering_joint_type}">
+			<origin xyz="-0.247 0.247 0.0535000000450749"/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="wheel_steering_link4"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-2.965" upper="2.965" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="wheel_driving_link4">
+			<visual>
+				<origin rpy="0.0 ${PI} 0"/>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/omni_chassis/wheel.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.0 0.0 -0.00068"/>
+				<mass value="1.57"/>
+				<inertia ixx="0.00321731" ixy="2e-08" ixz="1.0000000000000001e-07"
+				         iyy="0.00321723" iyz="3.2e-07" izz="0.00475868"/>
+			</inertial>
+			<collision>
+				<geometry>
+					<cylinder radius="0.0827" length="0.057"/>
+				</geometry>
+			</collision>
+
+		</link>
+
+		<joint name="wheel_driving_joint4" type="${driving_joint_type}">
+			<origin rpy="-1.5707963267949003 0.0 0.0"/>
+			<parent link="wheel_steering_link4"/>
+			<child link="wheel_driving_link4"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="chassis_lidar">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find sensor_models)/meshes/mid360/mid360.obj"/>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="chassis_joint" type="fixed">
+			<origin xyz="0.305099  0 0.309194" rpy="0.0 ${PI*20/180} 0.0 "/>
+			<parent link="omni_chassis_base_link"/>
+			<child link="chassis_lidar"/>
+		</joint>
+
+	</xacro:macro>
+
+</robot>
