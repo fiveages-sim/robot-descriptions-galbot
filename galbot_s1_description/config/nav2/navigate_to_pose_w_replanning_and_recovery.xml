@@ -1,6 +1,4 @@
-<!--
-  FiveAges W2：NavigateToPose，1 Hz 重规划；全局路径由 Smac 内置平滑，不经 BT SmoothPath。
--->
+
 <root BTCPP_format="4" main_tree_to_execute="MainTree">
   <BehaviorTree ID="MainTree">
     <RecoveryNode number_of_retries="6" name="NavigateRecovery">

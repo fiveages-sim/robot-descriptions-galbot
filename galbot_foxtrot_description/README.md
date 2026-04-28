@@ -52,9 +52,7 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=arm
   ```
 
-## 3. OCS2 Demo
-
-### 3.1 Official OCS2 Mobile Manipulator Demo
+## 3. Official OCS2 Mobile Manipulator Demo
 
 ```bash
 source ~/ros2_ws/install/setup.bash
@@ -63,7 +61,7 @@ ros2 launch robot_common_launch manipulator_ocs2.launch.py robot_name:=galbot_fo
 [Screencast from 2025-08-29 18-01-39.webm](https://github.com/user-attachments/assets/d9c63f0a-4b28-45b2-a046-77b3883a7504)
 
 
-### 3.2 OCS2 Arm Controller Demo
+## 4. OCS2 Arm Controller Demo
 
 ```bash
 source ~/ros2_ws/install/setup.bash
@@ -73,4 +71,11 @@ ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot hardware:=isaac
+```
+
+### 5. Isaac Navigation
+
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_foxtrot map:=warehouse_multiple_shelfs nav2_profile:=map_only
 ```

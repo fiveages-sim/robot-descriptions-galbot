@@ -1,4 +1,10 @@
-
+<!--
+  Galbot One：基于 nav2_bt_navigator 默认「途经点」树，仅调整重规划频率与 RemovePassedGoals。
+  默认 stock 树使用 RateController hz=0.333 且 radius=0.7，路径更新慢、航点过早被摘掉，
+  全局路径易被「切角」，局部 PathAngle/跟线观感与 navigate_to_pose 不一致。
+  此处改为与 navigate_to_pose 相同的 1 Hz 重规划，并将 radius 收紧到约车体尺度，使途经点序列
+  在控制器侧更可预期。
+-->
 <root BTCPP_format="4" main_tree_to_execute="MainTree">
   <BehaviorTree ID="MainTree">
     <RecoveryNode number_of_retries="6" name="NavigateRecovery">
@@ -8,7 +14,7 @@
         <RateController hz="1.0">
           <RecoveryNode number_of_retries="1" name="ComputePathThroughPoses">
             <ReactiveSequence>
-              <RemovePassedGoals input_goals="{goals}" output_goals="{goals}" radius="0.55"/>
+              <RemovePassedGoals input_goals="{goals}" output_goals="{goals}" radius="0.4"/>
               <ComputePathThroughPoses goals="{goals}" path="{path}" planner_id="{selected_planner}" error_code_id="{compute_path_error_code}"/>
             </ReactiveSequence>
             <Sequence>
@@ -18,7 +24,7 @@
           </RecoveryNode>
         </RateController>
         <RecoveryNode number_of_retries="1" name="FollowPath">
-          <FollowPath path="{path}" controller_id="{selected_controller}" goal_checker_id="stopped_goal_checker" progress_checker_id="progress_checker" error_code_id="{follow_path_error_code}"/>
+          <FollowPath path="{path}" controller_id="{selected_controller}" error_code_id="{follow_path_error_code}"/>
           <Sequence>
             <WouldAControllerRecoveryHelp error_code="{follow_path_error_code}"/>
             <ClearEntireCostmap name="ClearLocalCostmap-Context" service_name="local_costmap/clear_entirely_local_costmap"/>
