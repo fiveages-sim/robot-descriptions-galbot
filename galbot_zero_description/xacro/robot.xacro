@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="galbot_zero">
+  <xacro:arg name="type" default="gripper"/>
+  <xacro:arg name="enable_wheel_joints" default="false"/>
+  <xacro:property name="PI" value="3.141592653589793"/>
+
+  <!-- ===== Chassis / Body ===== -->
+  <xacro:include filename="$(find galbot_zero_description)/xacro/components/chassis.xacro"/>
+  <xacro:include filename="$(find galbot_zero_description)/xacro/components/body.xacro"/>
+
+ 
+
+  <!-- ===== Camera Component ===== -->
+  <xacro:include filename="$(find galbot_zero_description)/xacro/components/camera.xacro"/>
+
+  <!-- ===== Assembly ===== -->
+  <xacro:GalbotZeroChassis enable_wheel_joints="$(arg enable_wheel_joints)"/>
+  <xacro:GalbotZeroBody/>
+  <!-- OCS2 split_body / RViz: arm_base coincident with body_lift_link (Ubtech: torso_link → arm_base). -->
+  <link name="arm_base">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="1e-6"/>
+      <inertia ixx="1e-9" ixy="0" ixz="0" iyy="1e-9" iyz="0" izz="1e-9"/>
+    </inertial>
+  </link>
+  <joint name="body_lift_to_arm_base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="body_lift_link"/>
+    <child link="arm_base"/>
+  </joint>
+
+  <!-- ===== RM75 Arm ===== -->
+  <xacro:include filename="$(find rm75_description)/xacro/arm.xacro"/>
+  <xacro:rm75 name="left" ee_type="f" use_simple_collision="true"/>
+  <joint name="left_body_mount_joint" type="fixed">
+    <origin rpy="${PI/2} -${PI/2} 0" xyz="-0.05 -0.05 0.269"/>
+    <parent link="arm_base"/>
+    <child link="left_base_link"/>
+  </joint>
+  <xacro:GalbotZeroCameraD415 prefix="left_" parent_link="left_ee"/>
+
+  <xacro:rm75 name="right" ee_type="f" use_simple_collision="true"/>
+  <joint name="right_body_mount_joint" type="fixed">
+    <origin rpy="-${PI/2} -${PI/2} 0" xyz="-0.05 0.05 0.269"/>
+    <parent link="arm_base"/>
+    <child link="right_base_link"/>
+  </joint>
+  <xacro:GalbotZeroCameraD415 prefix="right_" parent_link="right_ee"/>
+
+  <xacro:if value="${'$(arg type)' == 'gripper'}">
+    <!-- ===== Grippers ===== -->
+    <xacro:include filename="$(find inspire_description)/xacro/EG2-4C2.xacro"/>
+    <xacro:Gripper name="left"/>
+    <joint name="left_gripper_mount_joint" type="fixed">
+      <origin xyz="0 0 0.017062" rpy="0 0 -${PI/2}"/>
+      <parent link="left_camera_stand"/>
+      <child link="left_gripper_base"/>
+    </joint>
+
+    <xacro:Gripper name="right"/>
+    <joint name="right_gripper_mount_joint" type="fixed">
+      <origin xyz="0 0 0.017062" rpy="0 0 -${PI/2}"/>
+      <parent link="right_camera_stand"/>
+      <child link="right_gripper_base"/>
+    </joint>
+  </xacro:if>
+</robot>

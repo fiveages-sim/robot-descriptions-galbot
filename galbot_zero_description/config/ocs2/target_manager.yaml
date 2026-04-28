@@ -1,0 +1,29 @@
+/**:
+  ros__parameters:
+    # Linear and angular scales for joystick/keyboard control
+    linear_scale: 0.01
+    angular_scale: 0.005
+
+    # VR update rate
+    vr_update_rate: 500.0
+
+    # Keep marker/control frame aligned with split OCS2 baseFrame
+    marker_fixed_frame: base_link
+    control_base_frame: base_link
+
+    # VR input toggle
+    enable_vr: true
+
+    # Optional head mapping for JointControlPanel / marker coupling
+    head_joint_to_rpy_mapping:
+      head_joint1: "head_yaw"
+      head_joint2: "head_pitch"
+
+    # Axis direction mapping
+    head_rpy_axis_direction:
+      head_yaw: 1.0
+      head_pitch: 1.0
+      head_roll: 1.0
+
+    # Head link used for TF queries
+    head_link_name: "head_pitch_link"

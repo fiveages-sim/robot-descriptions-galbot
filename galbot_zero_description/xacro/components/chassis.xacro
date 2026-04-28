@@ -1,0 +1,338 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="GalbotZeroChassis" params="enable_wheel_joints:='false'">
+        <xacro:if value="${enable_wheel_joints}">
+            <xacro:property name="steer_joint_type" value="continuous"/>
+            <xacro:property name="wheel_joint_type" value="continuous"/>
+        </xacro:if>
+        <xacro:unless value="${enable_wheel_joints}">
+            <xacro:property name="steer_joint_type" value="fixed"/>
+            <xacro:property name="wheel_joint_type" value="fixed"/>
+        </xacro:unless>
+
+        <link name="base_link"/>
+
+        <joint name="hexman_chassis_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="hexman_chassis_base_link"/>
+        </joint>
+
+        <link name="hexman_chassis_base_link">
+            <inertial>
+                <origin xyz="0.0019437 -2.5309E-05 0.094764"/>
+                <mass value="20.4113"/>
+                <inertia ixx="0.075816" ixy="9.0316E-09" ixz="1.816E-05" iyy="0.083303" iyz="9.8923E-09" izz="0.15228"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/chassis_base.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0.089"/>
+                <geometry>
+                    <box size="0.443 0.38 0.089"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="right_wheel_link">
+            <inertial>
+                <origin xyz="-2.5255E-19 0 -0.0004362"/>
+                <mass value="0.5968"/>
+                <inertia ixx="0.00067338" ixy="1.2511E-08" ixz="-2.7671E-20" iyy="0.00067336" iyz="1.2923E-18"
+                         izz="0.0010757"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/wheel.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <cylinder radius="0.065462" length="0.040126"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="right_wheel_joint" type="${wheel_joint_type}">
+            <origin rpy="1.5708 0 3.1416" xyz="0 -0.1341 0.067"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="right_wheel_link"/>
+            <axis xyz="0 0 1"/>
+            <xacro:if value="${enable_wheel_joints}">
+                <limit effort="100" velocity="10"/>
+            </xacro:if>
+        </joint>
+
+        <link name="left_wheel_link">
+            <inertial>
+                <origin xyz="-7.3416E-19 0 0.0004362"/>
+                <mass value="0.5968"/>
+                <inertia ixx="0.00067338" ixy="-1.2742E-08" ixz="-3.5321E-20" iyy="0.00067336" iyz="-3.1288E-18"
+                         izz="0.0010757"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/wheel.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <cylinder radius="0.065462" length="0.040126"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="left_wheel_joint" type="${wheel_joint_type}">
+            <origin rpy="-1.5708 0 3.1416" xyz="0 0.1341 0.067"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="left_wheel_link"/>
+            <axis xyz="0 0 -1"/>
+            <xacro:if value="${enable_wheel_joints}">
+                <limit effort="100" velocity="10"/>
+            </xacro:if>
+        </joint>
+
+        <link name="caster_1_link">
+            <inertial>
+                <origin xyz="0.014272 7.0133E-05 -0.0064185"/>
+                <mass value="0.0058282"/>
+                <inertia ixx="1.0504E-06" ixy="-9.9424E-10" ixz="4.8427E-08" iyy="1.2527E-06" iyz="2.3797E-10"
+                         izz="1.3349E-06"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_s.glb"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+        <joint name="caster_1_joint" type="${steer_joint_type}">
+            <origin rpy="0 0 3.1416" xyz="0.21 0.29 0.037"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="caster_1_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_wheel_1_link">
+            <inertial>
+                <mass value="0.0083449"/>
+                <inertia ixx="5.2694E-07" ixy="1.2465E-25" ixz="-1.7105E-23" iyy="5.2694E-07" iyz="7.4033E-23"
+                         izz="6.5194E-07"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_w.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <sphere radius="0.013718"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="caster_wheel_1_joint" type="${wheel_joint_type}">
+            <origin rpy="-1.5757 1.5708 3.1416" xyz="0.015 7.3709E-05 -0.0245"/>
+            <parent link="caster_1_link"/>
+            <child link="caster_wheel_1_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_2_link">
+            <inertial>
+                <origin xyz="0.014272 0 -0.0064185"/>
+                <mass value="0.0058282"/>
+                <inertia ixx="1.0504E-06" ixy="6.2844E-22" ixz="4.8428E-08" iyy="1.2527E-06" iyz="-1.4139E-22"
+                         izz="1.3349E-06"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_s.glb"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+        <joint name="caster_2_joint" type="${steer_joint_type}">
+            <origin rpy="0 0 3.1416" xyz="0.21 -0.29 0.037"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="caster_2_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_wheel_2_link">
+            <inertial>
+                <origin xyz="-2.7756E-17 0 0"/>
+                <mass value="0.0083449"/>
+                <inertia ixx="5.2694E-07" ixy="-1.3642E-37" ixz="4.5487E-23" iyy="5.2694E-07" iyz="3.966E-25"
+                         izz="6.5194E-07"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_w.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <sphere radius="0.013718"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="caster_wheel_2_joint" type="${wheel_joint_type}">
+            <origin rpy="-1.5708 0 3.1416" xyz="0.015 0 -0.0245"/>
+            <parent link="caster_2_link"/>
+            <child link="caster_wheel_2_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_3_link">
+            <inertial>
+                <origin xyz="0.014272 0 -0.0064185"/>
+                <mass value="0.0058282"/>
+                <inertia ixx="1.0504E-06" ixy="1.9371E-22" ixz="4.8428E-08" iyy="1.2527E-06" iyz="5.7206E-24"
+                         izz="1.3349E-06"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_s.glb"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+        <joint name="caster_3_joint" type="${steer_joint_type}">
+            <origin rpy="0 0 3.1416" xyz="-0.21 -0.29 0.037"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="caster_3_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_wheel_3_link">
+            <inertial>
+                <origin xyz="-2.7756E-17 -1.7347E-18 0"/>
+                <mass value="0.0083449"/>
+                <inertia ixx="5.2695E-07" ixy="9.843E-26" ixz="6.1423E-10" iyy="5.2694E-07" iyz="3.3473E-23"
+                         izz="6.5194E-07"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_w.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <sphere radius="0.013718"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="caster_wheel_3_joint" type="${wheel_joint_type}">
+            <origin rpy="-1.5708 0 3.1416" xyz="0.015 -7.3709E-05 -0.0245"/>
+            <parent link="caster_3_link"/>
+            <child link="caster_wheel_3_link"/>
+            <axis xyz="0.0049139 0 0.99999"/>
+        </joint>
+
+        <link name="caster_4_link">
+            <inertial>
+                <origin xyz="0.014272 7.0133E-05 -0.0064185"/>
+                <mass value="0.0058282"/>
+                <inertia ixx="1.0504E-06" ixy="-9.9424E-10" ixz="4.8427E-08" iyy="1.2527E-06" iyz="2.3797E-10"
+                         izz="1.3349E-06"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_s.glb"/>
+                </geometry>
+            </visual>
+
+        </link>
+
+        <joint name="caster_4_joint" type="${steer_joint_type}">
+            <origin rpy="0 0 3.1416" xyz="-0.21 0.29 0.037"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="caster_4_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="caster_wheel_4_link">
+            <inertial>
+                <origin xyz="0 2.7756E-17 -5.5511E-17"/>
+                <mass value="0.0083449"/>
+                <inertia ixx="5.2694E-07" ixy="1.2465E-25" ixz="-1.7105E-23" iyy="5.2694E-07" iyz="7.4033E-23"
+                         izz="6.5194E-07"/>
+            </inertial>
+
+            <visual>
+                <geometry>
+                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/caster_w.glb"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <sphere radius="0.013718"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="caster_wheel_4_joint" type="${wheel_joint_type}">
+            <origin rpy="-1.5757 1.5708 3.1416" xyz="0.015 7.3709E-05 -0.0245"/>
+            <parent link="caster_4_link"/>
+            <child link="caster_wheel_4_link"/>
+            <axis xyz="0 0 -1"/>
+        </joint>
+
+        <link name="hexman_chassis_lidar_link">
+            <inertial>
+                <origin xyz="-0.0039812 -3.8899E-05 -0.014046" />
+                <mass value="0.061645"/>
+                <inertia ixx="3.7195E-05" ixy="2.5674E-09" ixz="-1.0731E-07" iyy="3.3749E-05" iyz="1.8972E-08"
+                         izz="5.2832E-05"/>
+            </inertial>
+
+<!--            <visual>-->
+<!--                <geometry>-->
+<!--                    <mesh filename="file://$(find galbot_zero_description)/meshes/chassis/sdkeli_ls2.glb"/>-->
+<!--                </geometry>-->
+<!--            </visual>-->
+
+        </link>
+
+        <joint name="hexman_chassis_lidar_joint" type="fixed">
+            <origin rpy="0 0 0.0" xyz="0.15 0 0.2005"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="hexman_chassis_lidar_link"/>
+            <axis xyz="0 0 0"/>
+        </joint>
+
+        <link name="hexman_chassis_lift_fix_point_link"/>
+
+        <joint name="hexman_chassis_lift_fix_point_joint" type="fixed">
+            <origin xyz="-0.1045 0 0.1504"/>
+            <parent link="hexman_chassis_base_link"/>
+            <child link="hexman_chassis_lift_fix_point_link"/>
+            <axis xyz="0 0 0"/>
+        </joint>
+    </xacro:macro>
+</robot>
