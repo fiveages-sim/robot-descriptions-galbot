@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!-- Macro for gripper -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-	<xacro:macro name="Gripper" params="name">
+	<xacro:macro name="Gripper" params="name collider_type:=simple">
 
 		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
 
@@ -14,7 +14,7 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/flange_link.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/flange.glb"/>
 				</geometry>
 			</visual>
 		</link>
@@ -34,14 +34,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/base_link.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/base_link.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/base_link.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/base_link_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/base_link.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_l_knuckle_link">
@@ -52,14 +61,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_1.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link1.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_1.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/l_link_1_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_1.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_l_inner_knuckle_link">
@@ -70,14 +88,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_2.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link2.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_2.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/l_link_2_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_2.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_l_finger_link">
@@ -88,14 +115,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_3.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link3.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_3.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/l_link_3_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_3.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_r_knuckle_link">
@@ -106,14 +142,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_1.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link1.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_1.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/r_link_1_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_1.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_r_inner_knuckle_link">
@@ -124,14 +169,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_2.obj"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link2.glb"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_2.stl"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/r_link_2_convex_decomposition.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_2.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<link name="${prefix}gripper_r_finger_link">
@@ -142,14 +196,23 @@
 			</inertial>
 			<visual>
 				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link_3.obj" scale="1 -1 1"/>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/gripper/link3.glb" scale="1 -1 1"/>
 				</geometry>
 			</visual>
-			<collision>
-				<geometry>
-					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/link_3.stl" scale="1 -1 1"/>
-				</geometry>
-			</collision>
+			<xacro:if value="${collider_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex_decomposition/r_link_3_zhitao_convex_decomposition.stl" scale="1 -1 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collider_type == 'simple'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/gripper/convex/link_3.stl" scale="1 -1 1"/>
+					</geometry>
+				</collision>
+			</xacro:if>
 		</link>
 
 		<joint name="${prefix}gripper_joint" type="revolute">
@@ -209,7 +272,7 @@
 		<joint name="${prefix}gripper_tcp_joint" type="fixed">
 			<parent link="${prefix}gripper_base"/>
 			<child link="${prefix}gripper_tcp_link"/>
-			<origin rpy="-1.5707963267948966 0 0" xyz="0.13996 0 0"/>
+			<origin rpy="1.5707963267948966 0 0" xyz="0.13996 0 0"/>
 		</joint>
 
 	</xacro:macro>

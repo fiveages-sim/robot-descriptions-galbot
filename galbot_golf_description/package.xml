@@ -13,6 +13,7 @@
 
   <exec_depend>robot_common_launch</exec_depend>
   <depend>galbot_foxtrot_description</depend>
+  <depend>galbot_one_description</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

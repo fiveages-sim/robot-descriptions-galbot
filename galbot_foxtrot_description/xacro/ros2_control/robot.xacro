@@ -7,6 +7,10 @@
 
 	<!-- Include the base robot structure -->
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/robot.xacro"/>
+	<xacro:property name="gripper_initial_value" value="1.57"/>
+	<xacro:if value="${'$(arg type)' == 'hitbot'}">
+		<xacro:property name="gripper_initial_value" value="0.75"/>
+	</xacro:if>
 
 	<!-- Import modular interface components -->
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/ros2_control/base_interfaces.xacro"/>
@@ -36,10 +40,10 @@
 		<xacro:head_interfaces/>
 
 		<!-- 左臂接口 -->
-		<xacro:arm_interfaces name="left"/>
+		<xacro:arm_interfaces name="left" gripper_initial_value="${gripper_initial_value}"/>
 
 		<!-- 右臂接口 -->
-		<xacro:arm_interfaces name="right"/>
+		<xacro:arm_interfaces name="right" gripper_initial_value="${gripper_initial_value}"/>
 	</ros2_control>
 
 	<xacro:arg name="gazebo" default="false" />

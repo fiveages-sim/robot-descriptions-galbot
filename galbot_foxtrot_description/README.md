@@ -10,8 +10,9 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
 
 ## 2. Visualize the robot
 
-### 2.1. Full Robot
-* Galbot Foxtrot Robot
+### 2.1. Full robot
+
+* Galbot Foxtrot Robot (Default)
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_foxtrot
@@ -19,14 +20,15 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
       
   ![G1](../.images/galbot_foxtrot.png)
 
-* Galbot Gripper
+* Galbot Foxtrot Robot with Hitbot Gripper
   ```bash
   source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_foxtrot type:=hitbot
   ```
   ![Gripper](../.images/galbot_gripper.png)
 
-### 2.2. Component
+
+### 2.2. Component modules
 
 * Wheel
   ```bash
@@ -51,26 +53,60 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch component.launch.py robot:=galbot_foxtrot type:=arm
   ```
+* Galbot Gripper
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot
+  ```
+* Hitbot Gripper
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot type:=hitbot
+  ```
+  ![Gripper](../.images/galbot_gripper.png)
 
-## 3. Official OCS2 Mobile Manipulator Demo
 
+### 3. Official OCS2 Mobile Manipulator Demo
+
+* Galbot Gripper (Default)
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch robot_common_launch manipulator_ocs2.launch.py robot_name:=galbot_foxtrot
 ```
+
+* Hitbot Gripper
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch robot_common_launch manipulator_ocs2.launch.py robot_name:=galbot_foxtrot type:=hitbot
+```
+
 [Screencast from 2025-08-29 18-01-39.webm](https://github.com/user-attachments/assets/d9c63f0a-4b28-45b2-a046-77b3883a7504)
 
 
-## 4. OCS2 Arm Controller Demo
+### 4. OCS2 Arm Controller Demo
 
+* Galbot Gripper (Default)
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot
 ```
 
+* Hitbot Gripper
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot type:=hitbot
+```
+
+* Isaac (Default)
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot hardware:=isaac
+```
+
+* Isaac + Hitbot
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot type:=hitbot hardware:=isaac
 ```
 
 ### 5. Isaac Navigation

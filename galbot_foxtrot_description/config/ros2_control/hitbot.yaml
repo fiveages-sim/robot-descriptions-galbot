@@ -1,0 +1,67 @@
+# This config file is used by ros2_control (hitbot variant)
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    ocs2_wbc_controller:
+      type: ocs2_arm_controller/Ocs2ArmController
+
+    left_hand_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
+    right_hand_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
+ocs2_wbc_controller:
+  ros__parameters:
+    update_rate: 100  # Hz
+    info_file_name: fixed_base
+    joints:
+      - body_joint1
+      - body_joint2
+      - body_joint3
+      - body_joint4
+      - left_joint1
+      - left_joint2
+      - left_joint3
+      - left_joint4
+      - left_joint5
+      - left_joint6
+      - left_joint7
+      - right_joint1
+      - right_joint2
+      - right_joint3
+      - right_joint4
+      - right_joint5
+      - right_joint6
+      - right_joint7
+
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+
+    robot_name: galbot_foxtrot
+    robot_type: hitbot
+
+    home_1: [ 0.5, 1.5, 1.0, 0.0,
+              2.5, -1.5708, -0.5, 2.2, 0.0, -0.8, 0.0,
+              2.5, -1.5708, -0.5, 2.2, 0.0, -0.8, 0.0 ]
+    home_2: [ 0.0, 0.0, 0.0, 0.0,
+              2.5, -1.5708, -0.5, 2.5, 0.0, -0.8, 0.0,
+              2.5, -1.5708, -0.5, 2.5, 0.0, -0.8, 0.0 ]
+
+left_hand_controller:
+  ros__parameters:
+    joint: left_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5
+
+right_hand_controller:
+  ros__parameters:
+    joint: right_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5

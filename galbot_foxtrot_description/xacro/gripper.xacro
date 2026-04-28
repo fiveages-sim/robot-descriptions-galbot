@@ -1,7 +1,26 @@
 <?xml version="1.0"?>
 
-<robot name="Galbot Gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="Foxtrot Gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="type" default="galbot_gripper"/>
+  <xacro:property name="type_arg" value="$(arg type)"/>
+  <xacro:property name="selected_gripper_type" value="galbot_gripper"/>
+  <xacro:if value="${type_arg == 'hitbot'}">
+    <xacro:property name="selected_gripper_type" value="hitbot"/>
+  </xacro:if>
+  <xacro:if value="${type_arg == 'galbot_gripper'}">
+    <xacro:property name="selected_gripper_type" value="galbot_gripper"/>
+  </xacro:if>
 
-  <xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
-  <xacro:Gripper name=""/>
+  <xacro:if value="${selected_gripper_type == 'galbot_gripper'}">
+    <xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
+    <xacro:Gripper name=""/>
+  </xacro:if>
+
+  <xacro:if value="${selected_gripper_type == 'hitbot'}">
+    <xacro:include filename="$(find galbot_one_description)/xacro/components/galbot_hitbot_gripper.xacro"/>
+    <link name="gripper_base"/>
+    <xacro:hitbot_gripper name="gripper" parent="gripper_base">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:hitbot_gripper>
+  </xacro:if>
 </robot>

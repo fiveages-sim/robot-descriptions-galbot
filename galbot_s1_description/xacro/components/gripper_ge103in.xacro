@@ -222,15 +222,10 @@
 			<mimic joint="${prefix}gripper_joint" multiplier="1.0" offset="0.0"/>
 		</joint>
 
-		<link name="${prefix}fixed_contact_link">
-			<inertial>
-				<mass value="0"/>
-				<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-			</inertial>
-		</link>
+		<link name="${prefix}fixed_contact_link"/>
 
 		<joint name="${prefix}fixed_contact_joint" type="fixed">
-			<origin xyz="0.08995 ${direction * -0.03185} -0.0979" rpy="1.5708 1.5708 0.0"/>
+			<origin xyz="0.08995 ${direction * -0.03185} -0.0979" rpy="0.0 0.0 0.0"/>
 			<parent link="${prefix}gripper_base_link"/>
 			<child link="${prefix}fixed_contact_link"/>
 		</joint>

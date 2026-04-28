@@ -835,7 +835,7 @@
     </inertial>
   </link>
   <joint name="left_fixed_contact_joint" type="fixed">
-    <origin rpy="1.5708 1.5708 0.0" xyz="0.08995 -0.03185 -0.0979"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.08995 -0.03185 -0.0979"/>
     <parent link="left_gripper_base_link"/>
     <child link="left_fixed_contact_link"/>
   </joint>
@@ -1263,7 +1263,7 @@
     </inertial>
   </link>
   <joint name="right_fixed_contact_joint" type="fixed">
-    <origin rpy="1.5708 1.5708 0.0" xyz="0.08995 0.03185 -0.0979"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.08995 0.03185 -0.0979"/>
     <parent link="right_gripper_base_link"/>
     <child link="right_fixed_contact_link"/>
   </joint>
