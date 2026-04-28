@@ -83,5 +83,5 @@ ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_s1 hardware:=i
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_s1 map:=warehouse_multiple_shelfs nav2_profile:=map_only
+ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_s1 map:=german_poc nav2_profile:=map_only
 ```

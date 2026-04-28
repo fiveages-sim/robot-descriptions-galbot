@@ -51,6 +51,9 @@ ocs2_wbc_controller:
     home_1: [0.5,
              1.0, -1.38, -0.5, -1.5708, 0.0, 0.0, 0.0,
              1.0, -1.38, -0.5, -1.5708, 0.0, 0.0, 0.0]
+    home_2: [ 0.75,
+              -1.0, -1.38, -0.5, -1.5708, 0.0, 0.0, 0.0,
+              -1.0, -1.38, -0.5, -1.5708, 0.0, 0.0, 0.0 ]
 
 head_controller:
   ros__parameters:
@@ -67,7 +70,7 @@ head_controller:
       - velocity
 
     home_1: [0.0, 0.0]
-    home_2: [0.0, -0.1]
+    home_2: [0.0, 0.0]
 
     home_duration: 5.0
     movej_duration: 5.0
@@ -76,11 +79,11 @@ head_controller:
 left_gripper_controller:
   ros__parameters:
     joint: left_gripper_joint
-    force_feedback_ratio: 0.1
-    force_threshold: 1.5
+    force_feedback_ratio: 0.05
+    force_threshold: 0.1
 
 right_gripper_controller:
   ros__parameters:
     joint: right_gripper_joint
-    force_feedback_ratio: 0.1
-    force_threshold: 1.5
+    force_feedback_ratio: 0.05
+    force_threshold: 0.1
