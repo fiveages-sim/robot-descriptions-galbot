@@ -6,7 +6,7 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    ocs2_arm_controller:
+    ocs2_wbc_controller:
       type: ocs2_arm_controller/Ocs2ArmController
 
     left_hand_controller:
@@ -15,7 +15,7 @@ controller_manager:
     right_hand_controller:
       type: adaptive_gripper_controller/AdaptiveGripperController
 
-ocs2_arm_controller:
+ocs2_wbc_controller:
   ros__parameters:
     # Joint configuration
     update_rate: 100  # Hz

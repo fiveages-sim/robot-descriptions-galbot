@@ -4,8 +4,13 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="galbot_s1">
-  <link name="base_link">
-  </link>
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.0292"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  <link name="base_link"/>
   <joint name="omni_chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="omni_chassis_base_link"/>

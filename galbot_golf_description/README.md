@@ -48,10 +48,10 @@ ros2 launch robot_common_launch manipulator_ocs2.launch.py robot_name:=galbot_go
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_golf
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_golf
 ```
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch ocs2_arm_controller demo.launch.py robot:=galbot_golf hardware:=isaac
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_golf hardware:=isaac
 ```

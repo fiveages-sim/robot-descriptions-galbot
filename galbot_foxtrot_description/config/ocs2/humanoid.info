@@ -10,7 +10,7 @@ model_information
     manipulatorModelType    1
 
     ; Frame definitions
-    baseFrame               "base_link"
+    baseFrame                       "base_footprint"
     bodyFrame               "leg_link4"
     leftEEFrame             "left_gripper_tcp_link"
     rightEEFrame            "right_gripper_tcp_link"
