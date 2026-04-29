@@ -45,7 +45,10 @@
     </joint>
 
     <xacro:include filename="$(find galbot_charlie_description)/xacro/components/arm.xacro"/>
-    <xacro:galbot_charlie_arm name="left" direction="1" parent="arm_base"/>
-    <xacro:galbot_charlie_arm name="right" direction="-1" parent="arm_base"/>
+    <xacro:include filename="$(find galbot_charlie_description)/xacro/components/camera.xacro"/>
+    <xacro:galbot_charlie_arm name="left" direction="1"/>
+    <xacro:galbot_charlie_arm name="right" direction="-1"/>
+    <xacro:galbot_charlie_arm_camera name="left" direction="1"/>
+    <xacro:galbot_charlie_arm_camera name="right" direction="-1"/>
   </xacro:if>
 </robot>

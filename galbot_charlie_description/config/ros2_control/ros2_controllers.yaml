@@ -53,8 +53,8 @@ ocs2_wbc_controller:
     home_interpolation_type: linear
     # home: low standing posture (between upright and squat), arms relatively open
     home_1: [ 0.5825795598426468, 1.4997342332792214, 0.8621225208206932, 0.007935824653415023,
-              1.88, 1.35, 0.0, -1.23, 0.0, -0.19, 0.0,
-              -1.88, 1.35, 0.0, 1.23, 0.0, 0.19, 0.0 ]
+              1.88, 1.35, 0.0, -1.23, 1.57, -0.19, 0.0,
+              -1.88, 1.35, 0.0, 1.23, -1.57, 0.19, 0.0 ]
     # rest: full squat posture, arms folded closer to body
     home_2: [ 0.0, 0.0, 0.0, 0.0,
               3.1415,  1.57,  0.0, -2.1, 0.0, -1.0, 0.0,
