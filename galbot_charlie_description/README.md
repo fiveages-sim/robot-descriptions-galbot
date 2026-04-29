@@ -5,7 +5,6 @@
 ```bash
 cd ~/ros2_ws
 colcon build --packages-up-to galbot_charlie_description --symlink-install
-source ~/ros2_ws/install/setup.bash
 ```
 
 ## 2. 可视化机器人
