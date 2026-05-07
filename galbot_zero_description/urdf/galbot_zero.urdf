@@ -4,6 +4,12 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="galbot_zero">
+  <link name="base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
   <link name="base_link"/>
   <joint name="hexman_chassis_joint" type="fixed">
     <parent link="base_link"/>

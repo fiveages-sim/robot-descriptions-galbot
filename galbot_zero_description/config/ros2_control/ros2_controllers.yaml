@@ -7,7 +7,7 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     ocs2_wbc_controller:
-      type: ocs2_wbc_controller/Ocs2WbcController
+      type: ocs2_arm_controller/Ocs2ArmController
     ocs2_arm_controller:
       type: ocs2_arm_controller/Ocs2ArmController
 

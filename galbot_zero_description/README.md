@@ -70,6 +70,6 @@ ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_zero type:=none
 
   ```bash
   source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_zero
+  ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_zero map:=warehouse_multiple_shelfs nav2_profile:=map_only
   ```
 

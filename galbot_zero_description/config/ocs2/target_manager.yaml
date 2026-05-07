@@ -7,9 +7,10 @@
     # VR update rate
     vr_update_rate: 500.0
 
-    # Keep marker/control frame aligned with split OCS2 baseFrame
-    marker_fixed_frame: base_link
-    control_base_frame: base_link
+    # Keep marker/control frame aligned with the full-body base frame.
+    marker_fixed_frame: base_footprint
+    control_base_frame: base_footprint
+    reference_link: base_footprint
 
     # VR input toggle
     enable_vr: true

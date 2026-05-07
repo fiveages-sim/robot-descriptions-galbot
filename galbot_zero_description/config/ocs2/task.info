@@ -10,7 +10,7 @@ model_information {
     [3] "right_gripper_joint"
   }
 
-  baseFrame                       "base_link"
+  baseFrame                       "base_footprint"
   eeFrame                         "left_eef"
   eeFrame1                        "right_eef"
 }
