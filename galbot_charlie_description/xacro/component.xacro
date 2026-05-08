@@ -45,10 +45,22 @@
     </joint>
 
     <xacro:include filename="$(find galbot_charlie_description)/xacro/components/arm.xacro"/>
-    <xacro:include filename="$(find galbot_charlie_description)/xacro/components/camera.xacro"/>
+    <xacro:include filename="$(find galbot_one_description)/xacro/components/camera.xacro"/>
     <xacro:galbot_charlie_arm name="left" direction="1"/>
     <xacro:galbot_charlie_arm name="right" direction="-1"/>
-    <xacro:galbot_charlie_arm_camera name="left" direction="1"/>
-    <xacro:galbot_charlie_arm_camera name="right" direction="-1"/>
+    <link name="left_camera_mount_link"/>
+    <joint name="left_camera_mount_joint" type="fixed">
+      <origin xyz="0.03 0 0" rpy="0 -1.57 0"/>
+      <parent link="left_link7"/>
+      <child link="left_camera_mount_link"/>
+    </joint>
+    <link name="right_camera_mount_link"/>
+    <joint name="right_camera_mount_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 -1.57 0"/>
+      <parent link="right_link7"/>
+      <child link="right_camera_mount_link"/>
+    </joint>
+    <xacro:GalbotOneArmCamera name="left" direction="1" parent="left_link7" flange_parent="left_camera_mount_link"/>
+    <xacro:GalbotOneArmCamera name="right" direction="-1" parent="right_link7" flange_parent="right_camera_mount_link"/>
   </xacro:if>
 </robot>

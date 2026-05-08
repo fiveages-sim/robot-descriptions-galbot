@@ -34,13 +34,25 @@
   <xacro:include filename="$(find galbot_one_description)/xacro/components/chassis.xacro"/>
   <xacro:include filename="$(find galbot_one_description)/xacro/components/body.xacro"/>
   <xacro:include filename="$(find galbot_charlie_description)/xacro/components/arm.xacro"/>
-  <xacro:include filename="$(find galbot_charlie_description)/xacro/components/camera.xacro"/>
+  <xacro:include filename="$(find galbot_one_description)/xacro/components/camera.xacro"/>
 
   <xacro:GalbotOneChassis enable_wheel_joints="$(arg enable_wheel_joints)"/>
   <xacro:galbot_charlie_arm name="left" direction="1"/>
   <xacro:galbot_charlie_arm name="right" direction="-1"/>
-  <xacro:galbot_charlie_arm_camera name="left" direction="1"/>
-  <xacro:galbot_charlie_arm_camera name="right" direction="-1"/>
+  <link name="left_camera_mount_link"/>
+  <joint name="left_camera_mount_joint" type="fixed">
+    <origin xyz="0.03 0 0" rpy="0 -1.57 0"/>
+    <parent link="left_link7"/>
+    <child link="left_camera_mount_link"/>
+  </joint>
+  <link name="right_camera_mount_link"/>
+  <joint name="right_camera_mount_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 -1.57 0"/>
+    <parent link="right_link7"/>
+    <child link="right_camera_mount_link"/>
+  </joint>
+  <xacro:GalbotOneArmCamera name="left" direction="1" parent="left_link7" flange_parent="left_camera_mount_link"/>
+  <xacro:GalbotOneArmCamera name="right" direction="-1" parent="right_link7" flange_parent="right_camera_mount_link"/>
 
   <joint name="left_arm_mount_joint" type="fixed">
     <origin rpy="0 ${PI} 0" xyz="0 0 -0.13"/>
@@ -57,10 +69,10 @@
   <xacro:if value="${selected_gripper_type == 'hitbot'}">
     <xacro:include filename="$(find galbot_one_description)/xacro/components/galbot_hitbot_gripper.xacro"/>
     <xacro:hitbot_gripper name="right_gripper" parent="right_arm_end_effector_mount_link">
-      <origin xyz="0 0 0" rpy="0 0 0 "/>
+      <origin xyz="0.083 0 0" rpy="0 0 0"/>
     </xacro:hitbot_gripper>
     <xacro:hitbot_gripper name="left_gripper" parent="left_arm_end_effector_mount_link">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.083 0 0" rpy="0 0 0"/>
     </xacro:hitbot_gripper>
   </xacro:if>
 
@@ -70,13 +82,13 @@
     <xacro:Gripper name="left"/>
 
     <joint name="left_gripper_mount_joint" type="fixed">
-      <origin xyz="0 0 0.005" rpy="1.57 0 0"/>
+      <origin xyz="0.088 0 0" rpy="1.57 0  0 "/>
       <parent link="left_arm_end_effector_mount_link"/>
       <child link="left_gripper_flange"/>
     </joint>
 
     <joint name="right_gripper_mount_joint" type="fixed">
-      <origin xyz="0 0 0.005" rpy="1.57 0 0"/>
+      <origin xyz="0.088 0 0" rpy="-1.57 0  0 "/>
       <parent link="right_arm_end_effector_mount_link"/>
       <child link="right_gripper_flange"/>
     </joint>
