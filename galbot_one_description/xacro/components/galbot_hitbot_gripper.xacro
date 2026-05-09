@@ -23,10 +23,10 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="hitbot_gripper">
 
   <xacro:macro name="hitbot_gripper"
-    params="parent *origin name:=hitbot_gripper collider_type:=simple">
+    params="parent *origin name:=hitbot_gripper collider_type:=simple mount_joint_name:=''">
     <xacro:property name="M_PI" value="3.1415926535897931" />
 
-    <joint name="${name}_mount_joint" type="fixed">
+    <joint name="${mount_joint_name if mount_joint_name else name + '_mount_joint'}" type="fixed">
       <xacro:insert_block name="origin" />
       <parent link="${parent}" />
       <child link="${name}_base_link" />

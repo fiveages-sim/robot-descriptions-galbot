@@ -2,23 +2,10 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:property name="PI" value="3.141592653589793"/>
 
-	<!-- Wrist camera assembly; gripper mount is kept separate from the camera support. -->
-	<xacro:macro name="GalbotOneArmCamera" params="name direction:=1 parent camera:=d415 collider_type:=simple profile:=one flange_parent:=''">
+	<!-- Wrist camera assembly. The end-effector mount is owned by the arm macro. -->
+	<xacro:macro name="ArmCamera" params="name direction:=1 parent camera:=d415 collider_type:=simple profile:=one flange_parent:=''">
 		<xacro:property name="prefix" value="${name}_"/>
 		<xacro:property name="resolved_flange_parent" value="${flange_parent if flange_parent else parent}"/>
-
-		<link name="${prefix}arm_end_effector_mount_link">
-			<inertial>
-				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="0"/>
-				<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
-			</inertial>
-		</link>
-		<joint name="${prefix}arm_end_effector_mount_joint" type="fixed">
-			<origin rpy="${-PI/2 * direction} 0 ${PI}" xyz="0 0 0"/>
-			<parent link="${parent}"/>
-			<child link="${prefix}arm_end_effector_mount_link"/>
-		</joint>
 
 		<link name="${prefix}flange_link">
 			<inertial>

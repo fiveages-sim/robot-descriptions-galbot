@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	<xacro:property name="PI" value="3.141592653589793"/>
+	<xacro:include filename="$(find galbot_one_description)/xacro/components/camera.xacro"/>
 
 	<!-- one-style macro: name + direction + prefix -->
-	<xacro:macro name="galbot_charlie_arm" params="name direction:=1">
+	<xacro:macro name="Arm" params="name direction:=1 camera:=d415">
 		<xacro:property name="prefix" value="${name}_"/>
 
 		<link name="${prefix}base_link">
@@ -206,6 +207,15 @@
 			<axis xyz="0 0 1"/>
 			<limit effort="10" lower="-1.4" upper="1.4" velocity="1.5"/>
 		</joint>
+
+		<link name="${prefix}camera_mount_link"/>
+		<joint name="${prefix}camera_mount_joint" type="fixed">
+			<!-- Combined from the previous align + mount joints. -->
+			<origin xyz="0.03 0 0" rpy="${PI/2} 0 ${-PI/2}"/>
+			<parent link="${prefix}link7"/>
+			<child link="${prefix}camera_mount_link"/>
+		</joint>
+		<xacro:ArmCamera name="${name}" direction="${direction}" parent="${prefix}link7" flange_parent="${prefix}camera_mount_link" camera="${camera}"/>
 
 	</xacro:macro>
 </robot>

@@ -3,12 +3,9 @@
 	<xacro:property name="PI" value="3.141592653589793"/>
 	<!-- collider: simple (primitives) | convex (visual mesh as collision); set on entry xacro e.g. robot.xacro -->
 	<xacro:property name="collider_type" value="$(arg collider)"/>
-	<!--
-	  Parametric arm (same idea as Ai2Bot2Arm): name = link/joint prefix, direction = 1 (left) / -1 (right).
-	  Usage: <xacro:galbot_one_arm name="left" direction="1"/>
-	         <xacro:galbot_one_arm name="right" direction="-1"/>
-	-->
-	<xacro:macro name="galbot_one_arm" params="name direction:=1">
+	<xacro:include filename="$(find galbot_one_description)/xacro/components/camera.xacro"/>
+
+	<xacro:macro name="Arm" params="name direction:=1 camera:=d415">
 		<xacro:property name="prefix" value="${name}_"/>
 
 		<link name="${prefix}base_link">
@@ -290,6 +287,8 @@
 			<axis xyz="0 0 1"/>
 			<limit effort="10" lower="-${PI}" upper="${PI}" velocity="1.5"/>
 		</joint>
+
+		<xacro:ArmCamera name="${name}" direction="${direction}" parent="${prefix}link7" camera="${camera}" collider_type="${collider_type}"/>
 
 	</xacro:macro>
 </robot>

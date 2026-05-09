@@ -4,6 +4,7 @@
   <xacro:arg name="type" default="base"/>
   <xacro:arg name="enable_wheel_joints" default="true"/>
   <xacro:arg name="collider" default="simple"/>
+  <xacro:arg name="arm_camera" default="d415"/>
 
   <xacro:if value="${'$(arg type)' == 'base'}">
     <xacro:include filename="$(find galbot_one_description)/xacro/components/chassis.xacro"/>
@@ -55,11 +56,8 @@
     </joint>
 
     <xacro:include filename="$(find galbot_one_description)/xacro/components/arm.xacro"/>
-    <xacro:include filename="$(find galbot_one_description)/xacro/components/camera.xacro"/>
 
-    <xacro:galbot_one_arm name="left" direction="1"/>
-    <xacro:galbot_one_arm name="right" direction="-1"/>
-    <xacro:GalbotOneArmCamera name="left" direction="1" parent="left_link7" collider_type="$(arg collider)"/>
-    <xacro:GalbotOneArmCamera name="right" direction="-1" parent="right_link7" collider_type="$(arg collider)"/>
+    <xacro:Arm name="left" direction="1" camera="$(arg arm_camera)"/>
+    <xacro:Arm name="right" direction="-1" camera="$(arg arm_camera)"/>
   </xacro:if>
 </robot>
