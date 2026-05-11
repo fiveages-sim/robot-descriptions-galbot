@@ -11,6 +11,7 @@
 	<exec_depend>robot_common_launch</exec_depend>
 	<exec_depend>component_models</exec_depend>
 	<exec_depend>sensor_models</exec_depend>
+	<exec_depend>hitbot_description</exec_depend>
 	<exec_depend>xacro</exec_depend>
 	<depend>galbot_foxtrot_description</depend>
 	<depend>galbot_one_description</depend>

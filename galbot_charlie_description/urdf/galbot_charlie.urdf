@@ -295,7 +295,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -308,7 +308,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -321,7 +321,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -334,7 +334,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -837,9 +837,9 @@
   <joint name="right_end_effector_mount_joint" type="fixed">
     <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="-0.083 0 0"/>
     <parent link="right_link7"/>
-    <child link="right_gripper_base_link"/>
+    <child link="right_gripper_base"/>
   </joint>
-  <link name="right_gripper_base_link">
+  <link name="right_gripper_base">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0828 0.03604 -7.000000000000001e-05"/>
       <mass value="0.878"/>
@@ -847,12 +847,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/base.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/base.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -864,18 +864,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link1.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link1.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="right_gripper_joint" type="revolute">
     <origin rpy="3.141592653589793 0 -0.7853981633974483" xyz="0.12183 -0.02 0"/>
-    <parent link="right_gripper_base_link"/>
+    <parent link="right_gripper_base"/>
     <child link="right_gripper_link1"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -891,18 +891,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link2.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link2.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="right_gripper_joint2" type="revolute">
     <origin rpy="3.141592653589793 0 -0.7853981633974483" xyz="0.1368 -0.01 0"/>
-    <parent link="right_gripper_base_link"/>
+    <parent link="right_gripper_base"/>
     <child link="right_gripper_link2"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -919,12 +919,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link3.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -947,18 +947,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link4.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link4.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link4.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="right_gripper_joint4" type="revolute">
     <origin rpy="3.141592653589793 0 0.7853981633974483" xyz="0.121833370678203 0.0199999993241963 0"/>
-    <parent link="right_gripper_base_link"/>
+    <parent link="right_gripper_base"/>
     <child link="right_gripper_link4"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -975,18 +975,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link5.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link5.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link5.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="right_gripper_joint5" type="revolute">
     <origin rpy="3.141592653589793 0 0.7853981633974483" xyz="0.1368 0.01 0"/>
-    <parent link="right_gripper_base_link"/>
+    <parent link="right_gripper_base"/>
     <child link="right_gripper_link5"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -1003,12 +1003,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link6.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link6.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link6.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1027,16 +1027,16 @@
   <link name="right_gripper_tcp_link"/>
   <joint name="right_gripper_tcp_joint" type="fixed">
     <origin rpy="3.14 0 0" xyz="0.222892 0 0 "/>
-    <parent link="right_gripper_base_link"/>
+    <parent link="right_gripper_base"/>
     <child link="right_gripper_tcp_link"/>
     <axis xyz="0 0 0"/>
   </joint>
   <joint name="left_end_effector_mount_joint" type="fixed">
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="-0.083 0 0"/>
     <parent link="left_link7"/>
-    <child link="left_gripper_base_link"/>
+    <child link="left_gripper_base"/>
   </joint>
-  <link name="left_gripper_base_link">
+  <link name="left_gripper_base">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0828 0.03604 -7.000000000000001e-05"/>
       <mass value="0.878"/>
@@ -1044,12 +1044,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/base.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/base.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1061,18 +1061,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link1.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link1.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="left_gripper_joint" type="revolute">
     <origin rpy="3.141592653589793 0 -0.7853981633974483" xyz="0.12183 -0.02 0"/>
-    <parent link="left_gripper_base_link"/>
+    <parent link="left_gripper_base"/>
     <child link="left_gripper_link1"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -1088,18 +1088,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link2.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link2.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="left_gripper_joint2" type="revolute">
     <origin rpy="3.141592653589793 0 -0.7853981633974483" xyz="0.1368 -0.01 0"/>
-    <parent link="left_gripper_base_link"/>
+    <parent link="left_gripper_base"/>
     <child link="left_gripper_link2"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -1116,12 +1116,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link3.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1144,18 +1144,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link4.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link4.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link4.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="left_gripper_joint4" type="revolute">
     <origin rpy="3.141592653589793 0 0.7853981633974483" xyz="0.121833370678203 0.0199999993241963 0"/>
-    <parent link="left_gripper_base_link"/>
+    <parent link="left_gripper_base"/>
     <child link="left_gripper_link4"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -1172,18 +1172,18 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link5.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link5.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link5.stl"/>
       </geometry>
     </collision>
   </link>
   <joint name="left_gripper_joint5" type="revolute">
     <origin rpy="3.141592653589793 0 0.7853981633974483" xyz="0.1368 0.01 0"/>
-    <parent link="left_gripper_base_link"/>
+    <parent link="left_gripper_base"/>
     <child link="left_gripper_link5"/>
     <axis xyz="0 0 -1"/>
     <limit effort="2" lower="0" upper="0.75" velocity="3"/>
@@ -1200,12 +1200,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/visual/link6.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link6.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://galbot_one_description/meshes/gripper_hitbot/convex/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link6.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1224,7 +1224,7 @@
   <link name="left_gripper_tcp_link"/>
   <joint name="left_gripper_tcp_joint" type="fixed">
     <origin rpy="3.14 0 0" xyz="0.222892 0 0 "/>
-    <parent link="left_gripper_base_link"/>
+    <parent link="left_gripper_base"/>
     <child link="left_gripper_tcp_link"/>
     <axis xyz="0 0 0"/>
   </joint>

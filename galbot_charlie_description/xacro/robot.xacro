@@ -52,13 +52,20 @@
   </joint>
 
   <xacro:if value="${selected_gripper_type == 'hitbot'}">
-    <xacro:include filename="$(find galbot_one_description)/xacro/components/galbot_hitbot_gripper.xacro"/>
-    <xacro:hitbot_gripper name="right_gripper" parent="right_link7" mount_joint_name="right_end_effector_mount_joint">
+    <xacro:include filename="$(find hitbot_description)/xacro/Z-EFG-100.xacro"/>
+    <joint name="right_end_effector_mount_joint" type="fixed">
       <origin xyz="-0.083 0 0" rpy="${PI/2} 0 ${PI}"/>
-    </xacro:hitbot_gripper>
-    <xacro:hitbot_gripper name="left_gripper" parent="left_link7" mount_joint_name="left_end_effector_mount_joint">
+      <parent link="right_link7"/>
+      <child link="right_gripper_base"/>
+    </joint>
+    <xacro:Gripper name="right_gripper" collider_type="$(arg collider)"/>
+
+    <joint name="left_end_effector_mount_joint" type="fixed">
       <origin xyz="-0.083 0 0" rpy="${-PI/2} 0 ${PI}"/>
-    </xacro:hitbot_gripper>
+      <parent link="left_link7"/>
+      <child link="left_gripper_base"/>
+    </joint>
+    <xacro:Gripper name="left_gripper" collider_type="$(arg collider)"/>
   </xacro:if>
 
   <xacro:if value="${selected_gripper_type == 'galbot_gripper'}">

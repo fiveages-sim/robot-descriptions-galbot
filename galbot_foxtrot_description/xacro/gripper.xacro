@@ -17,10 +17,7 @@
   </xacro:if>
 
   <xacro:if value="${selected_gripper_type == 'hitbot'}">
-    <xacro:include filename="$(find galbot_one_description)/xacro/components/galbot_hitbot_gripper.xacro"/>
-    <link name="gripper_base"/>
-    <xacro:hitbot_gripper name="gripper" parent="gripper_base">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:hitbot_gripper>
+    <xacro:include filename="$(find hitbot_description)/xacro/Z-EFG-100.xacro"/>
+    <xacro:Gripper name=""/>
   </xacro:if>
 </robot>

@@ -25,7 +25,7 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_foxtrot type:=hitbot
   ```
-  ![Gripper](../.images/galbot_gripper.png)
+
 
 
 ### 2.2. Component modules
@@ -58,12 +58,13 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot
   ```
+  ![Gripper](../.images/galbot_gripper.png)
 * Hitbot Gripper
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch gripper.launch.py gripper:=galbot_foxtrot type:=hitbot
   ```
-  ![Gripper](../.images/galbot_gripper.png)
+  ![hitbot_gripper.png](../.images/hitbot_gripper.png)
 
 
 ### 3. Official OCS2 Mobile Manipulator Demo

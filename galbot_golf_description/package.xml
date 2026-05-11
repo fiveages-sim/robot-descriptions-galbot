@@ -12,6 +12,7 @@
   <license>BSD</license>
 
   <exec_depend>robot_common_launch</exec_depend>
+  <exec_depend>hitbot_description</exec_depend>
   <depend>galbot_foxtrot_description</depend>
   <depend>galbot_one_description</depend>
 
