@@ -15,14 +15,14 @@ colcon build --packages-up-to galbot_zero_description --symlink-install
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_zero
+ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero
 ```
 
 Hide grippers (type:=none):
 
 ```bash
 source ~/ros2_ws/install/setup.bash
-ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_zero type:=none
+ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero type:=none
 ```
 
 ### Component

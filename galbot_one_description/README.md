@@ -18,19 +18,19 @@ colcon build --packages-up-to galbot_one_description --symlink-install
 * Without End Effector:
   ```bash
   source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_one type:=none
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_one type:=none
   ```
 
 * With Hitbot Gripper (Default)
   ```bash
   source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_one collider:=simple
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_one collider:=simple
   ```
 
 * With Galbot Gripper
   ```bash
   source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch humanoid.launch.py robot:=galbot_one collider:=simple type:=galbot_gripper
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_one collider:=simple type:=galbot_gripper
   ```
 
 ### 2.2. Component modules

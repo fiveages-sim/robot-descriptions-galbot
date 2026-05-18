@@ -13,7 +13,7 @@ Galbot humanoid robot description packages. Each package contains its own URDF/X
 
 ## Common Commands
 
-Build one model:
+### Build
 
 ```bash
 cd ~/ros2_ws
@@ -21,20 +21,20 @@ colcon build --packages-up-to <package> --symlink-install
 source ~/ros2_ws/install/setup.bash
 ```
 
-Visualize a full robot. Most mobile manipulators use `manipulator.launch.py`; Zero and One use `humanoid.launch.py`.
+### Visualize Full Robot
 
 ```bash
 ros2 launch robot_common_launch manipulator.launch.py robot:=<robot>
 ```
 
-Useful visualization arguments:
+Useful arguments:
 
-- `robot:=<robot>` selects the robot, for example `galbot_zero` or `galbot_foxtrot`.
+- `robot:=<robot>` selects the robot, for example `galbot_s1` or `galbot_foxtrot`.
 - `type:=none` hides optional end effectors when the model supports it.
 - `type:=hitbot` or `type:=galbot_gripper` selects a gripper variant when available.
-- `collider:=simple` selects simple collision geometry on models that expose collider modes.
+- `collider:=simple` is the default on most models and uses simple primitive collision geometry. Some models also support `convex_decomposition` for convex-hull collision meshes.
 
-Visualize one component:
+### Visualize Component
 
 ```bash
 ros2 launch robot_common_launch component.launch.py robot:=<robot> type:=<component>
@@ -42,7 +42,9 @@ ros2 launch robot_common_launch component.launch.py robot:=<robot> type:=<compon
 
 Common component values include `chassis`, `body`, `head`, `arm`, and gripper-specific entries such as `left_gripper` or `right_gripper`. The exact list is model-specific.
 
-Run OCS2 demos. The default hardware is `mock_components`.
+### Run OCS2 Demos
+
+The default hardware is `mock_components`.
 
 ```bash
 ros2 launch robot_common_launch manipulator_ocs2.launch.py robot_name:=<robot>
