@@ -728,7 +728,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -741,7 +741,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -754,7 +754,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -767,7 +767,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/component_models/share/component_models/meshes/omniwheel_10.glb"/>
+        <mesh filename="package://component_models/meshes/omniwheel_10.glb"/>
       </geometry>
     </visual>
   </link>
@@ -827,7 +827,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/flange.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/flange.glb"/>
       </geometry>
     </visual>
   </link>
@@ -844,12 +844,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/base_link.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/base_link.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/base_link.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -861,12 +861,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -878,12 +878,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -895,12 +895,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link3.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -912,12 +912,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -929,12 +929,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -946,12 +946,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link3.glb" scale="1 -1 1"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link3.glb" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl" scale="1 -1 1"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
@@ -1016,7 +1016,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/flange.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/flange.glb"/>
       </geometry>
     </visual>
   </link>
@@ -1033,12 +1033,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/base_link.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/base_link.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/base_link.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1050,12 +1050,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1067,12 +1067,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1084,12 +1084,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link3.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1101,12 +1101,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1118,12 +1118,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1135,12 +1135,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/visual/gripper/link3.glb" scale="1 -1 1"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/visual/gripper/link3.glb" scale="1 -1 1"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/king/ros2_ws/install/galbot_foxtrot_description/share/galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl" scale="1 -1 1"/>
+        <mesh filename="package://galbot_foxtrot_description/meshes/collision/gripper/convex/link_3.stl" scale="1 -1 1"/>
       </geometry>
     </collision>
   </link>
