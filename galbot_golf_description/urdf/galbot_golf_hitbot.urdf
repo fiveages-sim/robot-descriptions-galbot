@@ -564,12 +564,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/base.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/base.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/base.glb"/>
       </geometry>
     </collision>
   </link>
@@ -581,12 +581,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link1.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link1.glb"/>
       </geometry>
     </collision>
   </link>
@@ -608,12 +608,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link2.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link2.glb"/>
       </geometry>
     </collision>
   </link>
@@ -636,12 +636,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link3.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link3.glb"/>
       </geometry>
     </collision>
   </link>
@@ -664,12 +664,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link4.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link4.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link4.glb"/>
       </geometry>
     </collision>
   </link>
@@ -692,12 +692,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link5.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link5.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link5.glb"/>
       </geometry>
     </collision>
   </link>
@@ -720,12 +720,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link6.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link6.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link6.glb"/>
       </geometry>
     </collision>
   </link>
@@ -968,12 +968,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/base.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/base.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/base.glb"/>
       </geometry>
     </collision>
   </link>
@@ -985,12 +985,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link1.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link1.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link1.glb"/>
       </geometry>
     </collision>
   </link>
@@ -1012,12 +1012,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link2.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link2.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link2.glb"/>
       </geometry>
     </collision>
   </link>
@@ -1040,12 +1040,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link3.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link3.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link3.glb"/>
       </geometry>
     </collision>
   </link>
@@ -1068,12 +1068,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link4.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link4.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link4.glb"/>
       </geometry>
     </collision>
   </link>
@@ -1096,12 +1096,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link5.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link5.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link5.glb"/>
       </geometry>
     </collision>
   </link>
@@ -1124,12 +1124,12 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/visual/link6.glb"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link6.glb"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/link6.glb"/>
       </geometry>
     </collision>
   </link>
