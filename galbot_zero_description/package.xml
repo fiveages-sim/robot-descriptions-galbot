@@ -7,10 +7,6 @@
   <license>BSD</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <exec_depend>ocs2_arm_controller</exec_depend>
-  <exec_depend>ocs2_wbc_controller</exec_depend>
-  <exec_depend>robot_common_launch</exec_depend>
-  <exec_depend>basic_joint_controller</exec_depend>
   <exec_depend>component_models</exec_depend>
   <exec_depend>sensor_models</exec_depend>
   <exec_depend>rm75_description</exec_depend>

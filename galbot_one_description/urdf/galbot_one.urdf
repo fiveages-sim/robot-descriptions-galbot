@@ -837,7 +837,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -854,7 +854,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -881,7 +881,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -909,7 +909,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -937,7 +937,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link4.stl"/>
       </geometry>
     </collision>
   </link>
@@ -965,7 +965,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link5.stl"/>
       </geometry>
     </collision>
   </link>
@@ -993,7 +993,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link6.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1034,7 +1034,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/base_link.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/base_link.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1051,7 +1051,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link1.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link1.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1078,7 +1078,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link2.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link2.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1106,7 +1106,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link3.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link3.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1134,7 +1134,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link4.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link4.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1162,7 +1162,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link5.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link5.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1190,7 +1190,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/convex/gripper_link6.stl"/>
+        <mesh filename="package://hitbot_description/meshes/Z-EFG-100/collision/gripper_link6.stl"/>
       </geometry>
     </collision>
   </link>

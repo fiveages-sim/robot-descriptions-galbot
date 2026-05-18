@@ -58,7 +58,7 @@
 			<parent link="right_link7"/>
 			<child link="right_gripper_base"/>
 		</joint>
-		<xacro:Gripper name="right_gripper"/>
+		<xacro:Gripper name="right"/>
 	</xacro:if>
 	
 	<xacro:Arm name="left" camera="$(arg arm_camera)"/>
@@ -77,6 +77,6 @@
 			<parent link="left_link7"/>
 			<child link="left_gripper_base"/>
 		</joint>
-		<xacro:Gripper name="left_gripper"/>
+		<xacro:Gripper name="left"/>
 	</xacro:if>
 </robot>

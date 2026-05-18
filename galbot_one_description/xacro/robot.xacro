@@ -59,14 +59,14 @@
       <parent link="right_link7"/>
       <child link="right_gripper_base"/>
     </joint>
-    <xacro:Gripper name="right_gripper" collider_type="$(arg collider)"/>
+    <xacro:Gripper name="right" collider_type="$(arg collider)"/>
 
     <joint name="left_end_effector_mount_joint" type="fixed">
       <origin xyz="0 0 0.084525" rpy="0 ${-PI/2} ${PI}"/>
       <parent link="left_link7"/>
       <child link="left_gripper_base"/>
     </joint>
-    <xacro:Gripper name="left_gripper" collider_type="$(arg collider)"/>
+    <xacro:Gripper name="left" collider_type="$(arg collider)"/>
   </xacro:if>
 
   <xacro:if value="${selected_gripper_type == 'galbot_gripper'}">

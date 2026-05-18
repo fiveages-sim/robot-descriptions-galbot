@@ -120,7 +120,7 @@
 			<collision>
 				<origin rpy="${PI/2} 0 0" xyz="0 -0.14 0"/>
 				<geometry>
-					<cylinder length="0.16085" radius="0.044983"/>
+					<cylinder length="0.10085" radius="0.044983"/>
 				</geometry>
 			</collision>
 		</link>
@@ -145,8 +145,9 @@
 				</geometry>
 			</visual>
 			<collision>
+				<origin xyz="0 0 -0.12"/>
 				<geometry>
-					<mesh filename="file://$(find galbot_charlie_description)/meshs/arm/link5.glb"/>
+					<box size="0.07466 0.093966 0.16955"/>
 				</geometry>
 			</collision>
 		</link>
@@ -171,7 +172,7 @@
 			</visual>
 			<collision>
 				<geometry>
-					<mesh filename="file://$(find galbot_charlie_description)/meshs/arm/link6.glb"/>
+					<sphere radius="0.05987"/>
 				</geometry>
 			</collision>
 		</link>
@@ -195,8 +196,9 @@
 				</geometry>
 			</visual>
 			<collision>
+				<origin xyz="0 0 -0.015"/>
 				<geometry>
-					<mesh filename="file://$(find galbot_charlie_description)/meshs/arm/link7.glb"/>
+					<cylinder length="0.16" radius="0.007"/>
 				</geometry>
 			</collision>
 		</link>
