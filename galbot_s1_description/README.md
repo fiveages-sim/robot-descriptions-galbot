@@ -2,6 +2,8 @@
 
 This package contains the description files for Galbot S1 humanoid. Source assets are tracked with [Galbot S1 Description](https://github.com/GalaxyGeneralRobotics/galbot_s1_description).
 
+![galbot_s1.png](../.images/galbot_s1.png)
+
 ## 1. Build
 
 ```bash
