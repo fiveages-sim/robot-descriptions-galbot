@@ -4,14 +4,14 @@ Galbot humanoid robot description packages. Each package contains its own URDF/X
 
 FiveAges-adapted packages are licensed under [Apache-2.0](LICENSE). Third-party model sources and upstream terms are listed in [NOTICE](NOTICE) and each package README.
 
-| Brand | Model | Repaint | Images |
-|---|---|---|---|
-| Galbot | [Zero](galbot_zero_description/) | Yes | <img src=".images/galbot_zero.png" width="160"> |
-| Galbot | [One](galbot_one_description/) | Yes | <img src=".images/galbot_one.png" width="160"> |
-| Galbot | [One Charlie](galbot_charlie_description/) | Yes | <img src=".images/galbot_charlie.png" width="160"> |
-| Galbot | [G1 Foxtrot](galbot_foxtrot_description/) | Yes | <img src=".images/galbot_foxtrot.png" width="160"> |
-| Galbot | [G1 Golf](galbot_golf_description/) | Yes | <img src=".images/galbot_golf.png" width="160"> |
-| Galbot | [S1](galbot_s1_description/) | Yes | <img src=".images/galbot_s1.png" width="160"> |
+| Model | Repaint | Images |
+|---|---|---|
+| [Zero](galbot_zero_description/) | Yes | <img src=".images/galbot_zero.png" width="160"> |
+| [One](galbot_one_description/) | Yes | <img src=".images/galbot_one.png" width="160"> |
+| [One Charlie](galbot_charlie_description/) | Yes | <img src=".images/galbot_charlie.png" width="160"> |
+| [G1 Foxtrot](galbot_foxtrot_description/) | Yes | <img src=".images/galbot_foxtrot.png" width="160"> |
+| [G1 Golf](galbot_golf_description/) | Yes | <img src=".images/galbot_golf.png" width="160"> |
+| [S1](galbot_s1_description/) | Yes | <img src=".images/galbot_s1.png" width="160"> |
 
 ## Common Commands
 
