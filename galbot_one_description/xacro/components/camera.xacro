@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:property name="PI" value="3.141592653589793"/>
+
+	<!-- Wrist camera assembly. The end-effector mount is owned by the arm macro. -->
+	<xacro:macro name="ArmCamera" params="name direction:=1 parent camera:=d415 collider_type:=simple profile:=one flange_parent:=''">
+		<xacro:property name="prefix" value="${name}_"/>
+		<xacro:property name="resolved_flange_parent" value="${flange_parent if flange_parent else parent}"/>
+
+		<link name="${prefix}flange_link">
+			<inertial>
+				<origin rpy="0 0 0" xyz="0.052829 -0.00096484 0.013285"/>
+				<mass value="0.25733"/>
+				<inertia ixx="0.0002175" ixy="-2.5433E-06" ixz="4.0586E-06" iyy="5.3894E-05" iyz="-1.8533E-06" izz="0.00025319"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_one_description)/meshes/flange/camera_support.glb" scale="1 ${direction} 1"/>
+				</geometry>
+			</visual>
+		</link>
+		<joint name="${prefix}joint" type="fixed">
+			<origin rpy="${PI} -1.308996939 ${PI * (1 + direction) / 2}" xyz="${-0.0526 * direction} 0.02 0.101982"/>
+			<parent link="${resolved_flange_parent}"/>
+			<child link="${prefix}flange_link"/>
+		</joint>
+
+		<xacro:if value="${camera == 'd415'}">
+			<link name="${prefix}camera_link">
+				<visual>
+					<geometry>
+						<mesh filename="file://$(find sensor_models)/meshes/realsense/d415.glb"/>
+					</geometry>
+				</visual>
+			</link>
+
+			<joint name="${prefix}camera_joint" type="fixed">
+				<origin rpy="-${PI/2} 0 -${PI/2}" xyz="0.0095 ${-0.02 * direction} 0"/>
+				<parent link="${prefix}flange_link"/>
+				<child link="${prefix}camera_link"/>
+			</joint>
+		</xacro:if>
+	</xacro:macro>
+</robot>

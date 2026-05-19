@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="torso">
+
+	<xacro:macro name="torso" params="parent collision_type">
+
+		<joint name="column_torso_mount_joint" type="fixed">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<parent link="${parent}"/>
+			<child link="torso_base_link"/>
+		</joint>
+
+		<link name="torso_base_link">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/torso/torso.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.046329999999999996 -0.00014000000000000001 0.09888"/>
+				<mass value="37.84"/>
+				<inertia ixx="0.8467849000000001" ixy="0.0030026" ixz="0.19262424"
+				         iyy="0.91029072" iyz="0.00130177" izz="0.70107636"/>
+			</inertial>
+
+			<xacro:if value="${collision_type == 'simple'}">
+				<collision name="torso_base_link_collision01_cyl">
+					<origin xyz="0.09850011765956879 -0.18196463584899902 0.14033262431621552"
+					        rpy="-1.832595946718472 -4.839043556970068e-07 6.306365860631047e-07"/>
+					<geometry>
+						<cylinder length="0.02855188027024269" radius="0.07469399273395538"/>
+					</geometry>
+				</collision>
+				<collision name="torso_base_link_collision02_cyl">
+					<origin xyz="0.09850063920021057 0.1826452910900116 0.14036446809768677"
+					        rpy="1.8325950006080196 -3.840909441166218e-06 -5.005566784399562e-06"/>
+					<geometry>
+						<cylinder length="0.0283046904951334" radius="0.07469338178634644"/>
+					</geometry>
+				</collision>
+				<collision name="torso_base_link_collision03_box">
+					<origin xyz="0.10076308250427246 -0.004268161952495575 0.07706913352012634"/>
+					<geometry>
+						<box size="0.2631669044494629 0.29838740825653076 0.3459314703941345"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh
+								filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/torso_base_link_0.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+
+
+		</link>
+
+		<link name="torso_right_arm_mount_link"/>
+
+		<joint name="torso_right_arm_mount_joint" type="fixed">
+			<origin xyz="0.0985 -0.28025 0.16659" rpy="-1.3089999999999997 -2.220446049250313e-16 -3.1415853071795863"/>
+			<parent link="torso_base_link"/>
+			<child link="torso_right_arm_mount_link"/>
+		</joint>
+
+		<link name="torso_left_arm_mount_link"/>
+
+		<joint name="torso_left_arm_mount_joint" type="fixed">
+			<origin xyz="0.0985 0.28025 0.16659" rpy="1.3089999999999997 2.220446049250313e-16 -3.1415853071795863"/>
+			<parent link="torso_base_link"/>
+			<child link="torso_left_arm_mount_link"/>
+		</joint>
+
+		<link name="torso_head_mount_link"/>
+
+		<joint name="torso_head_mount_joint" type="fixed">
+			<parent link="torso_base_link"/>
+			<child link="torso_head_mount_link"/>
+		</joint>
+
+		<link name="head_link1">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/torso/head_link1.glb"/>
+				</geometry>
+			</visual>
+
+
+			<inertial>
+				<origin xyz="-0.04632 -0.01375 -0.002"/>
+				<mass value="1.17"/>
+				<inertia ixx="0.00148024" ixy="0.00085634" ixz="3.233e-05"
+				         iyy="0.0039324" iyz="8.06e-06" izz="0.0042417"/>
+			</inertial>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/head_link1_0.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/head_link1_1.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+
+
+		</link>
+
+		<joint name="head_joint1" type="revolute">
+			<origin xyz="0.1145 0.0 0.25003"/>
+			<parent link="torso_head_mount_link"/>
+			<child link="head_link1"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-0.7854" upper="0.7854" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="head_link2">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_s1_description)/meshes/visual/torso/head_link2.glb"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.11334000000000001 0.11445 0.0060999999999999995"/>
+				<mass value="1.62"/>
+				<inertia ixx="0.1305054" ixy="0.00711716" ixz="4.205e-05"
+				         iyy="0.12269315" iyz="5.71e-05" izz="0.13536452"/>
+			</inertial>
+
+			<xacro:if value="${collision_type == 'simple'}">
+				<collision name="head_link2_collision01_cyl">
+					<origin xyz="4.985239998589464e-10 1.0923241200444522e-09 0.06224953010678291"
+					        rpy="-8.595671374678199e-08 -3.4057602960047006e-08 -1.3896634290890865e-22"/>
+					<geometry>
+						<cylinder length="0.025415679439902306" radius="0.03799993917346001"/>
+					</geometry>
+				</collision>
+				<collision name="head_link2_collision02_box">
+					<origin xyz="0.08420921862125397 0.10451380908489227 0.0029667168855667114"/>
+					<geometry>
+						<box size="0.14712557196617126 0.11509424448013306 0.15846756100654602"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+			<xacro:if value="${collision_type == 'convex_decomposition'}">
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/head_link2_0.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/head_link2_1.stl"/>
+					</geometry>
+				</collision>
+				<collision>
+					<geometry>
+						<mesh filename="file://$(find galbot_s1_description)/meshes/collision/convex_decomposition/head_link2_2.stl"/>
+					</geometry>
+				</collision>
+			</xacro:if>
+		</link>
+
+		<joint name="head_joint2" type="revolute">
+			<origin xyz="-0.052556 0.0 0.042749" rpy="${PI/2} 0.0 0.0"/>
+			<parent link="head_link1"/>
+			<child link="head_link2"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<limit lower="-0.6109" upper="0.6109" effort="1000.0" velocity="1.5"/>
+		</joint>
+
+		<link name="head_end_effector_mount_link"/>
+
+		<joint name="head_end_effector_mount_joint" type="fixed">
+			<origin rpy="-${PI/2} 0.0 0.0"/>
+			<parent link="head_link2"/>
+			<child link="head_end_effector_mount_link"/>
+		</joint>
+
+		<link name="head_lidar">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find sensor_models)/meshes/mid360/mid360.obj"/>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="head_lidar_joint" type="fixed">
+			<origin xyz="0.12312  0 0.080744" rpy="0.0 ${PI*57/180} 0.0 "/>
+			<parent link="head_end_effector_mount_link"/>
+			<child link="head_lidar"/>
+		</joint>
+
+
+	</xacro:macro>
+
+</robot>

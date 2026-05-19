@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="chassis">
+  <xacro:arg name="type" default="chassis"/>
+  <xacro:arg name="enable_wheel_joints" default="true"/>
+
+
+
+  <xacro:if value="${'$(arg type)' == 'chassis'}">
+    <xacro:include filename="$(find galbot_zero_description)/xacro/components/chassis.xacro"/>
+    <xacro:GalbotZeroChassis enable_wheel_joints="$(arg enable_wheel_joints)"/>
+  </xacro:if>
+
+  <xacro:if value="${'$(arg type)' == 'body'}">
+    <xacro:include filename="$(find galbot_zero_description)/xacro/components/body.xacro"/>
+    <link name="base_link"/>
+    <link name="hexman_chassis_lift_fix_point_link"/>
+    <joint name="base_to_lift_fix" type="fixed">
+      <parent link="base_link"/>
+      <child link="hexman_chassis_lift_fix_point_link"/>
+    </joint>
+    <xacro:GalbotZeroBody/>
+  </xacro:if>
+</robot>

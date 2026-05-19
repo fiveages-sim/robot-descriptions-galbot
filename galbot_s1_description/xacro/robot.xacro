@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="galbot_s1" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:property name="PI" value="3.141592653589793"/>
+	<xacro:arg name="collider" default="convex_decomposition"/>
+	<xacro:arg name="enable_wheel_joints" default="false"/>
+	<xacro:arg name="left_arm_end_effector_type" default="galbot_ge103in"/>
+	<xacro:arg name="right_arm_end_effector_type" default="galbot_ge103in"/>
+
+	<xacro:property name="collision_type" value="$(arg collider)"/>
+	<xacro:property name="enable_wheel_joints" value="$(arg enable_wheel_joints)"/>
+	<xacro:property name="left_arm_end_effector_type" value="$(arg left_arm_end_effector_type)"/>
+	<xacro:property name="right_arm_end_effector_type" value="$(arg right_arm_end_effector_type)"/>
+
+	<xacro:include filename="$(find galbot_s1_description)/xacro/components/column.xacro"/>
+	<xacro:include filename="$(find galbot_s1_description)/xacro/components/arm.xacro"/>
+	<xacro:include filename="$(find galbot_s1_description)/xacro/components/omni_chassis.xacro"/>
+	<xacro:include filename="$(find galbot_s1_description)/xacro/components/torso.xacro"/>
+	<xacro:include filename="$(find galbot_s1_description)/xacro/components/gripper_ge103in.xacro"/>
+
+	<link name="base_footprint"/>
+	<joint name="base_footprint_joint" type="fixed">
+		<origin xyz="0 0 0.0292"/>
+		<parent link="base_footprint"/>
+		<child link="base_link"/>
+	</joint>
+	<link name="base_link"/>
+
+	<xacro:omni_chassis parent="base_link" collision_type="${collision_type}"
+	                    enable_wheel_joints="${enable_wheel_joints}"/>
+
+	<xacro:column parent="omni_chassis_column_mount_link" collision_type="${collision_type}"/>
+
+	<xacro:torso parent="torso_lift_link1" collision_type="${collision_type}"/>
+
+	<xacro:Arm parent="torso_left_arm_mount_link" name="left" collision_type="${collision_type}" direction="1"/>
+
+	<xacro:if value="${left_arm_end_effector_type == 'galbot_ge103in'}">
+		<xacro:galbot_ge103in name="left" direction="1" parent="left_end_effector_mount_link"
+		                      collision_type="${collision_type}"/>
+	</xacro:if>
+
+	<xacro:Arm parent="torso_right_arm_mount_link" name="right" collision_type="${collision_type}" direction="-1"/>
+
+	<xacro:if value="${right_arm_end_effector_type == 'galbot_ge103in'}">
+		<xacro:galbot_ge103in name="right" direction="-1" parent="right_end_effector_mount_link"
+		                      collision_type="${collision_type}"/>
+	</xacro:if>
+
+</robot>

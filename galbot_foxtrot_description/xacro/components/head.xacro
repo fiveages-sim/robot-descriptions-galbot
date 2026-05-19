@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:property name="PI" value="3.141592653589793"/>
+
+	<xacro:macro name="galbot_foxtrot_head" params="parent_link">
+		<!-- Head Mount -->
+		<link name="torso_head_mount_link"/>
+		<joint name="torso_head_mount_joint" type="fixed">
+			<origin rpy="-${PI/2} -${PI/2} 0" xyz="0 0.36211 0"/>
+			<parent link="${parent_link}"/>
+			<child link="torso_head_mount_link"/>
+			<axis/>
+		</joint>
+
+		<joint name="head_joint" type="fixed">
+			<parent link="torso_head_mount_link"/>
+			<child link="head_base_link"/>
+		</joint>
+
+		<link name="head_base_link">
+			<inertial>
+				<origin xyz="0.023809999999999998 0.00032 0.01966"/>
+				<mass value="0.48"/>
+				<inertia ixx="0.0032910599999999997" ixy="8.32e-06" ixz="0.00044358" iyy="0.00375998" iyz="7.18e-06"
+								 izz="0.00221683"/>
+			</inertial>
+		</link>
+
+		<link name="head_link1">
+			<inertial>
+				<origin xyz="-2e-05 0.00709 -0.0559"/>
+				<mass value="0.08"/>
+				<inertia ixx="0.0003544" ixy="0.0" ixz="1.6e-07" iyy="0.00034029000000000004" iyz="-1.041e-05" izz="6.652e-05"/>
+			</inertial>
+		</link>
+
+		<joint name="head_joint1" type="revolute">
+			<parent link="head_base_link"/>
+			<child link="head_link1"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="4" lower="-1.5208" upper="1.5208" velocity="1.5"/>
+		</joint>
+
+		<link name="head_link2">
+			<inertial>
+				<origin xyz="0.01835 -0.033479999999999996 0.00642"/>
+				<mass value="0.08"/>
+				<inertia ixx="0.00019294" ixy="-6.442e-05" ixz="1.0900000000000002e-06" iyy="0.00015263999999999998"
+								 iyz="-4.09e-06" izz="0.00018457"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/head/head.glb"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/head.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<joint name="head_joint2" type="revolute">
+			<origin rpy="-${PI/2} 0 0"/>
+			<parent link="head_link1"/>
+			<child link="head_link2"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="4" lower="-0.321147949" upper="0.321147949" velocity="1.5"/>
+		</joint>
+
+		<link name="head_end_effector_mount_link"/>
+		<joint name="head_end_effector_mount_joint" type="fixed">
+			<parent link="head_link2"/>
+			<child link="head_end_effector_mount_link"/>
+			<axis/>
+		</joint>
+
+		<link name="head_front_camera">
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find sensor_models)/meshes/realsense/d435.glb"/>
+				</geometry>
+			</visual>
+		</link>
+
+		<joint name="head_front_camera_joint" type="fixed">
+			<origin rpy="${-PI*29/180} ${PI/2} 0" xyz="0.088405 -0.05399 0"/>
+			<parent link="head_link2"/>
+			<child link="head_front_camera"/>
+		</joint>
+	</xacro:macro>
+</robot>

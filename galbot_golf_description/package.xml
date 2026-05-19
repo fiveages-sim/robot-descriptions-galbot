@@ -1,0 +1,23 @@
+<package format="2">
+  <name>galbot_golf_description</name>
+  <version>1.0.0</version>
+  <description>
+    <p>URDF Description package for Galbot G1(golf)</p>
+    <p>This package contains configuration data, 3D models and launch files
+      for Galbot G1 Golf robot
+    </p>
+  </description>
+  <author>TODO</author>
+  <maintainer email="TODO@email.com"/>
+  <license>BSD</license>
+
+  <exec_depend>robot_common_launch</exec_depend>
+  <exec_depend>hitbot_description</exec_depend>
+  <depend>galbot_foxtrot_description</depend>
+  <depend>galbot_one_description</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>

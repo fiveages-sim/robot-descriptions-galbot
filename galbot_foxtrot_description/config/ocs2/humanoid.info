@@ -1,0 +1,379 @@
+; OCS2 Wheel Humanoid Configuration
+; ==================================
+
+;=============================================================================
+; Model Information
+;=============================================================================
+
+model_information
+{
+    manipulatorModelType    1
+
+    ; Frame definitions
+    baseFrame                       "base_footprint"
+    bodyFrame               "leg_link4"
+    leftEEFrame             "left_gripper_tcp_link"
+    rightEEFrame            "right_gripper_tcp_link"
+
+    ; Joints to remove (fixed joints, mimic joints detected automatically)
+    removeJoints
+    {
+        [0]  "head_joint1"
+        [1]  "head_joint2"
+
+        [2]  "left_gripper_joint"
+        [3]  "right_gripper_joint"
+    }
+}
+
+;=============================================================================
+; Model Settings
+;=============================================================================
+
+model_settings
+{
+    usePreComputation       true
+    recompileLibraries      true
+}
+
+;=============================================================================
+; Initial State
+;=============================================================================
+
+initialState
+{
+
+    base
+    {
+        wheelBasedMobileManipulator
+        {
+            (0,0) 0.0   ; x
+            (1,0) 0.0   ; y
+            (2,0) 0.0   ; yaw
+        }
+    }
+
+    arm
+    {
+    (0,0)   0.0      ; body_joint1
+    (1,0)   0.0      ; body_joint2
+    (2,0)   0.0      ; body_joint3
+    (3,0)   0.0      ; body_joint4
+    (4,0)   0.0      ; left_arm_joint1
+    (5,0)   0.0      ; left_arm_joint2
+    (6,0)   0.0      ; left_arm_joint3
+    (7,0)   0.0      ; left_arm_joint4
+    (8,0)   0.0      ; left_arm_joint5
+    (9,0)   0.0      ; left_arm_joint6
+    (10,0)   0.0     ; left_arm_joint7
+    (11,0)   0.0     ; right_arm_joint1
+    (12,0)   0.0     ; right_arm_joint2
+    (13,0)   0.0     ; right_arm_joint3
+    (14,0)   0.0     ; right_arm_joint4
+    (15,0)   0.0     ; right_arm_joint5
+    (16,0)   0.0     ; right_arm_joint6
+    (17,0)   0.0     ; right_arm_joint7
+    }
+}
+
+;=============================================================================
+; Initial Mode Schedule
+;=============================================================================
+
+initialModeSchedule
+{
+    ; No switching events initially
+    eventTimes
+    {
+    }
+    
+    ; Start in HM_DUAL_RELATIVE_MOBILE_BASE
+    modeSequence
+    {
+        [0]     HM_DUAL_RELATIVE_MOBILE_BASE
+    }
+}
+
+;=============================================================================
+; DDP Settings
+;=============================================================================
+
+ddp
+{
+    algorithm                       SLQ
+
+    nThreads                        4
+    threadPriority                  50
+
+    maxNumIterations                10
+    minRelCost                      1e-3
+    constraintTolerance             5e-3
+
+    displayInfo                     false
+    displayShortSummary             false
+    checkNumericalStability         false
+    debugPrintRollout               false
+
+    AbsTolODE                       1e-5
+    RelTolODE                       1e-3
+    maxNumStepsPerSecond            10000
+    timeStep                        0.01
+    backwardPassIntegratorType      ODE45
+
+    constraintPenaltyInitialValue   20.0
+    constraintPenaltyIncreaseRate   2.0
+
+    preComputeRiccatiTerms          true
+
+    useFeedbackPolicy               true
+
+    strategy                        LINE_SEARCH
+    lineSearch
+    {
+        minStepLength                   1e-2
+        maxStepLength                   1.0
+        hessianCorrectionStrategy       DIAGONAL_SHIFT
+        hessianCorrectionMultiple       1e-5
+    }
+}
+
+;=============================================================================
+; MPC Settings
+;=============================================================================
+
+mpc
+{
+    timeHorizon                     1.0
+    solutionTimeWindow              -1
+    coldStart                       false
+
+    debugPrint                      false
+
+    mpcDesiredFrequency             100
+    mrtDesiredFrequency             400
+}
+
+;=============================================================================
+; Rollout Settings
+;=============================================================================
+
+rollout
+{
+    AbsTolODE                       1e-5
+    RelTolODE                       1e-3
+    timeStep                        0.01
+    integratorType                  ODE45
+    maxNumStepsPerSecond            10000
+    checkNumericalStability         false
+}
+
+;=============================================================================
+; Input Cost
+;=============================================================================
+
+inputCost
+{
+    R
+    {
+        ; Base input cost (2 DOF for WheelBasedMobileManipulator: v_linear, omega)
+        base
+        {
+            wheelBasedMobileManipulator
+            {
+                scaling 1e-2
+
+                (0,0)   1.0     ; linear velocity
+                (1,1)   1.0     ; angular velocity (yaw rate)
+            }
+        }
+
+        ; Arm joint velocity costs
+        arm
+        {
+            scaling 1e-3
+
+             (0,0)   1.0       ; body_joint1
+             (1,0)   1.0       ; body_joint2
+             (2,0)   1.0       ; body_joint3
+             (3,0)   1.0       ; body_joint4
+             (4,0)   1.0      ; left_joint1
+             (5,0)   1.0      ; left_joint2
+             (6,0)   1.0      ; left_joint3
+             (7,0)   1.0      ; left_joint4
+             (8,0)   1.0      ; left_joint5
+             (9,0)   1.0      ; left_joint6
+             (10,0)  1.0      ; left_joint7
+             (11,0)  1.0      ; right_joint1
+             (12,0)  1.0      ; right_joint2
+             (13,0)  1.0      ; right_joint3
+             (14,0)  1.0      ; right_joint4
+             (15,0)  1.0      ; right_joint5
+             (16,0)  1.0      ; right_joint6
+             (17,0)  1.0      ; right_joint7
+        }
+    }
+}
+
+;=============================================================================
+; End Effector Constraint
+;=============================================================================
+
+endEffector
+{
+    muPosition                      10.0
+    muOrientation                   5.0
+}
+
+finalEndEffector
+{
+    muPosition                      10.0
+    muOrientation                   5.0
+}
+
+;=============================================================================
+; Body Constraint (Mode-Aware)
+;=============================================================================
+
+bodyConstraint
+{
+    activate                        true
+    
+    ; Penalty weights
+    muPosition                      0.5
+    muOrientation                   1.0
+}
+
+;=============================================================================
+; Bimanual Coupling Constraint
+;=============================================================================
+
+bimanualCoupling
+{
+    activate                        true
+    
+    ; Higher weights to enforce rigid coupling
+    muPosition                      5.0
+    muOrientation                   5.0
+    
+    ; Note: Relative pose is captured automatically when switching to COUPLED mode
+}
+
+;=============================================================================
+; Joint Position Limits
+;=============================================================================
+
+jointPositionLimits
+{
+    activate                        true
+    mu                              1e-2
+    delta                           1e-3
+}
+
+;=============================================================================
+; Joint Velocity Limits
+;=============================================================================
+
+jointVelocityLimits
+{
+    mu                              1e-2
+    delta                           1e-3
+
+    lowerBound
+    {
+        base
+        {
+            wheelBasedMobileManipulator
+            {
+                (0,0)  -1.0     ; linear velocity
+                (1,0)  -1.5     ; angular velocity (yaw rate)
+            }
+        }
+
+        arm
+        {
+            (0,0)  -0.5         ; body_joint1 [rad/s]
+            (1,0)  -0.5         ; body_joint2 [rad/s]
+            (2,0)  -0.5         ; body_joint3 [rad/s]
+            (3,0)  -0.5         ; body_joint4 [rad/s]
+            (4,0)  -1.07         ; left_joint1 [rad/s]
+            (5,0)  -1.07         ; left_joint2 [rad/s]
+            (6,0)  -1.07         ; left_joint3 [rad/s]
+            (7,0)  -1.07         ; left_joint4 [rad/s]
+            (8,0)  -1.07         ; left_joint5 [rad/s]
+            (9,0)  -1.07         ; left_joint6 [rad/s]
+            (10,0) -1.07         ; left_joint7 [rad/s]
+            (11,0) -1.07         ; right_joint1 [rad/s]
+            (12,0) -1.07         ; right_joint2 [rad/s]
+            (13,0) -1.07         ; right_joint3 [rad/s]
+            (14,0) -1.07         ; right_joint4 [rad/s]
+            (15,0) -1.07         ; right_joint5 [rad/s]
+            (16,0) -1.07         ; right_joint6 [rad/s]
+            (17,0) -1.07         ; right_joint7 [rad/s]
+        }
+    }
+
+    upperBound
+    {
+        base
+        {
+            wheelBasedMobileManipulator
+            {
+                (0,0)   1.0     ; linear velocity
+                (1,0)   1.5     ; angular velocity (yaw rate)
+            }
+        }
+
+        arm
+        {
+            (0,0)  0.5          ; body_joint1 [rad/s]
+            (1,0)  0.5          ; body_joint2 [rad/s]
+            (2,0)  0.5          ; body_joint3 [rad/s]
+            (3,0)  0.5          ; body_joint4 [rad/s]
+            (4,0)  1.07          ; left_joint1 [rad/s]
+            (5,0)  1.07          ; left_joint2 [rad/s]
+            (6,0)  1.07          ; left_joint3 [rad/s]
+            (7,0)  1.07          ; left_joint4 [rad/s]
+            (8,0)  1.07          ; left_joint5 [rad/s]
+            (9,0)  1.07          ; left_joint6 [rad/s]
+            (10,0) 1.07          ; left_joint7 [rad/s]
+            (11,0) 1.07          ; right_joint1 [rad/s]
+            (12,0) 1.07          ; right_joint2 [rad/s]
+            (13,0) 1.07          ; right_joint3 [rad/s]
+            (14,0) 1.07          ; right_joint4 [rad/s]
+            (15,0) 1.07          ; right_joint5 [rad/s]
+            (16,0) 1.07          ; right_joint6 [rad/s]
+            (17,0) 1.07          ; right_joint7 [rad/s]
+        }
+    }
+}
+
+;=============================================================================
+; Self Collision
+;=============================================================================
+
+selfCollision
+{
+    activate                        false
+    mu                              1e-2
+    delta                           1e-3
+    minimumDistance                 0.02
+
+    ; Collision link pairs to check
+    collisionLinkPairs
+    {
+    }
+
+    ; Collision object pairs (by index)
+    collisionObjectPairs
+    {
+          [0] "body_link4, left_link4",
+          [1] "body_link4, left_link5",
+          [2] "body_link4, left_link7",
+          [3] "body_link4, right_link4",
+          [4] "body_link4, right_link5",
+          [5] "body_link4, right_link7",
+          [6] "body_link4, right_link3",
+          [7] "body_link4, left_link3",
+    }
+}
+
