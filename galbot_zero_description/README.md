@@ -1,31 +1,32 @@
 # Galbot Zero Description
 
+This package contains the description files for Galbot Zero humanoid. The origin models could be found at [RoboHanger_code](https://github.com/chen01yx/RoboHanger_code)
 
+![galbot_zero.png](../.images/galbot_zero.png)
 
-## Build
+## 1. Build
 
 ```bash
 cd ~/ros2_ws
 colcon build --packages-up-to galbot_zero_description --symlink-install
 ```
 
-## Visualize
+## 2. Visualize the robot
 
-### Full Robot
+### 2.1. Full robot
 
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero
 ```
 
-Hide grippers (type:=none):
+* Without End Effector:
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero type:=none
+  ```
 
-```bash
-source ~/ros2_ws/install/setup.bash
-ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero type:=none
-```
-
-### Component
+### 2.2. Component modules
 
 * Chassis
   ```bash
@@ -39,37 +40,39 @@ ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_zero type:=n
   ros2 launch robot_common_launch component.launch.py robot:=galbot_zero type:=body
   ```
 
+## 3. OCS2 Arm Controller Demo
 
+### 3.1. Mock Component
 
-## Full-body OCS2 Demo
-
-* Mock Component
+* Full body
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_zero
   ```
-* Isaac Sim
-  ```bash
-  source ~/ros2_ws/install/setup.bash
-  ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_zero hardware:=isaac
-  ```
-## Split-body OCS2 Demo
 
-* Mock Component
+* Split body
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch ocs2_arm_controller split_body.launch.py robot:=galbot_zero
   ```
 
-* Isaac Sim
+### 3.2. Isaac Sim
+
+* Full body
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_zero hardware:=isaac
+  ```
+
+* Split body
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch ocs2_arm_controller split_body.launch.py robot:=galbot_zero hardware:=isaac
   ```
-## Navigation
 
-  ```bash
-  source ~/ros2_ws/install/setup.bash
-  ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_zero map:=warehouse_multiple_shelfs nav2_profile:=map_only
-  ```
+## 4. Navigation
 
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch robot_common_launch navigation_isaac_gt.launch.py robot:=galbot_zero map:=warehouse_multiple_shelfs nav2_profile:=map_only
+```

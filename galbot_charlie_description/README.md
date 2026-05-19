@@ -1,6 +1,8 @@
 # Galbot Charlie Description
 
-This package contains the description files for Galbot Charlie.
+This package contains the description files for Galbot Charlie humanoid. The origin models could be found at [RoboHanger_code](https://github.com/chen01yx/RoboHanger_code)
+
+![galbot_charlie.png](../.images/galbot_charlie.png)
 
 ## 1. Build
 

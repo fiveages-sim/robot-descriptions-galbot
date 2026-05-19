@@ -2,7 +2,7 @@
 
 This package contains the description files for Galbot humanoid. The origin models could be found at [RoboHanger_code](https://github.com/chen01yx/RoboHanger_code)
 
-![galbot_one.png](../../.images/galbot_one.png)
+![galbot_one.png](../.images/galbot_one.png)
 
 ## 1. Build
 

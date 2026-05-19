@@ -6,8 +6,8 @@
   <description>
     URDF / xacro description package for Galbot S1 (layout aligned with galbot_foxtrot_description).
   </description>
-  <maintainer email="xujinghua@galbot.com">Galbot</maintainer>
-  <license>BSD</license>
+  <maintainer email="biao876990970@hotmail.com">Huang Zhenbiao</maintainer>
+  <license>Apache-2.0</license>
 
   <exec_depend>robot_common_launch</exec_depend>
   <exec_depend>sensor_models</exec_depend>

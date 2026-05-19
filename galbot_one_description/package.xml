@@ -3,8 +3,8 @@
   <version>1.0.0</version>
   <description>URDF/Xacro description package for Galbot One.</description>
 
-  <maintainer email="todo@example.com">TODO</maintainer>
-  <license>BSD</license>
+  <maintainer email="biao876990970@hotmail.com">Huang Zhenbiao</maintainer>
+  <license>Apache-2.0</license>
 
   <exec_depend>robot_common_launch</exec_depend>
   <exec_depend>component_models</exec_depend>

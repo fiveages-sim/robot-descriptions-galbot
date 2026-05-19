@@ -7,9 +7,8 @@
       for Galbot G1 Foxtrot robot
     </p>
   </description>
-  <author>TODO</author>
-  <maintainer email="TODO@email.com"/>
-  <license>BSD</license>
+  <maintainer email="biao876990970@hotmail.com">Huang Zhenbiao</maintainer>
+  <license>Apache-2.0</license>
 
   <exec_depend>robot_common_launch</exec_depend>
   <exec_depend>sensor_models</exec_depend>

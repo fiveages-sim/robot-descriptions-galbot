@@ -1,0 +1,20 @@
+Galbot Robot Descriptions
+Copyright Zhenbiao@FiveAges
+
+This repository is maintained by FiveAges (fiveages-sim). See LICENSE for
+terms governing FiveAges-authored and -adapted material in this repository.
+
+Third-party robot models and assets may be subject to separate terms. The
+table below lists upstream sources documented in package README files.
+
+| Package                    | Upstream reference                                      | Upstream license (as stated)   |
+|----------------------------|---------------------------------------------------------|--------------------------------|
+| galbot_one_description     | https://github.com/chen01yx/RoboHanger_code             | See upstream repository        |
+| galbot_charlie_description | https://github.com/chen01yx/RoboHanger_code             | See upstream repository        |
+| galbot_zero_description    | https://github.com/chen01yx/RoboHanger_code             | See upstream repository        |
+| galbot_foxtrot_description | https://github.com/galbot-ioai/physics_sim_edu          | Proprietary / All Rights Reserved (Galbot) |
+| galbot_golf_description    | https://github.com/GalaxyGeneralRobotics/galbot_one_golf_description | Apache-2.0 (upstream) |
+| galbot_s1_description      | https://github.com/GalaxyGeneralRobotics/galbot_s1_description       | Apache-2.0 (upstream) |
+
+Meshes may be repainted or simplified for simulation. Use of third-party
+assets remains subject to their respective upstream licenses.

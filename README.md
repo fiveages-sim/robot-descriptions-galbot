@@ -2,6 +2,8 @@
 
 Galbot humanoid robot description packages. Each package contains its own URDF/Xacro, meshes, RViz, and controller configuration.
 
+FiveAges-adapted packages are licensed under [Apache-2.0](LICENSE). Third-party model sources and upstream terms are listed in [NOTICE](NOTICE) and each package README.
+
 | Brand | Model | Repaint | Images |
 |---|---|---|---|
 | Galbot | [Zero](galbot_zero_description/) | Yes | <img src=".images/galbot_zero.png" width="160"> |
