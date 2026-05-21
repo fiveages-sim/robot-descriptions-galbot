@@ -240,7 +240,7 @@
   <link name="chassis_lidar">
     <visual>
       <geometry>
-        <mesh filename="package://sensor_models/meshes/mid360/mid360.obj"/>
+        <mesh filename="package://sensor_models/meshes/livox/mid360.glb"/>
       </geometry>
     </visual>
   </link>
@@ -275,7 +275,7 @@
   <link name="column_lidar">
     <visual>
       <geometry>
-        <mesh filename="package://sensor_models/meshes/mid360/mid360.obj"/>
+        <mesh filename="package://sensor_models/meshes/livox/mid360.glb"/>
       </geometry>
     </visual>
   </link>
@@ -402,7 +402,7 @@
   <link name="head_lidar">
     <visual>
       <geometry>
-        <mesh filename="package://sensor_models/meshes/mid360/mid360.obj"/>
+        <mesh filename="package://sensor_models/meshes/livox/mid360.glb"/>
       </geometry>
     </visual>
   </link>
