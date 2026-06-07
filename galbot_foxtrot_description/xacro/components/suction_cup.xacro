@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="galbot_suction_cup">
+	<xacro:arg name="standalone" default="false"/>
+	<xacro:arg name="collision_type" default="simple"/>
+	<xacro:arg name="enable_rotation" default="false"/>
+
+	<xacro:property name="PI" value="3.141592653589793"/>
+
+	<xacro:macro name="galbot_suction_cup"
+	             params="parent *origin name:=suction_cup collider_type:=simple enable_rotation:=false">
+		<joint name="${name}_mount_joint" type="fixed">
+			<xacro:insert_block name="origin"/>
+			<parent link="${parent}"/>
+			<child link="${name}_base_link"/>
+		</joint>
+
+		<link name="${name}_base_link">
+			<inertial>
+				<origin xyz="-4.0035E-05 -0.00015919 0.065665" rpy="0 0 0"/>
+				<mass value="0.36941"/>
+				<inertia ixx="0.00014564" ixy="3.5459E-07" ixz="-1.2386E-07" iyy="0.00016918"
+								 iyz="-4.0084E-07" izz="0.000219"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/suction_cup/base_link.glb"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/suction_cup/convex/base_link.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<link name="${name}_link1">
+			<inertial>
+				<origin xyz="0.037966 -3.0191E-05 -4.2414E-08" rpy="0 0 0"/>
+				<mass value="0.063856"/>
+				<inertia ixx="7.1717E-06" ixy="1.7711E-08" ixz="-3.6994E-11" iyy="8.0256E-06"
+								 iyz="4.7383E-09" izz="7.78E-06"/>
+			</inertial>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/visual/suction_cup/link1.glb"/>
+				</geometry>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find galbot_foxtrot_description)/meshes/collision/suction_cup/convex/link_1.stl"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<xacro:if value="${enable_rotation}">
+			<joint name="${name}_joint1" type="revolute">
+				<origin xyz="-0.1428 0 0" rpy="0 0 ${-PI/2}"/>
+				<parent link="${name}_base_link"/>
+				<child link="${name}_link1"/>
+				<axis xyz="0 0 1"/>
+				<limit lower="0" upper="1.570796327" effort="1" velocity="1.570796327"/>
+			</joint>
+		</xacro:if>
+		<xacro:unless value="${enable_rotation}">
+			<joint name="${name}_joint1" type="fixed">
+				<origin xyz="-0.1428 0 0" rpy="0 0 ${-PI/2}"/>
+				<parent link="${name}_base_link"/>
+				<child link="${name}_link1"/>
+			</joint>
+		</xacro:unless>
+
+		<link name="${name}_tcp_link"/>
+		<joint name="${name}_tcp_joint" type="fixed">
+			<origin xyz="0 -0.079807 0" rpy="${PI/2} 0 ${-PI/2}"/>
+			<parent link="${name}_link1"/>
+			<child link="${name}_tcp_link"/>
+		</joint>
+	</xacro:macro>
+
+	<xacro:if value="$(arg standalone)">
+		<link name="base_link"/>
+		<xacro:galbot_suction_cup name="suction_cup" parent="base_link" collider_type="$(arg collision_type)"
+		                          enable_rotation="$(arg enable_rotation)">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</xacro:galbot_suction_cup>
+	</xacro:if>
+</robot>

@@ -12,8 +12,8 @@ model_information
     ; Frame definitions
     baseFrame                       "base_footprint"
     bodyFrame               "leg_link4"
-    leftEEFrame             "left_gripper_tcp_link"
-    rightEEFrame            "right_gripper_tcp_link"
+    leftEEFrame             "left_eef"
+    rightEEFrame            "right_eef"
 
     ; Joints to remove (fixed joints, mimic joints detected automatically)
     removeJoints

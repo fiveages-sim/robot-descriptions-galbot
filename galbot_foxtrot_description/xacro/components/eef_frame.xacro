@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Unified OCS2 / planning end-effector frame: {prefix}eef (e.g. left_eef, right_eef). -->
+	<xacro:macro name="GalbotSideEefFrame" params="prefix ee_type">
+		<link name="${prefix}eef"/>
+
+		<xacro:if value="${ee_type == 'galbot_gripper' or ee_type == 'hitbot'}">
+			<joint name="${prefix}eef_joint" type="fixed">
+				<parent link="${prefix}gripper_tcp_link"/>
+				<child link="${prefix}eef"/>
+			</joint>
+		</xacro:if>
+
+		<xacro:if value="${ee_type == 'suction_cup'}">
+			<joint name="${prefix}eef_joint" type="fixed">
+				<parent link="${prefix}suction_cup_tcp_link"/>
+				<child link="${prefix}eef"/>
+			</joint>
+		</xacro:if>
+
+		<xacro:if value="${ee_type == 'none' or ee_type == ''}">
+			<joint name="${prefix}eef_joint" type="fixed">
+				<parent link="${prefix}link7"/>
+				<child link="${prefix}eef"/>
+			</joint>
+		</xacro:if>
+	</xacro:macro>
+
+</robot>

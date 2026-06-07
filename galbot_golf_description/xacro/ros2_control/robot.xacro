@@ -1,23 +1,14 @@
 <?xml version="1.0" ?>
-<!-- =================================================================================== -->
-<!-- |    Complete Robot Description for Galbot Foxtrot                                     | -->
-<!-- |    This file includes the base robot structure and both arms                    | -->
-<!-- =================================================================================== -->
-<robot name="genie" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="galbot_golf_ros2_control" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<!-- Include the base robot structure -->
+	<xacro:arg name="ros2_control_hardware_type" default="mock_components"/>
+
 	<xacro:include filename="$(find galbot_golf_description)/xacro/robot.xacro"/>
-
-	<!-- Import modular interface components -->
 	<xacro:include filename="$(find galbot_golf_description)/xacro/ros2_control/base_interfaces.xacro"/>
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/ros2_control/head_interfaces.xacro"/>
 	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/ros2_control/arm_interfaces.xacro"/>
-	<xacro:property name="gripper_initial_value" value="1.57"/>
-	<xacro:if value="${'$(arg type)' == 'hitbot'}">
-		<xacro:property name="gripper_initial_value" value="0.75"/>
-	</xacro:if>
+	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/ros2_control/ee_interfaces.xacro"/>
 
-	<!-- Unified ros2_control system -->
 	<ros2_control name="galbot_golf_unified_system" type="system">
 		<hardware>
 			<xacro:if value="${'$(arg ros2_control_hardware_type)' == 'gz'}">
@@ -33,24 +24,19 @@
 			</xacro:if>
 		</hardware>
 
-		<!-- 基座接口 -->
 		<xacro:base_interfaces/>
-
-		<!-- 头部接口 -->
 		<xacro:head_interfaces/>
-
-		<!-- 左臂接口 -->
-		<xacro:arm_interfaces name="left" gripper_initial_value="${gripper_initial_value}"/>
-
-		<!-- 右臂接口 -->
-		<xacro:arm_interfaces name="right" gripper_initial_value="${gripper_initial_value}"/>
+		<xacro:arm_interfaces name="left"/>
+		<xacro:GalbotEeInterfaces name="left" ee_type="${selected_left_ee_type}"/>
+		<xacro:arm_interfaces name="right"/>
+		<xacro:GalbotEeInterfaces name="right" ee_type="${selected_right_ee_type}"/>
 	</ros2_control>
 
-	<xacro:arg name="gazebo" default="false" />
+	<xacro:arg name="gazebo" default="false"/>
 	<xacro:if value="$(arg gazebo)">
 		<gazebo>
 			<plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-				<parameters>$(find galbot_foxtrot_description)/config/ros2_control/ros2_controllers.yaml</parameters>
+				<parameters>$(find galbot_golf_description)/config/ros2_control/ros2_controllers.yaml</parameters>
 			</plugin>
 		</gazebo>
 	</xacro:if>

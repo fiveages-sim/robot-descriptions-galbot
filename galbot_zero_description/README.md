@@ -2,6 +2,8 @@
 
 This package contains the description files for Galbot Zero humanoid. The origin models could be found at [RoboHanger_code](https://github.com/chen01yx/RoboHanger_code)
 
+Robot models are defined under **`xacro/`** only (no static `urdf/`). `robot_common_launch` and OCS2 expand `xacro/robot.xacro` at runtime.
+
 ![galbot_zero.png](../.images/galbot_zero.png)
 
 ## 1. Build

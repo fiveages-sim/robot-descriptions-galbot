@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:property name="PI" value="3.141592653589793"/>
+
+	<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/eef_frame.xacro"/>
+
+	<!-- Per-arm EE types: left_type/right_type override type (same as m6_ccs and robot_common_launch). -->
+	<xacro:macro name="InitGalbotEeTypes" params="type left_type_arg:='' right_type_arg:=''">
+		<xacro:property name="selected_left_ee_type"
+		                value="${left_type_arg if left_type_arg != '' else type}"
+		                scope="parent"/>
+		<xacro:property name="selected_right_ee_type"
+		                value="${right_type_arg if right_type_arg != '' else type}"
+		                scope="parent"/>
+	</xacro:macro>
+
+	<!-- Mount one end effector on an arm. variant: foxtrot | one | charlie -->
+	<xacro:macro name="GalbotArmEndEffector"
+	              params="name ee_type variant:=foxtrot collider:=simple enable_suction_rotation:=false eef_fixed_joints:=false">
+		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
+		<xacro:property name="is_right" value="${name == 'right'}"/>
+		<xacro:property name="suction_yaw" value="${PI if is_right else -PI}"/>
+
+		<!-- Foxtrot / Golf (shared arm kinematics) -->
+		<xacro:if value="${variant == 'foxtrot'}">
+			<xacro:if value="${ee_type == 'galbot_gripper'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin rpy="1.5707963267949 0 3.141592653589793" xyz="-0.10926 0 0"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_flange"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'hitbot'}">
+				<xacro:include filename="$(find hitbot_description)/xacro/Z-EFG-100.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin xyz="-0.10926 0 0" rpy="0 0 3.141592653589793"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_base"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'suction_cup'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/suction_cup.xacro"/>
+				<link name="${prefix}end_effector_mount_link"/>
+				<joint name="${prefix}arm_end_effector_mount_joint" type="fixed">
+					<origin rpy="${PI} 0 ${PI}" xyz="-0.10926 0 0"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}end_effector_mount_link"/>
+				</joint>
+				<xacro:galbot_suction_cup name="${prefix}suction_cup" parent="${prefix}end_effector_mount_link"
+				                          collider_type="${collider}" enable_rotation="${str(enable_suction_rotation).lower() == 'true' and str(eef_fixed_joints).lower() != 'true'}">
+					<origin rpy="${-PI/2} ${suction_yaw} 0" xyz="0 0 0"/>
+				</xacro:galbot_suction_cup>
+			</xacro:if>
+		</xacro:if>
+
+		<!-- Galbot One -->
+		<xacro:if value="${variant == 'one'}">
+			<xacro:if value="${ee_type == 'galbot_gripper'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin xyz="0 0 0.089525" rpy="0 ${-PI/2} ${PI/2 if is_right else -PI/2}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_flange"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'hitbot'}">
+				<xacro:include filename="$(find hitbot_description)/xacro/Z-EFG-100.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin xyz="0 0 0.084525" rpy="0 ${-PI/2} ${0 if is_right else PI}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_base"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'suction_cup'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/suction_cup.xacro"/>
+				<link name="${prefix}end_effector_mount_link"/>
+				<joint name="${prefix}arm_end_effector_mount_joint" type="fixed">
+					<origin xyz="0 0 0.089525" rpy="0 ${-PI/2} ${PI/2 if is_right else -PI/2}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}end_effector_mount_link"/>
+				</joint>
+				<xacro:galbot_suction_cup name="${prefix}suction_cup" parent="${prefix}end_effector_mount_link"
+				                          collider_type="${collider}" enable_rotation="${str(enable_suction_rotation).lower() == 'true' and str(eef_fixed_joints).lower() != 'true'}">
+					<origin rpy="${-PI/2} ${suction_yaw} 0" xyz="0 0 0"/>
+				</xacro:galbot_suction_cup>
+			</xacro:if>
+		</xacro:if>
+
+		<!-- Galbot Charlie -->
+		<xacro:if value="${variant == 'charlie'}">
+			<xacro:if value="${ee_type == 'galbot_gripper'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/galbot_gripper.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin xyz="-0.088 0 0" rpy="0 0 ${PI}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_flange"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'hitbot'}">
+				<xacro:include filename="$(find hitbot_description)/xacro/Z-EFG-100.xacro"/>
+				<joint name="${prefix}end_effector_mount_joint" type="fixed">
+					<origin xyz="-0.083 0 0" rpy="${PI/2 if is_right else -PI/2} 0 ${PI}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}gripper_base"/>
+				</joint>
+				<xacro:Gripper name="${name}" collider_type="${collider}" kinematic_only="${eef_fixed_joints}"/>
+			</xacro:if>
+			<xacro:if value="${ee_type == 'suction_cup'}">
+				<xacro:include filename="$(find galbot_foxtrot_description)/xacro/components/suction_cup.xacro"/>
+				<link name="${prefix}end_effector_mount_link"/>
+				<joint name="${prefix}arm_end_effector_mount_joint" type="fixed">
+					<origin xyz="-0.088 0 0" rpy="0 0 ${PI}"/>
+					<parent link="${prefix}link7"/>
+					<child link="${prefix}end_effector_mount_link"/>
+				</joint>
+				<xacro:galbot_suction_cup name="${prefix}suction_cup" parent="${prefix}end_effector_mount_link"
+				                          collider_type="${collider}" enable_rotation="${str(enable_suction_rotation).lower() == 'true' and str(eef_fixed_joints).lower() != 'true'}">
+					<origin rpy="${-PI/2} ${suction_yaw} 0" xyz="0 0 0"/>
+				</xacro:galbot_suction_cup>
+			</xacro:if>
+		</xacro:if>
+
+		<!-- Unified OCS2 eeFrame (left_eef / right_eef): bare arm, gripper TCP, or suction TCP -->
+		<xacro:GalbotSideEefFrame prefix="${prefix}" ee_type="${ee_type}"/>
+	</xacro:macro>
+</robot>

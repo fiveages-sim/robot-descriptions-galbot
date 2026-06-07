@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <!-- Macro for gripper -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-	<xacro:macro name="Gripper" params="name collider_type:=simple">
-
+	<xacro:macro name="Gripper" params="name collider_type:=simple kinematic_only:=false">
 		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
+		<xacro:property name="actuated_joint_type" value="${'fixed' if str(kinematic_only).lower() == 'true' else 'revolute'}"/>
 
 		<link name="${prefix}gripper_flange">
 			<inertial>
@@ -215,7 +215,7 @@
 			</xacro:if>
 		</link>
 
-		<joint name="${prefix}gripper_joint" type="revolute">
+		<joint name="${prefix}gripper_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_base"/>
 			<child link="${prefix}gripper_r_knuckle_link"/>
 			<origin rpy="1.5707963267948966 -1.2465 0" xyz="0.0745 0 0.0385"/>
@@ -223,49 +223,59 @@
 			<limit effort="50" lower="0.0" upper="1.703" velocity="0.5"/>
 		</joint>
 
-		<joint name="${prefix}gripper_r_inner_knuckle_joint" type="revolute">
+		<joint name="${prefix}gripper_r_inner_knuckle_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_base"/>
 			<child link="${prefix}gripper_r_inner_knuckle_link"/>
 			<origin rpy="1.5707963267948966 -1.2465 0" xyz="0.079 0 0.026"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
-			<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+			<xacro:unless value="${str(kinematic_only).lower() == 'true'}">
+				<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+			</xacro:unless>
 		</joint>
 
-		<joint name="${prefix}gripper_r_finger_joint" type="revolute">
+		<joint name="${prefix}gripper_r_finger_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_r_inner_knuckle_link"/>
 			<child link="${prefix}gripper_r_finger_link"/>
 			<origin rpy="0 0 -1.2465" xyz="0.045 0 0"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
-			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			<xacro:unless value="${str(kinematic_only).lower() == 'true'}">
+				<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			</xacro:unless>
 		</joint>
 
-		<joint name="${prefix}gripper_l_knuckle_joint" type="revolute">
+		<joint name="${prefix}gripper_l_knuckle_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_base"/>
 			<child link="${prefix}gripper_l_knuckle_link"/>
 			<origin rpy="1.5707963267948966 1.2465 0" xyz="0.0745 0 -0.0385"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="50" lower="-3.13" upper="3.13" velocity="0.5"/>
-			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			<xacro:unless value="${str(kinematic_only).lower() == 'true'}">
+				<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			</xacro:unless>
 		</joint>
 
-		<joint name="${prefix}gripper_l_inner_knuckle_joint" type="revolute">
+		<joint name="${prefix}gripper_l_inner_knuckle_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_base"/>
 			<child link="${prefix}gripper_l_inner_knuckle_link"/>
 			<origin rpy="1.5707963267948966 1.2465 0" xyz="0.079 0 -0.026"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
-			<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			<xacro:unless value="${str(kinematic_only).lower() == 'true'}">
+				<mimic joint="${prefix}gripper_joint" multiplier="1"/>
+			</xacro:unless>
 		</joint>
 
-		<joint name="${prefix}gripper_l_finger_joint" type="revolute">
+		<joint name="${prefix}gripper_l_finger_joint" type="${actuated_joint_type}">
 			<parent link="${prefix}gripper_l_inner_knuckle_link"/>
 			<child link="${prefix}gripper_l_finger_link"/>
 			<origin rpy="0 0 1.2465" xyz="0.045 0 0"/>
 			<axis xyz="0 0 1"/>
 			<limit effort="1000" lower="-3.13" upper="3.13" velocity="2.0"/>
-			<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+			<xacro:unless value="${str(kinematic_only).lower() == 'true'}">
+				<mimic joint="${prefix}gripper_joint" multiplier="-1"/>
+			</xacro:unless>
 		</joint>
 
 		<link name="${prefix}gripper_tcp_link"/>

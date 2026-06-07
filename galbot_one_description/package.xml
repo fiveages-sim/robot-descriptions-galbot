@@ -10,6 +10,7 @@
   <exec_depend>component_models</exec_depend>
   <exec_depend>sensor_models</exec_depend>
   <exec_depend>hitbot_description</exec_depend>
+  <exec_depend>galbot_foxtrot_description</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>

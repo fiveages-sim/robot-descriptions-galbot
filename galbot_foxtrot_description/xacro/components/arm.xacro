@@ -40,8 +40,8 @@
             <origin rpy="0 0 ${direction*0.523598775598286}"/>
             <parent link="${prefix}base_link"/>
             <child link="${prefix}link1"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="60" jerk="12" lower="-3.0043" upper="3.0043" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="60" jerk="12" lower="-3.00432619" upper="3.00432619" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link2">
@@ -77,8 +77,8 @@
             <origin rpy="${direction*1.5707963267949} 0 3.14159265358979"/>
             <parent link="${prefix}link1"/>
             <child link="${prefix}link2"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="60" jerk="12" lower="-1.6081" upper="1.6081" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="60" jerk="12" lower="-1.608062789" upper="1.608062789" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link3">
@@ -106,8 +106,8 @@
             <origin rpy="${direction*1.5707963267949} 1.04719755119629 -3.14159265358979" xyz="0 ${direction*0.35} 0"/>
             <parent link="${prefix}link2"/>
             <child link="${prefix}link3"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="30" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="30" jerk="12" lower="-2.916972222" upper="2.916972222" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link4">
@@ -135,8 +135,10 @@
             <origin rpy="${direction*1.57079632679459} 0 3.14159265358979"/>
             <parent link="${prefix}link3"/>
             <child link="${prefix}link4"/>
-            <axis xyz="0 0 ${-direction}"/>
-            <limit acceleration="2" effort="30" jerk="12" lower="-1.86986" upper="2.56799" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="30" jerk="12"
+                   lower="${-2.5679938779914946 if float(direction) == 1.0 else -1.869862177}"
+                   upper="${1.869862177 if float(direction) == 1.0 else 2.5679938779914946}" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link5">
@@ -166,8 +168,8 @@
                     xyz="0 ${direction*0.36} 0"/>
             <parent link="${prefix}link4"/>
             <child link="${prefix}link5"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="10" jerk="12" lower="-2.91697" upper="2.91697" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="10" jerk="12" lower="-2.916972222" upper="2.916972222" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link6">
@@ -195,8 +197,10 @@
             <origin rpy="1.5707963267949 1.5707963267949 0"/>
             <parent link="${prefix}link5"/>
             <child link="${prefix}link6"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="10" jerk="12" lower="-0.7354" upper="0.8227" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="10" jerk="12"
+                   lower="${-0.8226646259971648 if float(direction) == 1.0 else -0.7353981633974483}"
+                   upper="${0.7353981633974483 if float(direction) == 1.0 else 0.8226646259971648}" velocity="1.5"/>
         </joint>
 
         <link name="${prefix}link7">
@@ -224,8 +228,8 @@
             <origin rpy="${direction*1.5707963267949} 0 0"/>
             <parent link="${prefix}link6"/>
             <child link="${prefix}link7"/>
-            <axis xyz="0 0 ${direction}"/>
-            <limit acceleration="2" effort="10" jerk="12" lower="-1.5382" upper="1.5382" velocity="1.5"/>
+            <axis xyz="0 0 1"/>
+            <limit acceleration="2" effort="10" jerk="12" lower="-1.538202778" upper="1.538202778" velocity="1.5"/>
         </joint>
 
         <xacro:ArmCamera prefix="${prefix}" camera="${camera}"/>

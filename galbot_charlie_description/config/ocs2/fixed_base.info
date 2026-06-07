@@ -3,17 +3,15 @@ model_information {
   manipulatorModelType     0
 
   removeJoints {
-    [0] "head_joint1"
-    [1] "head_joint2"
-    [2] "left_gripper_joint"
-    [3] "right_gripper_joint"
+    [0] "left_gripper_joint"
+    [1] "right_gripper_joint"
   }
 
   baseFrame                       "base_footprint"
-  eeFrame                         "left_gripper_tcp_link"
-  eeFrame1                        "right_gripper_tcp_link"
+  eeFrame                         "left_eef"
+  eeFrame1                        "right_eef"
 }
-
+h
 model_settings
 {
   usePreComputation               true
@@ -104,6 +102,8 @@ initialState
     (15,0)  0.0
     (16,0)  0.0
     (17,0)  0.0
+    (18,0)  0.0     ; head_joint1
+    (19,0)  0.0     ; head_joint2
   }
 }
 
@@ -154,6 +154,8 @@ inputCost
       (15,15) 1.0
       (16,16) 1.0
       (17,17) 1.0
+      (18,18) 1.0     ; head_joint1
+      (19,19) 1.0     ; head_joint2
     }
   }
 }
@@ -198,6 +200,60 @@ bodyRelative
   muPitch                    20.0
   muPositionX                0.0
   muPositionY                0.0
+}
+
+initialModeSchedule
+{
+  eventTimes
+  {
+  }
+
+  modeSequence
+  {
+    [0]     HM_DUAL_RELATIVE_FIXED_BASE
+  }
+}
+
+bodyTrackingEE
+{
+  activate  true
+}
+
+headInputStart                          18
+
+waistLock
+{
+  activate                        true
+  numJoints                       4
+}
+
+headCoupling
+{
+  activate                        true
+  waistJointIndex                 3
+  headJointIndex                  18
+  ; 耦合 u_body4 - alpha * u_head1 = 0；Galbot 腰头有效旋转方向与 W2 相反
+  alpha                           -1.0
+  lockedWaistJoints
+  {
+    [0] 0
+    [1] 1
+    [2] 2
+  }
+}
+
+armLock
+{
+  activate                        true
+  leftNumJoints                   7
+  rightNumJoints                  7
+}
+
+bimanualCoupling
+{
+  activate                        true
+  muPosition                      50.0
+  muOrientation                   25.0
 }
 
 selfCollision
@@ -300,6 +356,8 @@ jointVelocityLimits
       (15,0)  -1.5708 ; right_joint5
       (16,0)  -1.5708 ; right_joint6
       (17,0)  -1.5708 ; right_joint7
+      (18,0)  -1.5    ; head_joint1 [rad/s]
+      (19,0)  -1.5    ; head_joint2 [rad/s]
     }
   }
 
@@ -344,6 +402,8 @@ jointVelocityLimits
       (15,0)  1.5708  ; right_joint5
       (16,0)  1.5708  ; right_joint6
       (17,0)  1.5708  ; right_joint7
+      (18,0)  1.5     ; head_joint1 [rad/s]
+      (19,0)  1.5     ; head_joint2 [rad/s]
   }
 }
 }

@@ -25,8 +25,8 @@ model_information {
   }
 
   baseFrame                       "base_footprint"
-  eeFrame                         "left_gripper_tcp_link"
-  eeFrame1                        "right_gripper_tcp_link"
+  eeFrame                         "left_eef"
+  eeFrame1                        "right_eef"
 }
 
 model_settings

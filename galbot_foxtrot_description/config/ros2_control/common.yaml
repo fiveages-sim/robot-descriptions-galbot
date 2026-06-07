@@ -1,0 +1,90 @@
+# Shared ros2_control defaults for Galbot Foxtrot (EEF controllers composed per left_type/right_type).
+
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    ocs2_wbc_controller:
+      type: ocs2_wbc_controller/Ocs2WbcController
+
+    # 头部关节已纳入 ocs2_wbc_controller 统一管理（腰头耦合），不再使用独立头部控制器
+    head_joint_controller:
+      type: basic_joint_controller/BasicJointController
+
+ocs2_wbc_controller:
+  ros__parameters:
+    use_tf_for_base: false
+    tf_topic: /tf
+    world_frame: world
+    base_frame: base_footprint
+    update_rate: 100
+    mpc_frequency: 50
+    info_file_name: fixed_base
+    # 关节顺序须与 URDF/Pinocchio 及 fixed_base.info 一致：
+    # [body_joint1~4 | head_joint1~2 | left_joint1~7 | right_joint1~7]
+    joints:
+      - body_joint1
+      - body_joint2
+      - body_joint3
+      - body_joint4
+      - head_joint1
+      - head_joint2
+      - left_joint1
+      - left_joint2
+      - left_joint3
+      - left_joint4
+      - left_joint5
+      - left_joint6
+      - left_joint7
+      - right_joint1
+      - right_joint2
+      - right_joint3
+      - right_joint4
+      - right_joint5
+      - right_joint6
+      - right_joint7
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    robot_name: galbot_foxtrot
+    home_duration: 5.0
+
+    cartesian_defaults:
+      frame_id: arm_base
+      ik_type: AUTO
+      max_linear_velocity: 0.3
+      max_linear_acceleration: 1.0
+      max_linear_jerk: 5.0
+      max_angular_velocity: 0.5
+      max_angular_acceleration: 1.0
+      max_angular_jerk: 5.0
+
+    home_1: [0.5, 1.5, 1.0, 0.0,
+             0.0, 0.0,
+             2.5, -1.5708, -0.5, -2.2, 0.0, -0.8, 0.0,
+             -2.5, 1.5708, 0.5, 2.2, 0.0, 0.8, 0.0]
+    home_2: [0.0, 0.0, 0.0, 0.0,
+             0.0, 0.0,
+             2.5, -1.5708, -0.5, -2.5, 0.0, -0.8, 0.0,
+             -2.5, 1.5708, 0.5, 2.5, 0.0, 0.8, 0.0]
+
+head_joint_controller:
+  ros__parameters:
+    update_rate: 100
+    joints:
+      - head_joint1
+      - head_joint2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    home_1: [0.0, 0.0]
+    home_2: [0.0, 0.0]
+    home_duration: 5.0
+    movej_duration: 5.0
+    hold_position_threshold: 0.1

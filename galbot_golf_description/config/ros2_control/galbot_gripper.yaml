@@ -1,0 +1,23 @@
+# Symmetric galbot_gripper (both arms)
+controller_manager:
+  ros__parameters:
+    left_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+    right_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
+ocs2_wbc_controller:
+  ros__parameters:
+    robot_type: galbot_gripper
+
+left_gripper_controller:
+  ros__parameters:
+    joint: left_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5
+
+right_gripper_controller:
+  ros__parameters:
+    joint: right_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5

@@ -1,0 +1,52 @@
+controller_manager:
+  ros__parameters:
+    left_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+    right_gripper_controller:
+      type: adaptive_gripper_controller/AdaptiveGripperController
+
+ocs2_wbc_controller:
+  ros__parameters:
+    robot_type: hitbot
+
+left_gripper_controller:
+  ros__parameters:
+    joint: left_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5
+
+right_gripper_controller:
+  ros__parameters:
+    joint: right_gripper_joint
+    force_feedback_ratio: 0.1
+    force_threshold: 1.5
+
+joint_state_broadcaster:
+  ros__parameters:
+    joints:
+      - body_joint1
+      - body_joint2
+      - body_joint3
+      - body_joint4
+      - head_joint1
+      - head_joint2
+      - left_joint1
+      - left_joint2
+      - left_joint3
+      - left_joint4
+      - left_joint5
+      - left_joint6
+      - left_joint7
+      - right_joint1
+      - right_joint2
+      - right_joint3
+      - right_joint4
+      - right_joint5
+      - right_joint6
+      - right_joint7
+      - left_gripper_joint
+      - right_gripper_joint
+    interfaces:
+      - position
+      - velocity
+      - effort

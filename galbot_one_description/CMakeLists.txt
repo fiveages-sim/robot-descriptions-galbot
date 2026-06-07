@@ -4,7 +4,7 @@ project(galbot_one_description)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY meshes urdf xacro config
+  DIRECTORY meshes xacro config
   DESTINATION share/${PROJECT_NAME}/
 )
 

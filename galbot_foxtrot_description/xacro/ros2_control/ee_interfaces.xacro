@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Per-arm end-effector ros2_control interfaces (matches visualization EE type keys). -->
+	<xacro:macro name="GalbotEeInterfaces" params="name ee_type:=none">
+		<xacro:property name="prefix" value="${name + '_' if name else ''}"/>
+
+		<xacro:if value="${ee_type == 'galbot_gripper'}">
+			<joint name="${prefix}gripper_joint">
+				<command_interface name="position"/>
+				<state_interface name="position">
+					<param name="initial_value">1.57</param>
+				</state_interface>
+				<state_interface name="velocity"/>
+				<state_interface name="effort"/>
+			</joint>
+		</xacro:if>
+
+		<xacro:if value="${ee_type == 'hitbot'}">
+			<joint name="${prefix}gripper_joint">
+				<command_interface name="position"/>
+				<state_interface name="position">
+					<param name="initial_value">0.75</param>
+				</state_interface>
+				<state_interface name="velocity"/>
+				<state_interface name="effort"/>
+			</joint>
+		</xacro:if>
+	</xacro:macro>
+
+</robot>

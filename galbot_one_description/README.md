@@ -2,6 +2,8 @@
 
 This package contains the description files for Galbot humanoid. The origin models could be found at [RoboHanger_code](https://github.com/chen01yx/RoboHanger_code)
 
+Robot models are defined under **`xacro/`** only (no static `urdf/`). `robot_common_launch` and OCS2 expand `xacro/robot.xacro` at runtime.
+
 ![galbot_one.png](../.images/galbot_one.png)
 
 ## 1. Build
@@ -103,6 +105,13 @@ ros2 launch ocs2_arm_controller full_body.launch.py \
 source ~/ros2_ws/install/setup.bash
 ros2 launch ocs2_arm_controller full_body.launch.py \
   robot:=galbot_one type:=galbot_gripper
+```
+
+* Left Hitbot + Right Suction Cup (mixed end effectors, mock)
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_one \
+  left_type:=hitbot right_type:=suction_cup
 ```
 
 ### 4.2 Isaac Sim

@@ -14,8 +14,8 @@ model_information {
   ; base frame of the robot (from URDF)
   baseFrame                       "base_footprint"
   ; end-effector frame of the robot (from URDF)
-  eeFrame                         "left_gripper_tcp_link"
-  eeFrame1                        "right_gripper_tcp_link"
+  eeFrame                         "left_eef"
+  eeFrame1                        "right_eef"
 }
 
 model_settings
@@ -110,20 +110,20 @@ initialState
     (1,0)   0.0      ; body_joint2
     (2,0)   0.0      ; body_joint3
     (3,0)   0.0      ; body_joint4
-    (4,0)   0.0      ; left_arm_joint1
-    (5,0)   0.0      ; left_arm_joint2
-    (6,0)   0.0      ; left_arm_joint3
-    (7,0)   0.0      ; left_arm_joint4
-    (8,0)   0.0      ; left_arm_joint5
-    (9,0)   0.0      ; left_arm_joint6
-    (10,0)   0.0     ; left_arm_joint7
-    (11,0)   0.0     ; right_arm_joint1
-    (12,0)   0.0     ; right_arm_joint2
-    (13,0)   0.0     ; right_arm_joint3
-    (14,0)   0.0     ; right_arm_joint4
-    (15,0)   0.0     ; right_arm_joint5
-    (16,0)   0.0     ; right_arm_joint6
-    (17,0)   0.0     ; right_arm_joint7
+    (4,0)   2.5      ; left_joint1
+    (5,0)  -1.5708   ; left_joint2
+    (6,0)  -0.5      ; left_joint3
+    (7,0)   2.2      ; left_joint4
+    (8,0)   0.0      ; left_joint5
+    (9,0)  -0.8      ; left_joint6
+    (10,0)  0.0      ; left_joint7
+    (11,0) -2.5      ; right_joint1
+    (12,0)  1.5708   ; right_joint2
+    (13,0)  0.5      ; right_joint3
+    (14,0) -2.2      ; right_joint4
+    (15,0)  0.0      ; right_joint5
+    (16,0)  0.8      ; right_joint6
+    (17,0)  0.0      ; right_joint7
   }
 }
 

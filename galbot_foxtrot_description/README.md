@@ -2,6 +2,8 @@
 
 This package contains the description files for Galbot G1(foxtrot) humanoid. The origin models could be found at [Galbot IOAI](https://github.com/galbot-ioai/physics_sim_edu).
 
+Robot models are defined under **`xacro/`** only (no static `urdf/`). `robot_common_launch` and OCS2 expand `xacro/robot.xacro` at runtime.
+
 ## 1. Build
 ```bash
 cd ~/ros2_ws
@@ -24,6 +26,13 @@ colcon build --packages-up-to galbot_foxtrot_description --symlink-install
   ```bash
   source ~/ros2_ws/install/setup.bash
   ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_foxtrot type:=hitbot
+  ```
+
+* Left Hitbot + Right Suction Cup (mixed end effectors)
+  ```bash
+  source ~/ros2_ws/install/setup.bash
+  ros2 launch robot_common_launch manipulator.launch.py robot:=galbot_foxtrot \
+    left_type:=hitbot right_type:=suction_cup
   ```
 
 
@@ -96,6 +105,13 @@ ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot
 ```bash
 source ~/ros2_ws/install/setup.bash
 ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot type:=hitbot
+```
+
+* Left Hitbot + Right Suction Cup (mixed end effectors, mock)
+```bash
+source ~/ros2_ws/install/setup.bash
+ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot \
+  left_type:=hitbot right_type:=suction_cup
 ```
 
 * Isaac (Default)

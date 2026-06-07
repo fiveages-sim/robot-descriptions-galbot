@@ -1,0 +1,16 @@
+# Example machine profile for Galbot (copy to robot.local.yaml and pass robot_profile:=/path/to/robot.local.yaml).
+#
+# Merge order (robot_common_launch):
+#   CLI type / left_type / right_type  →  defaults.end_effectors (if use_profile_eef:=true)  →  bare arm
+
+defaults:
+  end_effectors:
+    left: hitbot
+    right: suction_cup
+
+# Optional ros2_control overrides (deep-merged after compose)
+# control:
+#   patch:
+#     ocs2_wbc_controller:
+#       ros__parameters:
+#         home_duration: 8.0
