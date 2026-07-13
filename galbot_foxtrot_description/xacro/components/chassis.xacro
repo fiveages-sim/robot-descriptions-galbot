@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="PI" value="3.1415926535897931"/>
-  <xacro:include filename="$(find component_models)/xacro/omniwheel_10.xacro"/>
+  <xacro:include filename="$(find component_models)/xacro/angellun_200.xacro"/>
 
   <xacro:macro name="GalbotChassisV2" params="enable_wheel_joints:='false'">
     <!-- Robot Base Link -->
