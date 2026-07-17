@@ -16,10 +16,6 @@ controller_manager:
 
 ocs2_wbc_controller:
   ros__parameters:
-    use_tf_for_base: false
-    tf_topic: /tf
-    world_frame: world
-    base_frame: base_footprint
     update_rate: 100
     mpc_frequency: 50
     info_file_name: fixed_base
