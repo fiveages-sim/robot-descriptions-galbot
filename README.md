@@ -2,7 +2,7 @@
 
 Galbot humanoid robot description packages. Each package contains xacro models, meshes, RViz, and controller configuration. URDF is generated at launch time by `robot_common_launch` from `xacro/robot.xacro` (no static `urdf/` in the package).
 
-FiveAges-adapted packages are licensed under [Apache-2.0](LICENSE). Third-party model sources and upstream terms are listed in [NOTICE](NOTICE) and each package README.
+These packages are licensed under [Apache-2.0](LICENSE). Third-party model sources and upstream terms are listed in [NOTICE](NOTICE) and each package README.
 
 | | | |
 |:---:|:---:|:---:|
@@ -32,7 +32,7 @@ Useful arguments:
 - `robot:=<robot>` selects the robot, for example `galbot_s1` or `galbot_foxtrot`.
 - `type:=none` hides optional end effectors when the model supports it.
 - `type:=hitbot`, `type:=galbot_gripper`, or `type:=suction_cup` selects the same end effector on both arms when available.
-- Mixed arms: `left_type:=<type>` and `right_type:=<type>` override `type` per arm (same as `m6_ccs` and `robot_common_launch`). Leave a side empty to use `type` on that arm.
+- Mixed arms: `left_type:=<type>` and `right_type:=<type>` override `type` per arm. Leave a side empty to use `type` on that arm.
 - `collider:=simple` is the default on most models and uses simple primitive collision geometry. Some models also support `convex_decomposition` for convex-hull collision meshes.
 
 ### Visualize Component
@@ -69,7 +69,7 @@ Optional: `enable_suction_rotation:=true` enables the suction-cup rotation joint
 
 ### Robot profile (YAML)
 
-Per-machine defaults use the same schema as [FiveAges W2](../FiveAges/fiveages_w2_description/). Copy [`config/profile/robot.local.yaml.example`](config/profile/robot.local.yaml.example) and pass:
+Per-machine defaults use a robot profile YAML. Copy [`config/profile/robot.local.yaml.example`](config/profile/robot.local.yaml.example) and pass:
 
 ```bash
 ros2 launch ocs2_arm_controller full_body.launch.py robot:=galbot_foxtrot \
